@@ -9,21 +9,58 @@
 /* Begin PBXBuildFile section */
 		FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */; };
 		FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */; };
-		FCF7D8A52CB96D7100A4F82C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A42CB96D7100A4F82C /* ViewController.swift */; };
-		FCF7D8A82CB96D7100A4F82C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8A72CB96D7100A4F82C /* Base */; };
 		FCF7D8AA2CB96D7300A4F82C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */; };
 		FCF7D8AD2CB96D7300A4F82C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8AC2CB96D7300A4F82C /* Base */; };
+		FCF7D8B62CB96DE400A4F82C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8B52CB96DE400A4F82C /* Localizable.xcstrings */; };
+		FCF7D8BF2CB96DFB00A4F82C /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8B82CB96DFB00A4F82C /* Manrope-Bold.ttf */; };
+		FCF7D8C02CB96DFB00A4F82C /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8B92CB96DFB00A4F82C /* Manrope-ExtraBold.ttf */; };
+		FCF7D8C12CB96DFB00A4F82C /* Manrope-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8BA2CB96DFB00A4F82C /* Manrope-Light.ttf */; };
+		FCF7D8C22CB96DFB00A4F82C /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8BB2CB96DFB00A4F82C /* Manrope-Medium.ttf */; };
+		FCF7D8C32CB96DFB00A4F82C /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8BC2CB96DFB00A4F82C /* Manrope-SemiBold.ttf */; };
+		FCF7D8C42CB96DFB00A4F82C /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8BD2CB96DFB00A4F82C /* Manrope-Regular.ttf */; };
+		FCF7D8C52CB96DFB00A4F82C /* Manrope-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8BE2CB96DFB00A4F82C /* Manrope-ExtraLight.ttf */; };
+		FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8D52CB9705300A4F82C /* AppRouter.swift */; };
+		FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8D72CB9707400A4F82C /* WelcomeViewController.swift */; };
+		FCF7D8DA2CB9733400A4F82C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8D92CB9733400A4F82C /* CustomButton.swift */; };
+		FCF7D8DD2CB9749400A4F82C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FCF7D8DC2CB9749400A4F82C /* SnapKit */; };
+		FCF7D8DF2CB98BB200A4F82C /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8DE2CB98BB200A4F82C /* WelcomeViewModel.swift */; };
+		FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8E02CB98DE800A4F82C /* SignInViewController.swift */; };
+		FCF7D8E32CB98DF100A4F82C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8E22CB98DF100A4F82C /* SignUpViewController.swift */; };
+		FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8E42CB9931200A4F82C /* CustomTextField.swift */; };
+		FCF7D8E82CB99EEB00A4F82C /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8E72CB99EEB00A4F82C /* UIView+Extensions.swift */; };
+		FCF7D8EA2CB99F4100A4F82C /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8E92CB99F4100A4F82C /* SignInViewModel.swift */; };
+		FCF7D8EC2CBA829F00A4F82C /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8EB2CBA829F00A4F82C /* UITextField+Extensions.swift */; };
+		FCF7D8EE2CBAAF3100A4F82C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8ED2CBAAF3100A4F82C /* SignUpViewModel.swift */; };
+		FCF7D8F02CBAB99100A4F82C /* SplitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCatalogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FCF7D8A42CB96D7100A4F82C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FCF7D8A72CB96D7100A4F82C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FCF7D8AC2CB96D7300A4F82C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FCF7D8AE2CB96D7300A4F82C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCF7D8B52CB96DE400A4F82C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		FCF7D8B82CB96DFB00A4F82C /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		FCF7D8B92CB96DFB00A4F82C /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
+		FCF7D8BA2CB96DFB00A4F82C /* Manrope-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Light.ttf"; sourceTree = "<group>"; };
+		FCF7D8BB2CB96DFB00A4F82C /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		FCF7D8BC2CB96DFB00A4F82C /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
+		FCF7D8BD2CB96DFB00A4F82C /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
+		FCF7D8BE2CB96DFB00A4F82C /* Manrope-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraLight.ttf"; sourceTree = "<group>"; };
+		FCF7D8D52CB9705300A4F82C /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		FCF7D8D72CB9707400A4F82C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		FCF7D8D92CB9733400A4F82C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		FCF7D8DE2CB98BB200A4F82C /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
+		FCF7D8E02CB98DE800A4F82C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		FCF7D8E22CB98DF100A4F82C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		FCF7D8E42CB9931200A4F82C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		FCF7D8E72CB99EEB00A4F82C /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		FCF7D8E92CB99F4100A4F82C /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		FCF7D8EB2CBA829F00A4F82C /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		FCF7D8ED2CBAAF3100A4F82C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF7D8DD2CB9749400A4F82C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +94,177 @@
 		FCF7D89F2CB96D7100A4F82C /* MovieCatalogApp */ = {
 			isa = PBXGroup;
 			children = (
-				FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */,
-				FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */,
-				FCF7D8A42CB96D7100A4F82C /* ViewController.swift */,
-				FCF7D8A62CB96D7100A4F82C /* Main.storyboard */,
-				FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */,
-				FCF7D8AB2CB96D7300A4F82C /* LaunchScreen.storyboard */,
-				FCF7D8AE2CB96D7300A4F82C /* Info.plist */,
+				FCF7D8E62CB99EDE00A4F82C /* Extensions */,
+				FCF7D8C72CB96F4100A4F82C /* App */,
+				FCF7D8C82CB96F4D00A4F82C /* Domain */,
+				FCF7D8CC2CB96F8B00A4F82C /* Data */,
+				FCF7D8D02CB96FBB00A4F82C /* Presentation */,
+				FCF7D8B42CB96DC300A4F82C /* Resourses */,
 			);
 			path = MovieCatalogApp;
+			sourceTree = "<group>";
+		};
+		FCF7D8B42CB96DC300A4F82C /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8B72CB96DEA00A4F82C /* Fonts */,
+				FCF7D8AB2CB96D7300A4F82C /* LaunchScreen.storyboard */,
+				FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */,
+				FCF7D8AE2CB96D7300A4F82C /* Info.plist */,
+				FCF7D8B52CB96DE400A4F82C /* Localizable.xcstrings */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		FCF7D8B72CB96DEA00A4F82C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8C62CB96DFF00A4F82C /* Manrope */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FCF7D8C62CB96DFF00A4F82C /* Manrope */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8B82CB96DFB00A4F82C /* Manrope-Bold.ttf */,
+				FCF7D8B92CB96DFB00A4F82C /* Manrope-ExtraBold.ttf */,
+				FCF7D8BE2CB96DFB00A4F82C /* Manrope-ExtraLight.ttf */,
+				FCF7D8BA2CB96DFB00A4F82C /* Manrope-Light.ttf */,
+				FCF7D8BB2CB96DFB00A4F82C /* Manrope-Medium.ttf */,
+				FCF7D8BD2CB96DFB00A4F82C /* Manrope-Regular.ttf */,
+				FCF7D8BC2CB96DFB00A4F82C /* Manrope-SemiBold.ttf */,
+			);
+			path = Manrope;
+			sourceTree = "<group>";
+		};
+		FCF7D8C72CB96F4100A4F82C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */,
+				FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FCF7D8C82CB96F4D00A4F82C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8C92CB96F5900A4F82C /* Entities */,
+				FCF7D8CA2CB96F6800A4F82C /* UseCases */,
+				FCF7D8CB2CB96F7800A4F82C /* Repositories */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		FCF7D8C92CB96F5900A4F82C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		FCF7D8CA2CB96F6800A4F82C /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		FCF7D8CB2CB96F7800A4F82C /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FCF7D8CC2CB96F8B00A4F82C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8CD2CB96F9500A4F82C /* Repositories */,
+				FCF7D8CE2CB96F9B00A4F82C /* Models */,
+				FCF7D8CF2CB96FA400A4F82C /* API */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FCF7D8CD2CB96F9500A4F82C /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FCF7D8CE2CB96F9B00A4F82C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FCF7D8CF2CB96FA400A4F82C /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		FCF7D8D02CB96FBB00A4F82C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8D12CB96FCA00A4F82C /* ViewModels */,
+				FCF7D8D22CB96FCE00A4F82C /* Views */,
+				FCF7D8D32CB96FD500A4F82C /* Routers */,
+				FCF7D8D42CB96FDE00A4F82C /* Components */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		FCF7D8D12CB96FCA00A4F82C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8DE2CB98BB200A4F82C /* WelcomeViewModel.swift */,
+				FCF7D8E92CB99F4100A4F82C /* SignInViewModel.swift */,
+				FCF7D8ED2CBAAF3100A4F82C /* SignUpViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FCF7D8D22CB96FCE00A4F82C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8D72CB9707400A4F82C /* WelcomeViewController.swift */,
+				FCF7D8E02CB98DE800A4F82C /* SignInViewController.swift */,
+				FCF7D8E22CB98DF100A4F82C /* SignUpViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FCF7D8D32CB96FD500A4F82C /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8D52CB9705300A4F82C /* AppRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		FCF7D8D42CB96FDE00A4F82C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8D92CB9733400A4F82C /* CustomButton.swift */,
+				FCF7D8E42CB9931200A4F82C /* CustomTextField.swift */,
+				FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FCF7D8E62CB99EDE00A4F82C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8E72CB99EEB00A4F82C /* UIView+Extensions.swift */,
+				FCF7D8EB2CBA829F00A4F82C /* UITextField+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +283,9 @@
 			dependencies = (
 			);
 			name = MovieCatalogApp;
+			packageProductDependencies = (
+				FCF7D8DC2CB9749400A4F82C /* SnapKit */,
+			);
 			productName = MovieCatalogApp;
 			productReference = FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */;
 			productType = "com.apple.product-type.application";
@@ -109,8 +312,12 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = FCF7D8942CB96D7100A4F82C;
+			packageReferences = (
+				FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = FCF7D89E2CB96D7100A4F82C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +332,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF7D8C02CB96DFB00A4F82C /* Manrope-ExtraBold.ttf in Resources */,
+				FCF7D8BF2CB96DFB00A4F82C /* Manrope-Bold.ttf in Resources */,
 				FCF7D8AA2CB96D7300A4F82C /* Assets.xcassets in Resources */,
+				FCF7D8C22CB96DFB00A4F82C /* Manrope-Medium.ttf in Resources */,
 				FCF7D8AD2CB96D7300A4F82C /* Base in Resources */,
-				FCF7D8A82CB96D7100A4F82C /* Base in Resources */,
+				FCF7D8C42CB96DFB00A4F82C /* Manrope-Regular.ttf in Resources */,
+				FCF7D8C12CB96DFB00A4F82C /* Manrope-Light.ttf in Resources */,
+				FCF7D8C32CB96DFB00A4F82C /* Manrope-SemiBold.ttf in Resources */,
+				FCF7D8B62CB96DE400A4F82C /* Localizable.xcstrings in Resources */,
+				FCF7D8C52CB96DFB00A4F82C /* Manrope-ExtraLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +352,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCF7D8A52CB96D7100A4F82C /* ViewController.swift in Sources */,
+				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
+				FCF7D8EE2CBAAF3100A4F82C /* SignUpViewModel.swift in Sources */,
 				FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */,
+				FCF7D8E82CB99EEB00A4F82C /* UIView+Extensions.swift in Sources */,
+				FCF7D8E32CB98DF100A4F82C /* SignUpViewController.swift in Sources */,
+				FCF7D8DF2CB98BB200A4F82C /* WelcomeViewModel.swift in Sources */,
+				FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
+				FCF7D8F02CBAB99100A4F82C /* SplitButton.swift in Sources */,
+				FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */,
+				FCF7D8EA2CB99F4100A4F82C /* SignInViewModel.swift in Sources */,
+				FCF7D8EC2CBA829F00A4F82C /* UITextField+Extensions.swift in Sources */,
+				FCF7D8DA2CB9733400A4F82C /* CustomButton.swift in Sources */,
+				FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FCF7D8A62CB96D7100A4F82C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FCF7D8A72CB96D7100A4F82C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FCF7D8AB2CB96D7300A4F82C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,10 +511,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BUF892U9LY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieCatalogApp/Info.plist;
+				INFOPLIST_FILE = MovieCatalogApp/Resourses/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,10 +538,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BUF892U9LY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieCatalogApp/Info.plist;
+				INFOPLIST_FILE = MovieCatalogApp/Resourses/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -363,6 +578,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FCF7D8DC2CB9749400A4F82C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FCF7D8952CB96D7100A4F82C /* Project object */;
 }
