@@ -10,14 +10,14 @@ import SnapKit
 
 class WelcomeViewController: UIViewController {
     
-    private var viewModel: WelcomeViewModelProtocol
+    private var viewModel: WelcomeViewModel
     
     private let background = UIImageView()
     private let titleLabel = UILabel()
     private let signInButton = CustomButton(style: .gradient)
     private let signUpButton = CustomButton(style: .plain)
     
-    init(viewModel: WelcomeViewModelProtocol) {
+    init(viewModel: WelcomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -80,7 +80,7 @@ private extension WelcomeViewController {
         
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(Constants.horizontalEdgesConstraintsValue)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Constants.bottomEdgeConstraintValue)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Constants.bottomEdgeConstraintValue)
         }
         
         configureSignInButton()

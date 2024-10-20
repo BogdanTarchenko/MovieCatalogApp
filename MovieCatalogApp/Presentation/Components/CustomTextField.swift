@@ -1,30 +1,40 @@
-//
-//  CustomTextField.swift
-//  MovieCatalogApp
-//
-//  Created by Богдан Тарченко on 12.10.2024.
-//
-
 import UIKit
 import SnapKit
 
 class CustomTextField: UITextField {
     
+    enum PlaceholderText {
+        enum Information {
+            case username
+            case email
+            case name
+        }
+        
+        enum Password {
+            case password
+            case repeatedPassword
+        }
+        
+        enum Date {
+            case dateOfBirth
+        }
+    }
+    
     enum TextFieldStyle {
-        case information
-        case password
-        case date
+        case information(PlaceholderText.Information)
+        case password(PlaceholderText.Password)
+        case date(PlaceholderText.Date)
         case plain
     }
     
-    private var placeholderText: String
+    private var placeholderText: String = ""
     private var textFieldStyle: TextFieldStyle
     private let rightButton = UIButton(type: .custom)
     
-    init(placeholder: String, style: TextFieldStyle) {
-        self.placeholderText = placeholder
+    init(style: TextFieldStyle) {
         self.textFieldStyle = style
         super.init(frame: .zero)
+        configurePlaceholderText()
         configureTextField()
     }
     
@@ -63,22 +73,20 @@ private extension CustomTextField {
         
         font = UIFont(name: "Manrope-Regular", size: 14)
         textColor = .textDefault
-        isUserInteractionEnabled = true
         
         snp.makeConstraints { make in
             make.height.equalTo(48)
         }
         
-        if textFieldStyle != .plain {
-            configureRightButton()
-        }
+        configureRightButton()
         
-        if textFieldStyle == .date {
-            configureForDatePicker()
-        }
-        
-        if textFieldStyle == .password {
+        switch textFieldStyle {
+        case .password:
             isSecureTextEntry = true
+        case .date:
+            configureDatePicker(target: self, selector: #selector(doneButtonPressed))
+        default:
+            break
         }
     }
     
@@ -89,12 +97,15 @@ private extension CustomTextField {
         switch textFieldStyle {
         case .information:
             rightButton.setImage(UIImage(named: "cross"), for: .normal)
+            rightButton.isHidden = true
         case .password:
             rightButton.setImage(UIImage(named: "eye_closed"), for: .normal)
+            rightButton.isHidden = true
         case .date:
-            rightButton.setImage(UIImage(named: "calendar"), for: .normal)
+            rightButton.setImage(UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            rightButton.tintColor = .grayFaded
         case .plain:
-            break
+            rightButton.isHidden = true
         }
         
         rightView = rightButton
@@ -102,13 +113,16 @@ private extension CustomTextField {
     }
     
     @objc func buttonTapped() {
-        if textFieldStyle == .date {
+        switch textFieldStyle {
+        case .date:
             self.becomeFirstResponder()
-        } else if textFieldStyle == .password {
+        case .password:
             togglePasswordIcon()
-        } else if textFieldStyle == .information {
+        case .information:
             text = ""
             sendActions(for: .editingChanged)
+        case .plain:
+            break
         }
     }
     
@@ -122,22 +136,90 @@ private extension CustomTextField {
         }
     }
     
-    func configureForDatePicker() {
-        configureDatePicker(target: self, selector: #selector(doneButtonPressed))
-        isUserInteractionEnabled = true
-        self.delegate = self
-    }
-    
     @objc func doneButtonPressed() {
         if let datePicker = self.inputView as? UIDatePicker {
             setDate(from: datePicker)
         }
         resignFirstResponder()
     }
+    
+    func configurePlaceholderText() {
+        placeholderText = placeholderString(for: textFieldStyle)
+    }
+    
+    func placeholderString(for style: TextFieldStyle) -> String {
+        switch style {
+        case .information(let info):
+            return placeholderString(for: info)
+        case .password(let password):
+            return placeholderString(for: password)
+        case .date(let date):
+            return placeholderString(for: date)
+        case .plain:
+            return ""
+        }
+    }
+    
+    func placeholderString(for information: PlaceholderText.Information) -> String {
+        switch information {
+        case .username:
+            return NSLocalizedString("username", comment: "")
+        case .email:
+            return NSLocalizedString("email", comment: "")
+        case .name:
+            return NSLocalizedString("name", comment: "")
+        }
+    }
+    
+    func placeholderString(for password: PlaceholderText.Password) -> String {
+        switch password {
+        case .password:
+            return NSLocalizedString("password", comment: "")
+        case .repeatedPassword:
+            return NSLocalizedString("repeat_password", comment: "")
+        }
+    }
+    
+    func placeholderString(for date: PlaceholderText.Date) -> String {
+        switch date {
+        case .dateOfBirth:
+            return NSLocalizedString("date_of_birth", comment: "")
+        }
+    }
+}
+
+extension CustomTextField {
+    func toggleIcons() {
+        let hasText = (text != nil && text != "")
+        
+        switch textFieldStyle {
+        case .information:
+            rightButton.isHidden = !hasText
+            rightButton.tintColor = hasText ? .textDefault : .grayFaded
+            
+        case .password:
+            rightButton.isHidden = !hasText
+            rightButton.tintColor = hasText ? .textDefault : .grayFaded
+            
+        case .date:
+            rightButton.isHidden = false
+            rightButton.tintColor = hasText ? .textDefault : .grayFaded
+            
+        case .plain:
+            rightButton.isHidden = true
+        }
+        
+        rightView = rightButton
+    }
 }
 
 extension CustomTextField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return textFieldStyle != .date
+        switch textFieldStyle {
+        case .date:
+            return false
+        case .information, .password, .plain:
+            return true
+        }
     }
 }

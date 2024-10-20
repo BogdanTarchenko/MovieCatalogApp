@@ -29,7 +29,19 @@ extension UITextField {
     
     func setDate(from datePicker: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        self.text = formatter.string(from: datePicker.date)
+        
+        let preferredLanguage = Locale.preferredLanguages.first ?? "en"
+        
+        if preferredLanguage.starts(with: "ru") {
+            formatter.locale = Locale(identifier: "ru_RU")
+            formatter.dateFormat = "d MMMM yyyy"
+        } else {
+            formatter.locale = Locale(identifier: "en_US")
+            formatter.dateFormat = "MMMM d, yyyy"
+        }
+        
+        let date = datePicker.date
+        let formattedDate = formatter.string(from: date)
+        self.text = formattedDate
     }
 }

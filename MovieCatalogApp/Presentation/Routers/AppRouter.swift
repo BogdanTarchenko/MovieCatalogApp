@@ -37,6 +37,12 @@ extension AppRouter {
         let signUpViewController = SignUpViewController(viewModel: signUpViewModel)
         navigateToViewController(signUpViewController, title: NSLocalizedString("sign_up_title", comment: ""))
     }
+    
+    func navigateToFeed() {
+        let mainTabBarController = MainTabBarController()
+        window?.rootViewController = mainTabBarController
+        window?.makeKeyAndVisible()
+    }
 }
 
 // MARK: - Navigation Bar Setup

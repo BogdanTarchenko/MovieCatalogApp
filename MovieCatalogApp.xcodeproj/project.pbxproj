@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC08D80F2CBBE72B00252D21 /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08D80E2CBBE72B00252D21 /* LoginCredentials.swift */; };
+		FC08D8112CBBE76F00252D21 /* RegistrationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08D8102CBBE76F00252D21 /* RegistrationCredentials.swift */; };
+		FC1DC3892CC3B87200FF55F4 /* SignUpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3882CC3B87200FF55F4 /* SignUpRepository.swift */; };
+		FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC38A2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift */; };
+		FC1DC38D2CC3B8DD00FF55F4 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC38C2CC3B8DD00FF55F4 /* SignUpUseCase.swift */; };
+		FC1DC38F2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC38E2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift */; };
+		FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3902CC3BB5100FF55F4 /* SignInRepository.swift */; };
+		FC1DC3932CC3BB5800FF55F4 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3922CC3BB5800FF55F4 /* SignInUseCase.swift */; };
+		FC1DC3992CC3C37600FF55F4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3982CC3C37600FF55F4 /* MainTabBarController.swift */; };
+		FC1DC3A22CC3C43500FF55F4 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A12CC3C43500FF55F4 /* FeedViewController.swift */; };
+		FC1DC3A42CC3C43F00FF55F4 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A32CC3C43F00FF55F4 /* MoviesViewController.swift */; };
+		FC1DC3A62CC3C44700FF55F4 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A52CC3C44700FF55F4 /* FavouritesViewController.swift */; };
+		FC1DC3A82CC3C44E00FF55F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A72CC3C44E00FF55F4 /* ProfileViewController.swift */; };
+		FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876272CBE5EC300255264 /* String+Extensions.swift */; };
+		FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876292CBEA7E600255264 /* HTTPClient.swift */; };
+		FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */; };
+		FC28762E2CBEA82100255264 /* AlamofireHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28762D2CBEA82100255264 /* AlamofireHTTPClient.swift */; };
+		FC2876312CBEA8E100255264 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876302CBEA8E100255264 /* BaseURL.swift */; };
+		FC2876332CBEAB1600255264 /* UserRegisterEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */; };
+		FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */; };
+		FC2876382CBEBD1000255264 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = FC2876372CBEBD1000255264 /* KeychainAccess */; };
+		FCEADE112CBD699400B28E7F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FCEADE102CBD699400B28E7F /* Alamofire */; };
+		FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */; };
+		FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */; };
+		FCEADE282CBD7FD900B28E7F /* UserRegisterResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */; };
 		FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */; };
 		FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */; };
 		FCF7D8AA2CB96D7300A4F82C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */; };
@@ -35,6 +60,29 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC08D80E2CBBE72B00252D21 /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
+		FC08D8102CBBE76F00252D21 /* RegistrationCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCredentials.swift; sourceTree = "<group>"; };
+		FC1DC3882CC3B87200FF55F4 /* SignUpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRepository.swift; sourceTree = "<group>"; };
+		FC1DC38A2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRepositoryImpl.swift; sourceTree = "<group>"; };
+		FC1DC38C2CC3B8DD00FF55F4 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
+		FC1DC38E2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRepositoryImpl.swift; sourceTree = "<group>"; };
+		FC1DC3902CC3BB5100FF55F4 /* SignInRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRepository.swift; sourceTree = "<group>"; };
+		FC1DC3922CC3BB5800FF55F4 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
+		FC1DC3982CC3C37600FF55F4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		FC1DC3A12CC3C43500FF55F4 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		FC1DC3A32CC3C43F00FF55F4 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		FC1DC3A52CC3C44700FF55F4 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		FC1DC3A72CC3C44E00FF55F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FC2876272CBE5EC300255264 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		FC2876292CBEA7E600255264 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		FC28762D2CBEA82100255264 /* AlamofireHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireHTTPClient.swift; sourceTree = "<group>"; };
+		FC2876302CBEA8E100255264 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterEndpoint.swift; sourceTree = "<group>"; };
+		FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginEndpoint.swift; sourceTree = "<group>"; };
+		FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterRequestModel.swift; sourceTree = "<group>"; };
+		FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsRequestModel.swift; sourceTree = "<group>"; };
+		FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterResponseModel.swift; sourceTree = "<group>"; };
 		FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCatalogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,12 +117,110 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCF7D8DD2CB9749400A4F82C /* SnapKit in Frameworks */,
+				FCEADE112CBD699400B28E7F /* Alamofire in Frameworks */,
+				FC2876382CBEBD1000255264 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC1DC3942CC3C2D200FF55F4 /* WelcomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8D72CB9707400A4F82C /* WelcomeViewController.swift */,
+				FCF7D8DE2CB98BB200A4F82C /* WelcomeViewModel.swift */,
+			);
+			path = WelcomeScreen;
+			sourceTree = "<group>";
+		};
+		FC1DC3962CC3C2F700FF55F4 /* SignInScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8E02CB98DE800A4F82C /* SignInViewController.swift */,
+				FCF7D8E92CB99F4100A4F82C /* SignInViewModel.swift */,
+			);
+			path = SignInScreen;
+			sourceTree = "<group>";
+		};
+		FC1DC3972CC3C30B00FF55F4 /* SignUpScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7D8E22CB98DF100A4F82C /* SignUpViewController.swift */,
+				FCF7D8ED2CBAAF3100A4F82C /* SignUpViewModel.swift */,
+			);
+			path = SignUpScreen;
+			sourceTree = "<group>";
+		};
+		FC1DC39A2CC3C39000FF55F4 /* FeedScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC3A12CC3C43500FF55F4 /* FeedViewController.swift */,
+			);
+			path = FeedScreen;
+			sourceTree = "<group>";
+		};
+		FC1DC39B2CC3C39E00FF55F4 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC3962CC3C2F700FF55F4 /* SignInScreen */,
+				FC1DC3972CC3C30B00FF55F4 /* SignUpScreen */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		FC1DC39C2CC3C3B600FF55F4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC39A2CC3C39000FF55F4 /* FeedScreen */,
+				FC1DC39E2CC3C3E600FF55F4 /* MoviesScreen */,
+				FC1DC39F2CC3C40A00FF55F4 /* FavouritesScreen */,
+				FC1DC3A02CC3C41C00FF55F4 /* ProfileScreen */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FC1DC39D2CC3C3C300FF55F4 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC3942CC3C2D200FF55F4 /* WelcomeScreen */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		FC1DC39E2CC3C3E600FF55F4 /* MoviesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC3A32CC3C43F00FF55F4 /* MoviesViewController.swift */,
+			);
+			path = MoviesScreen;
+			sourceTree = "<group>";
+		};
+		FC1DC39F2CC3C40A00FF55F4 /* FavouritesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC3A52CC3C44700FF55F4 /* FavouritesViewController.swift */,
+			);
+			path = FavouritesScreen;
+			sourceTree = "<group>";
+		};
+		FC1DC3A02CC3C41C00FF55F4 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC3A72CC3C44E00FF55F4 /* ProfileViewController.swift */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		FC28762F2CBEA83700255264 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */,
+				FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		FCF7D8942CB96D7100A4F82C = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +306,8 @@
 		FCF7D8C92CB96F5900A4F82C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				FC08D80E2CBBE72B00252D21 /* LoginCredentials.swift */,
+				FC08D8102CBBE76F00252D21 /* RegistrationCredentials.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -167,6 +315,8 @@
 		FCF7D8CA2CB96F6800A4F82C /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				FC1DC38C2CC3B8DD00FF55F4 /* SignUpUseCase.swift */,
+				FC1DC3922CC3BB5800FF55F4 /* SignInUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -174,6 +324,8 @@
 		FCF7D8CB2CB96F7800A4F82C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				FC1DC3882CC3B87200FF55F4 /* SignUpRepository.swift */,
+				FC1DC3902CC3BB5100FF55F4 /* SignInRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -181,9 +333,9 @@
 		FCF7D8CC2CB96F8B00A4F82C /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				FCF7D8CD2CB96F9500A4F82C /* Repositories */,
+				FCF7D8CF2CB96FA400A4F82C /* Network */,
 				FCF7D8CE2CB96F9B00A4F82C /* Models */,
-				FCF7D8CF2CB96FA400A4F82C /* API */,
+				FCF7D8CD2CB96F9500A4F82C /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -191,6 +343,8 @@
 		FCF7D8CD2CB96F9500A4F82C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				FC1DC38A2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift */,
+				FC1DC38E2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -198,46 +352,35 @@
 		FCF7D8CE2CB96F9B00A4F82C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */,
+				FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */,
+				FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		FCF7D8CF2CB96FA400A4F82C /* API */ = {
+		FCF7D8CF2CB96FA400A4F82C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				FC2876292CBEA7E600255264 /* HTTPClient.swift */,
+				FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */,
+				FC28762D2CBEA82100255264 /* AlamofireHTTPClient.swift */,
+				FC2876302CBEA8E100255264 /* BaseURL.swift */,
+				FC28762F2CBEA83700255264 /* Endpoints */,
 			);
-			path = API;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		FCF7D8D02CB96FBB00A4F82C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				FCF7D8D12CB96FCA00A4F82C /* ViewModels */,
-				FCF7D8D22CB96FCE00A4F82C /* Views */,
+				FC1DC39D2CC3C3C300FF55F4 /* Welcome */,
+				FC1DC39B2CC3C39E00FF55F4 /* Authorization */,
+				FC1DC39C2CC3C3B600FF55F4 /* Main */,
 				FCF7D8D32CB96FD500A4F82C /* Routers */,
 				FCF7D8D42CB96FDE00A4F82C /* Components */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		FCF7D8D12CB96FCA00A4F82C /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				FCF7D8DE2CB98BB200A4F82C /* WelcomeViewModel.swift */,
-				FCF7D8E92CB99F4100A4F82C /* SignInViewModel.swift */,
-				FCF7D8ED2CBAAF3100A4F82C /* SignUpViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		FCF7D8D22CB96FCE00A4F82C /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FCF7D8D72CB9707400A4F82C /* WelcomeViewController.swift */,
-				FCF7D8E02CB98DE800A4F82C /* SignInViewController.swift */,
-				FCF7D8E22CB98DF100A4F82C /* SignUpViewController.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		FCF7D8D32CB96FD500A4F82C /* Routers */ = {
@@ -254,6 +397,7 @@
 				FCF7D8D92CB9733400A4F82C /* CustomButton.swift */,
 				FCF7D8E42CB9931200A4F82C /* CustomTextField.swift */,
 				FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */,
+				FC1DC3982CC3C37600FF55F4 /* MainTabBarController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -263,6 +407,7 @@
 			children = (
 				FCF7D8E72CB99EEB00A4F82C /* UIView+Extensions.swift */,
 				FCF7D8EB2CBA829F00A4F82C /* UITextField+Extensions.swift */,
+				FC2876272CBE5EC300255264 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -285,6 +430,8 @@
 			name = MovieCatalogApp;
 			packageProductDependencies = (
 				FCF7D8DC2CB9749400A4F82C /* SnapKit */,
+				FCEADE102CBD699400B28E7F /* Alamofire */,
+				FC2876372CBEBD1000255264 /* KeychainAccess */,
 			);
 			productName = MovieCatalogApp;
 			productReference = FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */;
@@ -317,6 +464,8 @@
 			mainGroup = FCF7D8942CB96D7100A4F82C;
 			packageReferences = (
 				FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FCEADE0F2CBD699400B28E7F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = FCF7D89E2CB96D7100A4F82C /* Products */;
 			projectDirPath = "";
@@ -352,20 +501,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC1DC3A62CC3C44700FF55F4 /* FavouritesViewController.swift in Sources */,
+				FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */,
+				FC1DC38F2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift in Sources */,
+				FC1DC3992CC3C37600FF55F4 /* MainTabBarController.swift in Sources */,
+				FC1DC3892CC3B87200FF55F4 /* SignUpRepository.swift in Sources */,
+				FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */,
+				FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */,
 				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
+				FC08D8112CBBE76F00252D21 /* RegistrationCredentials.swift in Sources */,
 				FCF7D8EE2CBAAF3100A4F82C /* SignUpViewModel.swift in Sources */,
 				FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */,
 				FCF7D8E82CB99EEB00A4F82C /* UIView+Extensions.swift in Sources */,
 				FCF7D8E32CB98DF100A4F82C /* SignUpViewController.swift in Sources */,
 				FCF7D8DF2CB98BB200A4F82C /* WelcomeViewModel.swift in Sources */,
+				FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */,
+				FC28762E2CBEA82100255264 /* AlamofireHTTPClient.swift in Sources */,
+				FC08D80F2CBBE72B00252D21 /* LoginCredentials.swift in Sources */,
+				FC2876332CBEAB1600255264 /* UserRegisterEndpoint.swift in Sources */,
 				FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */,
+				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
+				FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */,
+				FC2876312CBEA8E100255264 /* BaseURL.swift in Sources */,
 				FCF7D8F02CBAB99100A4F82C /* SplitButton.swift in Sources */,
 				FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */,
+				FCEADE282CBD7FD900B28E7F /* UserRegisterResponseModel.swift in Sources */,
 				FCF7D8EA2CB99F4100A4F82C /* SignInViewModel.swift in Sources */,
+				FC1DC3A42CC3C43F00FF55F4 /* MoviesViewController.swift in Sources */,
+				FC1DC3A22CC3C43500FF55F4 /* FeedViewController.swift in Sources */,
 				FCF7D8EC2CBA829F00A4F82C /* UITextField+Extensions.swift in Sources */,
+				FC1DC38D2CC3B8DD00FF55F4 /* SignUpUseCase.swift in Sources */,
+				FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */,
 				FCF7D8DA2CB9733400A4F82C /* CustomButton.swift in Sources */,
+				FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */,
+				FC1DC3A82CC3C44E00FF55F4 /* ProfileViewController.swift in Sources */,
 				FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */,
+				FC1DC3932CC3BB5800FF55F4 /* SignInUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +752,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		FCEADE0F2CBD699400B28E7F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.0;
+			};
+		};
 		FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -591,6 +779,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FC2876372CBEBD1000255264 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		FCEADE102CBD699400B28E7F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCEADE0F2CBD699400B28E7F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		FCF7D8DC2CB9749400A4F82C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */;

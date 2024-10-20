@@ -9,10 +9,19 @@ import UIKit
 
 class SplitButton: UIView {
     
+    enum ButtonStyle {
+        case genderPicker
+    }
+    
     private let leftButton: CustomButton
     private let rightButton: CustomButton
-
-    init(leftTitle: String, rightTitle: String) {
+    
+    private var style: ButtonStyle
+    
+    var onGenderSelected: ((Gender) -> Void)?
+    
+    init(style: ButtonStyle) {
+        self.style = style
         self.leftButton = CustomButton(style: .plain)
         self.rightButton = CustomButton(style: .gradient)
         
@@ -20,37 +29,40 @@ class SplitButton: UIView {
         
         setupView()
         setupButtons()
-        configureButtons(with: leftTitle, rightTitle: rightTitle)
+        configureButtons()
         layoutButtons()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func setupView() {
         layer.cornerRadius = 8
         clipsToBounds = true
     }
-
+    
     private func setupButtons() {
         leftButton.layer.cornerRadius = 0
         rightButton.layer.cornerRadius = 0
         leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
-
+        
         addSubview(leftButton)
         addSubview(rightButton)
     }
-
-    private func configureButtons(with leftTitle: String, rightTitle: String) {
-        leftButton.setTitle(leftTitle, for: .normal)
-        rightButton.setTitle(rightTitle, for: .normal)
+    
+    private func configureButtons() {
+        switch style {
+        case .genderPicker:
+            leftButton.setTitle(NSLocalizedString("male", comment: ""), for: .normal)
+            rightButton.setTitle(NSLocalizedString("female", comment: ""), for: .normal)
+        }
         
         leftButton.toggleStyle(.plain)
         rightButton.toggleStyle(.gradient)
     }
-
+    
     private func layoutButtons() {
         leftButton.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
@@ -63,18 +75,16 @@ class SplitButton: UIView {
             make.width.equalTo(leftButton)
         }
     }
-
+    
     @objc private func leftButtonTapped() {
-        if rightButton.isUserInteractionEnabled {
-            rightButton.toggleStyle(.plain)
-            leftButton.toggleStyle(.gradient)
-        }
+        rightButton.toggleStyle(.plain)
+        leftButton.toggleStyle(.gradient)
+        onGenderSelected?(.male)
     }
-
+    
     @objc private func rightButtonTapped() {
-        if leftButton.isUserInteractionEnabled {
-            leftButton.toggleStyle(.plain)
-            rightButton.toggleStyle(.gradient)
-        }
+        leftButton.toggleStyle(.plain)
+        rightButton.toggleStyle(.gradient)
+        onGenderSelected?(.female)
     }
 }
