@@ -16,9 +16,9 @@ class SignInRepositoryImpl: SignInRepository {
         self.keychain = keychain
     }
     
-    func authorizeUser(request: LoginCredentialsRequestModel, completion: @escaping (Result<UserAuthResponseModel, Error>) -> Void) {
+    func authorizeUser(request: LoginCredentialsRequestModel) async throws -> UserAuthResponseModel {
         let endpoint = UserLoginEndpoint()
-        httpClient.sendRequest(endpoint: endpoint, requestBody: request, completion: completion)
+        return try await httpClient.sendRequest(endpoint: endpoint, requestBody: request)
     }
     
     func saveToken(token: String) throws {

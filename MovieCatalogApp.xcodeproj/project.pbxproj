@@ -20,6 +20,16 @@
 		FC1DC3A42CC3C43F00FF55F4 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A32CC3C43F00FF55F4 /* MoviesViewController.swift */; };
 		FC1DC3A62CC3C44700FF55F4 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A52CC3C44700FF55F4 /* FavouritesViewController.swift */; };
 		FC1DC3A82CC3C44E00FF55F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A72CC3C44E00FF55F4 /* ProfileViewController.swift */; };
+		FC1DC3AA2CC51D2100FF55F4 /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3A92CC51D2100FF55F4 /* CustomTabBarItem.swift */; };
+		FC1DC3AC2CC52DC200FF55F4 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3AB2CC52DC200FF55F4 /* FeedViewModel.swift */; };
+		FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3AD2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift */; };
+		FC1DC3B02CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3AF2CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift */; };
+		FC1DC3B22CC5389000FF55F4 /* GetMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3B12CC5389000FF55F4 /* GetMoviesUseCase.swift */; };
+		FC1DC3B42CC5398700FF55F4 /* GetMoviesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3B32CC5398700FF55F4 /* GetMoviesRepository.swift */; };
+		FC1DC3B62CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3B52CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift */; };
+		FC1DC3B82CC5403F00FF55F4 /* EmptyRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */; };
+		FC1DC3BB2CC57C7D00FF55F4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FC1DC3BA2CC57C7D00FF55F4 /* Kingfisher */; };
+		FC1DC3BD2CC57D3B00FF55F4 /* FeedMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */; };
 		FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876272CBE5EC300255264 /* String+Extensions.swift */; };
 		FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876292CBEA7E600255264 /* HTTPClient.swift */; };
 		FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */; };
@@ -28,6 +38,10 @@
 		FC2876332CBEAB1600255264 /* UserRegisterEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */; };
 		FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */; };
 		FC2876382CBEBD1000255264 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = FC2876372CBEBD1000255264 /* KeychainAccess */; };
+		FC3896172CC68D5F00BA2784 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3896162CC68D5F00BA2784 /* LocalizedString.swift */; };
+		FCA4F62B2CC929CA009DAB74 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FCA4F62A2CC929CA009DAB74 /* Lottie */; };
+		FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */; };
+		FCA4F6312CC931A7009DAB74 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */; };
 		FCEADE112CBD699400B28E7F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FCEADE102CBD699400B28E7F /* Alamofire */; };
 		FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */; };
 		FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */; };
@@ -73,6 +87,15 @@
 		FC1DC3A32CC3C43F00FF55F4 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		FC1DC3A52CC3C44700FF55F4 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		FC1DC3A72CC3C44E00FF55F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FC1DC3A92CC51D2100FF55F4 /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
+		FC1DC3AB2CC52DC200FF55F4 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		FC1DC3AD2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPagedListResponseModel.swift; sourceTree = "<group>"; };
+		FC1DC3AF2CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPagedListEndpoint.swift; sourceTree = "<group>"; };
+		FC1DC3B12CC5389000FF55F4 /* GetMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesUseCase.swift; sourceTree = "<group>"; };
+		FC1DC3B32CC5398700FF55F4 /* GetMoviesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesRepository.swift; sourceTree = "<group>"; };
+		FC1DC3B52CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesRepositoryImpl.swift; sourceTree = "<group>"; };
+		FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequestModel.swift; sourceTree = "<group>"; };
+		FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMovieData.swift; sourceTree = "<group>"; };
 		FC2876272CBE5EC300255264 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		FC2876292CBEA7E600255264 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -80,6 +103,9 @@
 		FC2876302CBEA8E100255264 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterEndpoint.swift; sourceTree = "<group>"; };
 		FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginEndpoint.swift; sourceTree = "<group>"; };
+		FC3896162CC68D5F00BA2784 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterResponseModel.swift; sourceTree = "<group>"; };
@@ -116,6 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCA4F62B2CC929CA009DAB74 /* Lottie in Frameworks */,
+				FC1DC3BB2CC57C7D00FF55F4 /* Kingfisher in Frameworks */,
 				FCF7D8DD2CB9749400A4F82C /* SnapKit in Frameworks */,
 				FCEADE112CBD699400B28E7F /* Alamofire in Frameworks */,
 				FC2876382CBEBD1000255264 /* KeychainAccess in Frameworks */,
@@ -156,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				FC1DC3A12CC3C43500FF55F4 /* FeedViewController.swift */,
+				FC1DC3AB2CC52DC200FF55F4 /* FeedViewModel.swift */,
 			);
 			path = FeedScreen;
 			sourceTree = "<group>";
@@ -217,6 +246,7 @@
 			children = (
 				FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */,
 				FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */,
+				FC1DC3AF2CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -258,6 +288,7 @@
 				FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */,
 				FCF7D8AE2CB96D7300A4F82C /* Info.plist */,
 				FCF7D8B52CB96DE400A4F82C /* Localizable.xcstrings */,
+				FC3896162CC68D5F00BA2784 /* LocalizedString.swift */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -308,6 +339,7 @@
 			children = (
 				FC08D80E2CBBE72B00252D21 /* LoginCredentials.swift */,
 				FC08D8102CBBE76F00252D21 /* RegistrationCredentials.swift */,
+				FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -317,6 +349,7 @@
 			children = (
 				FC1DC38C2CC3B8DD00FF55F4 /* SignUpUseCase.swift */,
 				FC1DC3922CC3BB5800FF55F4 /* SignInUseCase.swift */,
+				FC1DC3B12CC5389000FF55F4 /* GetMoviesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -326,6 +359,7 @@
 			children = (
 				FC1DC3882CC3B87200FF55F4 /* SignUpRepository.swift */,
 				FC1DC3902CC3BB5100FF55F4 /* SignInRepository.swift */,
+				FC1DC3B32CC5398700FF55F4 /* GetMoviesRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -345,6 +379,7 @@
 			children = (
 				FC1DC38A2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift */,
 				FC1DC38E2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift */,
+				FC1DC3B52CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -355,6 +390,8 @@
 				FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */,
 				FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */,
 				FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */,
+				FC1DC3AD2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift */,
+				FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -398,6 +435,8 @@
 				FCF7D8E42CB9931200A4F82C /* CustomTextField.swift */,
 				FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */,
 				FC1DC3982CC3C37600FF55F4 /* MainTabBarController.swift */,
+				FC1DC3A92CC51D2100FF55F4 /* CustomTabBarItem.swift */,
+				FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -408,6 +447,7 @@
 				FCF7D8E72CB99EEB00A4F82C /* UIView+Extensions.swift */,
 				FCF7D8EB2CBA829F00A4F82C /* UITextField+Extensions.swift */,
 				FC2876272CBE5EC300255264 /* String+Extensions.swift */,
+				FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -432,6 +472,8 @@
 				FCF7D8DC2CB9749400A4F82C /* SnapKit */,
 				FCEADE102CBD699400B28E7F /* Alamofire */,
 				FC2876372CBEBD1000255264 /* KeychainAccess */,
+				FC1DC3BA2CC57C7D00FF55F4 /* Kingfisher */,
+				FCA4F62A2CC929CA009DAB74 /* Lottie */,
 			);
 			productName = MovieCatalogApp;
 			productReference = FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */;
@@ -466,6 +508,8 @@
 				FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				FCEADE0F2CBD699400B28E7F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				FC1DC3B92CC57C7D00FF55F4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FCA4F6292CC929CA009DAB74 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = FCF7D89E2CB96D7100A4F82C /* Products */;
 			projectDirPath = "";
@@ -503,14 +547,19 @@
 			files = (
 				FC1DC3A62CC3C44700FF55F4 /* FavouritesViewController.swift in Sources */,
 				FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */,
+				FC1DC3BD2CC57D3B00FF55F4 /* FeedMovieData.swift in Sources */,
+				FC1DC3AA2CC51D2100FF55F4 /* CustomTabBarItem.swift in Sources */,
 				FC1DC38F2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift in Sources */,
 				FC1DC3992CC3C37600FF55F4 /* MainTabBarController.swift in Sources */,
+				FC1DC3B62CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift in Sources */,
 				FC1DC3892CC3B87200FF55F4 /* SignUpRepository.swift in Sources */,
 				FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */,
 				FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */,
 				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
 				FC08D8112CBBE76F00252D21 /* RegistrationCredentials.swift in Sources */,
 				FCF7D8EE2CBAAF3100A4F82C /* SignUpViewModel.swift in Sources */,
+				FC3896172CC68D5F00BA2784 /* LocalizedString.swift in Sources */,
+				FC1DC3B22CC5389000FF55F4 /* GetMoviesUseCase.swift in Sources */,
 				FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */,
 				FCF7D8E82CB99EEB00A4F82C /* UIView+Extensions.swift in Sources */,
 				FCF7D8E32CB98DF100A4F82C /* SignUpViewController.swift in Sources */,
@@ -522,6 +571,7 @@
 				FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */,
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
+				FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */,
 				FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */,
 				FC2876312CBEA8E100255264 /* BaseURL.swift in Sources */,
 				FCF7D8F02CBAB99100A4F82C /* SplitButton.swift in Sources */,
@@ -530,14 +580,20 @@
 				FCF7D8EA2CB99F4100A4F82C /* SignInViewModel.swift in Sources */,
 				FC1DC3A42CC3C43F00FF55F4 /* MoviesViewController.swift in Sources */,
 				FC1DC3A22CC3C43500FF55F4 /* FeedViewController.swift in Sources */,
+				FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */,
 				FCF7D8EC2CBA829F00A4F82C /* UITextField+Extensions.swift in Sources */,
+				FC1DC3B82CC5403F00FF55F4 /* EmptyRequestModel.swift in Sources */,
+				FC1DC3B42CC5398700FF55F4 /* GetMoviesRepository.swift in Sources */,
 				FC1DC38D2CC3B8DD00FF55F4 /* SignUpUseCase.swift in Sources */,
 				FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */,
 				FCF7D8DA2CB9733400A4F82C /* CustomButton.swift in Sources */,
 				FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */,
 				FC1DC3A82CC3C44E00FF55F4 /* ProfileViewController.swift in Sources */,
 				FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */,
+				FCA4F6312CC931A7009DAB74 /* UIViewController+Extensions.swift in Sources */,
 				FC1DC3932CC3BB5800FF55F4 /* SignInUseCase.swift in Sources */,
+				FC1DC3AC2CC52DC200FF55F4 /* FeedViewModel.swift in Sources */,
+				FC1DC3B02CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,12 +808,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FC1DC3B92CC57C7D00FF55F4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
 		FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		FCA4F6292CC929CA009DAB74 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
 			};
 		};
 		FCEADE0F2CBD699400B28E7F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -779,10 +851,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FC1DC3BA2CC57C7D00FF55F4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC1DC3B92CC57C7D00FF55F4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		FC2876372CBEBD1000255264 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		FCA4F62A2CC929CA009DAB74 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCA4F6292CC929CA009DAB74 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 		FCEADE102CBD699400B28E7F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

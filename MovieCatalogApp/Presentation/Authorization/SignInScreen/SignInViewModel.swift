@@ -8,14 +8,12 @@
 import Foundation
 import KeychainAccess
 
-class SignInViewModel {
+final class SignInViewModel {
     
     private let router: AppRouter
-    
     private let signInUseCase: SignInUseCase
     
     var isSignInButtonActive: ((Bool) -> Void)?
-    
     var credentials = LoginCredentials()
     
     init(router: AppRouter) {
@@ -23,6 +21,7 @@ class SignInViewModel {
         self.signInUseCase = SignInUseCaseImpl.create()
     }
     
+    // MARK: - Public Methods
     func updateUsername(_ username: String) {
         self.credentials.username = username
         validateFields()
@@ -33,24 +32,25 @@ class SignInViewModel {
         validateFields()
     }
     
-    func signInButtonTapped() {
-        let requestBody = LoginCredentialsRequestModel(username: credentials.username,
-                                                       password: credentials.password)
+    func signInButtonTapped() async {
+        let requestBody = LoginCredentialsRequestModel(
+            username: credentials.username,
+            password: credentials.password
+        )
         
-        signInUseCase.execute(request: requestBody) { result in
-            switch result {
-            case .success:
-                print("vse chetko")
+        Task {
+            do {
+                try await signInUseCase.execute(request: requestBody)
                 self.router.navigateToFeed()
-            case .failure(let error):
-                print("error: \(error)")
-                // TODO: - сделать алерт неправильное имя пользователя и/или пароль
+            } catch {
+                print(error)
             }
         }
     }
     
+    // MARK: - Private Methods
     private func validateFields() {
-        let isValid = (self.credentials.username.isEmpty == false && self.credentials.password.isEmpty == false)
+        let isValid = !self.credentials.username.isEmpty && !self.credentials.password.isEmpty
         isSignInButtonActive?(isValid)
     }
 }

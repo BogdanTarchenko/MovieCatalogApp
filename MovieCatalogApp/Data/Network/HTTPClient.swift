@@ -6,5 +6,5 @@
 //
 
 protocol HTTPClient {
-    func sendRequest<T: Decodable, U: Encodable>(endpoint: APIEndpoint, requestBody: U?, completion: @escaping (Result<T, Error>) -> Void)
+    func sendRequest<T: Decodable, U: Encodable>(endpoint: APIEndpoint, requestBody: U?) async throws -> T
 }

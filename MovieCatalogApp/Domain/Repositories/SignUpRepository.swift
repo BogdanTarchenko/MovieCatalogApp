@@ -6,6 +6,6 @@
 //
 
 protocol SignUpRepository {
-    func registerUser(request: UserRegisterRequestModel, completion: @escaping (Result<UserAuthResponseModel, Error>) -> Void)
+    func registerUser(request: UserRegisterRequestModel) async throws -> UserAuthResponseModel
     func saveToken(token: String) throws
 }

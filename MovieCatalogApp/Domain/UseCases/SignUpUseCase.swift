@@ -8,7 +8,7 @@
 import KeychainAccess
 
 protocol SignUpUseCase {
-    func execute(request: UserRegisterRequestModel, completion: @escaping (Result<Void, Error>) -> Void)
+    func execute(request: UserRegisterRequestModel) async throws
 }
 
 class SignUpUseCaseImpl: SignUpUseCase {
@@ -25,19 +25,12 @@ class SignUpUseCaseImpl: SignUpUseCase {
         return SignUpUseCaseImpl(repository: repository)
     }
     
-    func execute(request: UserRegisterRequestModel, completion: @escaping (Result<Void, Error>) -> Void) {
-        repository.registerUser(request: request) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    try self.repository.saveToken(token: response.token)
-                    completion(.success(()))
-                } catch {
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+    func execute(request: UserRegisterRequestModel) async throws {
+        do {
+            let response = try await repository.registerUser(request: request)
+            try repository.saveToken(token: response.token)
+        } catch {
+            throw error
         }
     }
 }

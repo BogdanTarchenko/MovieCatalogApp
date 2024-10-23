@@ -6,52 +6,75 @@
 //
 
 import UIKit
+import SnapKit
 
-class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
-    private let tabBarBackgroundView = UIView()
-    
+final class MainTabBarController: UITabBarController {
+
+    private let feedViewController = FeedViewController(viewModel: FeedViewModel())
+    private let moviesViewController = MoviesViewController()
+    private let favouritesViewController = FavouritesViewController()
+    private let profileViewController = ProfileViewController()
+
+    private lazy var feedButton = getButton(icon: "feed", title: LocalizedString.TabBar.feed, action: action(for: 0))
+    private lazy var moviesButton = getButton(icon: "movies", title: LocalizedString.TabBar.movies, action: action(for: 1))
+    private lazy var favouritesButton = getButton(icon: "favourites", title: LocalizedString.TabBar.favorites, action: action(for: 2))
+    private lazy var profileButton = getButton(icon: "profile", title: LocalizedString.TabBar.profile, action: action(for: 3))
+
+    private lazy var customBar: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.backgroundColor = .darkFaded
+        stackView.frame = CGRect(x: 24, y: view.frame.height - 94, width: view.frame.width - 48, height: 64)
+        stackView.layer.cornerRadius = 16
+
+        stackView.addArrangedSubview(UIView())
+        stackView.addArrangedSubview(feedButton)
+        stackView.addArrangedSubview(moviesButton)
+        stackView.addArrangedSubview(favouritesButton)
+        stackView.addArrangedSubview(profileButton)
+        stackView.addArrangedSubview(UIView())
+
+        return stackView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
+
+        view.addSubview(customBar)
         
-        let feedViewController = FeedViewController()
-        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(named: "feed"), tag: 0)
-        
-        let moviesViewController = MoviesViewController()
-        moviesViewController.tabBarItem = UITabBarItem(title: "Фильмы", image: UIImage(named: "movies"), tag: 1)
-        
-        let favouritesViewController = FavouritesViewController()
-        favouritesViewController.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(named: "favourites"), tag: 2)
-        
-        let profileViewController = ProfileViewController()
-        profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(named: "profile"), tag: 3)
-        
-        viewControllers = [feedViewController, moviesViewController, favouritesViewController, profileViewController]
-        
-        setupCustomTabBar()
-    }
-    
-    func setupCustomTabBar() {
-        tabBarBackgroundView.backgroundColor = .darkFaded
-        tabBarBackgroundView.layer.cornerRadius = 16
-        tabBarBackgroundView.layer.masksToBounds = true
-        
-        view.addSubview(tabBarBackgroundView)
-        view.bringSubviewToFront(tabBar)
-        
-        tabBarBackgroundView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(tabBar).inset(24)
-            make.top.equalTo(tabBar)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        DispatchQueue.main.async { [weak self] in
+            self?.setViewControllers([self?.feedViewController, self?.moviesViewController, self?.favouritesViewController, self?.profileViewController].compactMap { $0 }, animated: true)
+            self?.setColor(selectedIndex: 0)
         }
-        
-        let appearance = UITabBarAppearance()
-        appearance.configureWithTransparentBackground()
-        tabBar.standardAppearance = appearance
-        tabBar.scrollEdgeAppearance = appearance
-        
-        tabBar.itemPositioning = .centered
-        tabBar.itemSpacing = 0
+    }
+
+    private func getButton(icon: String, title: String, action: UIAction) -> CustomTabBarItem {
+        return CustomTabBarItem(icon: icon, title: title, action: action)
+    }
+
+    private func action(for index: Int) -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self = self else { return }
+            self.selectedIndex = index
+            self.setColor(selectedIndex: index)
+        }
+    }
+
+    private func setColor(selectedIndex: Int) {
+        DispatchQueue.main.async {
+            let buttons = [self.feedButton, self.moviesButton, self.favouritesButton, self.profileButton]
+
+            buttons.enumerated().forEach { index, button in
+                if index == selectedIndex {
+                    button.button.tintColor = .accent
+                    button.titleLabel.textColor = .accent
+                } else {
+                    button.button.tintColor = .grayFaded
+                    button.titleLabel.textColor = .grayFaded
+                }
+            }
+        }
     }
 }

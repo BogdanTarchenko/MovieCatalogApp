@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Date Picker
 extension UITextField {
     
     func configureDatePicker(target: Any, selector: Selector) {
@@ -20,7 +21,7 @@ extension UITextField {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Готово", style: .plain, target: target, action: selector)
+        let doneButton = UIBarButtonItem(title: LocalizedString.TextField.done, style: .plain, target: target, action: selector)
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([flexibleSpace, doneButton], animated: true)
         

@@ -7,10 +7,9 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+final class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     private var viewModel: SignUpViewModel
-    
     private let backgroundImageView = UIImageView()
     private let stackView = UIStackView()
     
@@ -43,6 +42,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+// MARK: - Setup
 private extension SignUpViewController {
     func setup() {
         setupView()
@@ -69,8 +69,8 @@ private extension SignUpViewController {
         stackView.addArrangedSubview(signUpButton)
         
         stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.setCustomSpacing(32, after: genderButton)
+        stackView.spacing = Constants.stackViewSpacing
+        stackView.setCustomSpacing(Constants.stackViewCustomSpacing, after: genderButton)
         
         configureTextFields()
         configureButton()
@@ -78,8 +78,8 @@ private extension SignUpViewController {
         view.addSubview(stackView)
         
         stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.leading.trailing.equalToSuperview().inset(Constants.stackViewInset)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Constants.stackViewBottomInset)
         }
         
         genderButton.onGenderSelected = { [weak self] gender in
@@ -104,26 +104,27 @@ private extension SignUpViewController {
     }
     
     func configureButton() {
-        signUpButton.setTitle(NSLocalizedString("sign_up_button_title", comment: ""), for: .normal)
+        signUpButton.setTitle(LocalizedString.SignUp.signUpButtonTitle, for: .normal)
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
     }
     
     func configureBackgroundImageView() {
-        backgroundImageView.image = UIImage(named: "sign_up_background")
+        backgroundImageView.image = UIImage(named: Constants.backgroundImageName)
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
-        backgroundImageView.layer.cornerRadius = 32
+        backgroundImageView.layer.cornerRadius = Constants.backgroundImageCornerRadius
         backgroundImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         backgroundImageView.layer.masksToBounds = true
         
         view.addSubview(backgroundImageView)
         
         backgroundImageView.snp.makeConstraints { make in
-            make.bottom.equalTo(stackView.snp.top).offset(-16)
+            make.bottom.equalTo(stackView.snp.top).offset(Constants.backgroundImageBottomOffset)
             make.top.leading.trailing.equalToSuperview()
         }
     }
     
+    // MARK: - Actions
     @objc func signUpButtonTapped() {
         Task {
             await viewModel.signUpButtonTapped()
@@ -156,11 +157,23 @@ private extension SignUpViewController {
     }
     
     @objc func dateOfBirthTextFieldChanged() {
-        
         if let datePicker = dateOfBirthTextField.inputView as? UIDatePicker {
             let selectedDate = datePicker.date
             dateOfBirthTextField.toggleIcons()
             viewModel.updateDateOfBirth(selectedDate)
         }
+    }
+}
+
+// MARK: - Constants
+private extension SignUpViewController {
+    enum Constants {
+        static let stackViewSpacing: CGFloat = 8
+        static let stackViewCustomSpacing: CGFloat = 32
+        static let stackViewInset: CGFloat = 24
+        static let stackViewBottomInset: CGFloat = 24
+        static let backgroundImageBottomOffset: CGFloat = -16
+        static let backgroundImageCornerRadius: CGFloat = 32
+        static let backgroundImageName = "sign_up_background"
     }
 }

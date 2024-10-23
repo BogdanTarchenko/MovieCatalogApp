@@ -8,14 +8,11 @@
 import Foundation
 import KeychainAccess
 
-class SignUpViewModel {
+final class SignUpViewModel {
     
     private let router: AppRouter
-    
     private let signUpUseCase: SignUpUseCase
-    
     var isSignUpButtonActive: ((Bool) -> Void)?
-    
     var credentials = RegistrationCredentials()
     
     init(router: AppRouter) {
@@ -23,6 +20,7 @@ class SignUpViewModel {
         self.signUpUseCase = SignUpUseCaseImpl.create()
     }
     
+    // MARK: - Public Methods
     func updateUsername(_ username: String) {
         self.credentials.username = username
         validateFields()
@@ -43,8 +41,8 @@ class SignUpViewModel {
         validateFields()
     }
     
-    func updateRepeatedPassword(_ repeatedpassword: String) {
-        self.credentials.repeatedPassword = repeatedpassword
+    func updateRepeatedPassword(_ repeatedPassword: String) {
+        self.credentials.repeatedPassword = repeatedPassword
         validateFields()
     }
     
@@ -56,35 +54,36 @@ class SignUpViewModel {
     func updateGender(_ gender: Gender) {
         self.credentials.gender = gender
         validateFields()
-        print(gender.rawValue)
     }
     
-    
-    func signUpButtonTapped() {
-        let requestBody = UserRegisterRequestModel(userName: credentials.username,
-                                                   name: credentials.name,
-                                                   password: credentials.password,
-                                                   email: credentials.email,
-                                                   birthDate: credentials.dateOfBirth?.ISO8601Format() ?? SC.empty,
-                                                   gender: credentials.gender.rawValue)
+    func signUpButtonTapped() async {
+        let requestBody = UserRegisterRequestModel(
+            userName: credentials.username,
+            name: credentials.name,
+            password: credentials.password,
+            email: credentials.email,
+            birthDate: credentials.dateOfBirth?.ISO8601Format() ?? SC.empty,
+            gender: credentials.gender.rawValue
+        )
         
-        signUpUseCase.execute(request: requestBody) { result in
-            switch result {
-            case .success:
-                print("vse chetko")
-            case .failure(let error):
-                print("error: \(error)")
+        Task {
+            do {
+                try await signUpUseCase.execute(request: requestBody)
+                self.router.navigateToFeed()
+            } catch {
+                print(error)
                 // TODO: - добавить обработку ошибки
             }
         }
     }
     
+    // MARK: - Private Methods
     private func validateFields() {
-        let isUsernameValid = !(credentials.username.isEmpty)
-        let isEmailValid = !(credentials.email.isEmpty)
-        let isNameValid = !(credentials.name.isEmpty)
-        let isPasswordValid = !(credentials.password.isEmpty)
-        let isRepeatedPasswordValid = !(credentials.repeatedPassword.isEmpty) && (credentials.repeatedPassword == credentials.password)
+        let isUsernameValid = !credentials.username.isEmpty
+        let isEmailValid = !credentials.email.isEmpty
+        let isNameValid = !credentials.name.isEmpty
+        let isPasswordValid = !credentials.password.isEmpty
+        let isRepeatedPasswordValid = !credentials.repeatedPassword.isEmpty && (credentials.repeatedPassword == credentials.password)
         let isDateOfBirthValid = credentials.dateOfBirth != nil
         
         let isValid = isUsernameValid && isEmailValid && isNameValid && isPasswordValid && isRepeatedPasswordValid && isDateOfBirthValid

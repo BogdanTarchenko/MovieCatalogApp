@@ -6,6 +6,6 @@
 //
 
 protocol SignInRepository {
-    func authorizeUser(request: LoginCredentialsRequestModel, completion: @escaping (Result<UserAuthResponseModel, Error>) -> Void)
+    func authorizeUser(request: LoginCredentialsRequestModel) async throws -> UserAuthResponseModel
     func saveToken(token: String) throws
 }

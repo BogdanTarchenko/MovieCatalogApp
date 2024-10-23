@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class AppRouter {
     
@@ -16,10 +17,18 @@ class AppRouter {
     }
     
     func start() {
-        let welcomeViewModel = WelcomeViewModel(router: self)
-        let welcomeViewController = WelcomeViewController(viewModel: welcomeViewModel)
-        let navigationController = UINavigationController(rootViewController: welcomeViewController)
-        window?.rootViewController = navigationController
+        let keychain = Keychain()
+        
+        if let authToken = try? keychain.get("authToken1") {
+            let mainTabBarController = MainTabBarController()
+            window?.rootViewController = mainTabBarController
+        } else {
+            let welcomeViewModel = WelcomeViewModel(router: self)
+            let welcomeViewController = WelcomeViewController(viewModel: welcomeViewModel)
+            let navigationController = UINavigationController(rootViewController: welcomeViewController)
+            window?.rootViewController = navigationController
+        }
+        
         window?.makeKeyAndVisible()
     }
 }
@@ -39,9 +48,11 @@ extension AppRouter {
     }
     
     func navigateToFeed() {
-        let mainTabBarController = MainTabBarController()
-        window?.rootViewController = mainTabBarController
-        window?.makeKeyAndVisible()
+        DispatchQueue.main.async { [weak self] in
+            let mainTabBarController = MainTabBarController()
+            self?.window?.rootViewController = mainTabBarController
+            self?.window?.makeKeyAndVisible()
+        }
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WelcomeViewController: UIViewController {
+final class WelcomeViewController: UIViewController {
     
     private var viewModel: WelcomeViewModel
     
@@ -32,6 +32,7 @@ class WelcomeViewController: UIViewController {
     }
 }
 
+// MARK: - Setup
 private extension WelcomeViewController {
     func setup() {
         setupView()
@@ -39,9 +40,9 @@ private extension WelcomeViewController {
     }
     
     func setupView() {
-        self.view.backgroundColor = .background
+        view.backgroundColor = .background
         
-        background.image = UIImage(named: "welcome_background")
+        background.image = UIImage(named: Constants.backgroundImageName)
         background.contentMode = .scaleAspectFill
         
         view.addSubview(background)
@@ -57,8 +58,8 @@ private extension WelcomeViewController {
     }
     
     func configureTitleLabel() {
-        titleLabel.text = NSLocalizedString("welcome_title", comment: "")
-        titleLabel.font = UIFont(name: "Manrope-Bold", size: 36)
+        titleLabel.text = LocalizedString.Welcome.welcomeMessage
+        titleLabel.font = UIFont(name: Constants.titleFontName, size: Constants.titleFontSize)
         titleLabel.numberOfLines = 2
         titleLabel.textColor = .textDefault
         
@@ -88,16 +89,16 @@ private extension WelcomeViewController {
     }
     
     func configureSignInButton() {
-        signInButton.setTitle(NSLocalizedString("welcome_sign_in_button_title", comment: ""), for: .normal)
+        signInButton.setTitle(LocalizedString.Welcome.signInButtonTitle, for: .normal)
         signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
     }
     
     func configureSignUpButton() {
-        signUpButton.setTitle(NSLocalizedString("welcome_sign_up_button_title", comment: ""), for: .normal)
+        signUpButton.setTitle(LocalizedString.Welcome.signUpButtonTitle, for: .normal)
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
     }
     
-    // MARK: - Button Actions
+    // MARK: - Actions
     @objc func signInButtonTapped() {
         viewModel.signInButtonTapped()
     }
@@ -107,10 +108,13 @@ private extension WelcomeViewController {
     }
 }
 
-// MARK: - WelcomeViewController.Constants
+// MARK: - Constants
 private extension WelcomeViewController {
     enum Constants {
         static let horizontalEdgesConstraintsValue: CGFloat = 24
         static let bottomEdgeConstraintValue: CGFloat = 24
+        static let titleFontName = "Manrope-Bold"
+        static let titleFontSize: CGFloat = 36
+        static let backgroundImageName = "welcome_background"
     }
 }

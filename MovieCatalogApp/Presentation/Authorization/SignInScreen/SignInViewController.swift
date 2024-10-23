@@ -7,9 +7,10 @@
 
 import UIKit
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
+final class SignInViewController: UIViewController, UITextFieldDelegate {
     
     private var viewModel: SignInViewModel
+    private var loadingViewController: LoadingViewController?
     
     private let backgroundImageView = UIImageView()
     private let stackView = UIStackView()
@@ -35,11 +36,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
-
+// MARK: - Setup
 private extension SignInViewController {
     func setup() {
         setupView()
         configureUI()
+        addTapGestureToDismissKeyboard()
     }
     
     func setupView() {
@@ -51,14 +53,23 @@ private extension SignInViewController {
         configureBackgroundImageView()
     }
     
+    func addTapGestureToDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func configureStackView() {
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(signInButton)
         
         stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.setCustomSpacing(32, after: passwordTextField)
+        stackView.spacing = Constants.stackViewSpacing
+        stackView.setCustomSpacing(Constants.stackViewCustomSpacing, after: passwordTextField)
         
         configureTextFields()
         configureButton()
@@ -66,8 +77,8 @@ private extension SignInViewController {
         view.addSubview(stackView)
         
         stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.leading.trailing.equalToSuperview().inset(Constants.horizontalEdgesConstraintsValue)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Constants.bottomEdgeConstraintValue)
         }
     }
     
@@ -80,28 +91,33 @@ private extension SignInViewController {
     }
     
     func configureButton() {
-        signInButton.setTitle(NSLocalizedString("sign_in_button_title", comment: ""), for: .normal)
+        signInButton.setTitle(LocalizedString.SignIn.signInButtonTitle, for: .normal)
         signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
     }
     
     func configureBackgroundImageView() {
-        backgroundImageView.image = UIImage(named: "sign_in_background")
+        backgroundImageView.image = UIImage(named: Constants.backgroundImageName)
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
-        backgroundImageView.layer.cornerRadius = 32
+        backgroundImageView.layer.cornerRadius = Constants.backgroundCornerRadius
         backgroundImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         backgroundImageView.layer.masksToBounds = true
         
         view.addSubview(backgroundImageView)
         
         backgroundImageView.snp.makeConstraints { make in
-            make.bottom.equalTo(stackView.snp.top).offset(-16)
+            make.bottom.equalTo(stackView.snp.top).offset(Constants.backgroundBottomOffset)
             make.top.leading.trailing.equalToSuperview()
         }
     }
     
+    // MARK: - Actions
     @objc func signInButtonTapped() {
-        viewModel.signInButtonTapped()
+        showLoadingScreen()
+        Task {
+            await viewModel.signInButtonTapped()
+            hideLoadingScreen()
+        }
     }
     
     @objc func loginTextFieldChanged() {
@@ -112,5 +128,18 @@ private extension SignInViewController {
     @objc func passwordTextFieldChanged() {
         passwordTextField.toggleIcons()
         viewModel.updatePassword(passwordTextField.text ?? SC.empty)
+    }
+}
+
+// MARK: - Constants
+private extension SignInViewController {
+    enum Constants {
+        static let horizontalEdgesConstraintsValue: CGFloat = 24
+        static let bottomEdgeConstraintValue: CGFloat = 24
+        static let stackViewSpacing: CGFloat = 8
+        static let stackViewCustomSpacing: CGFloat = 32
+        static let backgroundCornerRadius: CGFloat = 32
+        static let backgroundBottomOffset: CGFloat = -16
+        static let backgroundImageName = "sign_in_background"
     }
 }

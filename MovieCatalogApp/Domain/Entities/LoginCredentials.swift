@@ -5,8 +5,6 @@
 //  Created by Богдан Тарченко on 13.10.2024.
 //
 
-import Foundation
-
 struct LoginCredentials {
     var username: String
     var password: String
