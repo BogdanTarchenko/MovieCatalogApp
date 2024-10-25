@@ -12,6 +12,8 @@ final class ProfileViewController: UIViewController {
     
     private var viewModel: ProfileViewModel
     
+    private let loaderView = LoaderView()
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -35,18 +37,48 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        
-        setupScrollView()
-        setupContentView()
+        bindToViewModel()
+        viewModel.onDidLoad()
     }
 }
 
 private extension ProfileViewController {
     
+    func bindToViewModel() {
+        
+        viewModel.onDidLoadUserData = { [weak self] userData in
+            DispatchQueue.main.async {
+                self?.configureProfileInformationContainer()
+            }
+        }
+        
+        viewModel.onDidStartLoad = { [weak self] in
+            self?.loaderView.isHidden = false
+            self?.loaderView.startAnimating()
+        }
+        
+        viewModel.onDidFinishLoad = { [weak self] in
+            self?.loaderView.isHidden = true
+            self?.loaderView.finishAnimating()
+        }
+    }
+    
     func setup() {
         setupScrollView()
         setupContentView()
+        setupLoaderView()
         setupView()
+    }
+    
+    func setupLoaderView() {
+        loaderView.isHidden = true
+        
+        view.addSubview(loaderView)
+        
+        loaderView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(100)
+        }
     }
     
     func setupScrollView() {
@@ -95,13 +127,26 @@ private extension ProfileViewController {
         profileInformationContainer.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(Constants.horizontalInset)
             make.top.equalTo(backgroundImageView.snp.bottom).offset(-48)
-            make.height.equalTo(96)
+            make.height.equalTo(Constants.imageViewSize)
         }
+        
+        configureProfileImageView()
     }
     
     func configureProfileImageView() {
         if let profileImageURL = URL(string: self.viewModel.userData.profileImageURL) {
             self.profileImageView.kf.setImage(with: profileImageURL)
+        }
+        
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.layer.cornerRadius = Constants.imageViewSize / 2
+        profileImageView.clipsToBounds = true
+        
+        profileInformationContainer.addSubview(profileImageView)
+        
+        profileImageView.snp.makeConstraints { make in
+            make.leading.top.bottom.equalToSuperview()
+            make.width.equalTo(profileImageView.snp.height)
         }
     }
 }
@@ -111,5 +156,6 @@ private extension ProfileViewController {
     enum Constants {
         static let backgroundImageCornerRadius: CGFloat = 32
         static let horizontalInset: CGFloat = 24
+        static let imageViewSize: CGFloat = 96
     }
 }

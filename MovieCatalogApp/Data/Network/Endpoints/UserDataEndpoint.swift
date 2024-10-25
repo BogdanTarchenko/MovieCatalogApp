@@ -6,8 +6,14 @@
 //
 
 import Alamofire
+import KeychainAccess
 
 struct UserDataEndpoint: APIEndpoint {
+    
+    private var authToken: String? {
+        let keychain = Keychain()
+        return try? keychain.get("authToken2")
+    }
     
     var path: String {
         return "/api/account/profile"
@@ -22,6 +28,9 @@ struct UserDataEndpoint: APIEndpoint {
     }
     
     var headers: Alamofire.HTTPHeaders? {
-        return nil
+        guard let token = authToken else { return nil }
+        return [
+            "Authorization": "Bearer \(token)"
+        ]
     }
 }

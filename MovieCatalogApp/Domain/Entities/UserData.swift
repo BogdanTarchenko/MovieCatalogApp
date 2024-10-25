@@ -14,7 +14,7 @@ struct UserData {
     var birthDate: String
     var gender: Gender
     
-    init(id: String = SC.empty, username: String = SC.empty, email: String = SC.empty, profileImageURL: String = Constants.baseURL, name: String = SC.empty, birthDate: String = SC.empty, gender: Gender = .male) {
+    init(id: String = SC.empty, username: String = SC.empty, email: String = SC.empty, profileImageURL: String = SC.empty, name: String = SC.empty, birthDate: String = SC.empty, gender: Gender = .male) {
         self.id = id
         self.username = username
         self.email = email
@@ -22,11 +22,5 @@ struct UserData {
         self.name = name
         self.birthDate = birthDate
         self.gender = gender
-    }
-}
-
-extension UserData {
-    enum Constants {
-        static let baseURL = "https://iconduck.com/icons/160691/avatar-default-symbolic"
     }
 }

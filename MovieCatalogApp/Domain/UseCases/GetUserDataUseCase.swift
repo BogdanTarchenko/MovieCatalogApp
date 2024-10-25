@@ -9,7 +9,7 @@ protocol GetUserDataUseCase {
     func execute() async throws -> UserDataResponseModel
 }
 
-class GetUserDataUseCaseImpl {
+class GetUserDataUseCaseImpl: GetUserDataUseCase {
     private let repository: GetUserDataRepository
     
     init(repository: GetUserDataRepository) {
