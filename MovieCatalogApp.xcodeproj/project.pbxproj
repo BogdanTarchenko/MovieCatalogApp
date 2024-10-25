@@ -39,6 +39,14 @@
 		FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */; };
 		FC2876382CBEBD1000255264 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = FC2876372CBEBD1000255264 /* KeychainAccess */; };
 		FC3896172CC68D5F00BA2784 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3896162CC68D5F00BA2784 /* LocalizedString.swift */; };
+		FC399CE42CCB837000AAE6DD /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CE32CCB837000AAE6DD /* UserData.swift */; };
+		FC399CE62CCB86D300AAE6DD /* GetUserDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CE52CCB86D300AAE6DD /* GetUserDataUseCase.swift */; };
+		FC399CE82CCB871800AAE6DD /* UserDataResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CE72CCB871800AAE6DD /* UserDataResponseModel.swift */; };
+		FC399CEA2CCB882900AAE6DD /* GetUserDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CE92CCB882900AAE6DD /* GetUserDataRepository.swift */; };
+		FC399CEC2CCB891600AAE6DD /* GetUserDataRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CEB2CCB891600AAE6DD /* GetUserDataRepositoryImpl.swift */; };
+		FC399CEE2CCB8B9A00AAE6DD /* UserDataEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CED2CCB8B9A00AAE6DD /* UserDataEndpoint.swift */; };
+		FC399CF02CCBB05500AAE6DD /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CEF2CCBB05500AAE6DD /* Gender.swift */; };
+		FC8BCEF22CC96CB900D54004 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */; };
 		FCA4F62B2CC929CA009DAB74 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FCA4F62A2CC929CA009DAB74 /* Lottie */; };
 		FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */; };
 		FCA4F6312CC931A7009DAB74 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */; };
@@ -104,6 +112,14 @@
 		FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterEndpoint.swift; sourceTree = "<group>"; };
 		FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginEndpoint.swift; sourceTree = "<group>"; };
 		FC3896162CC68D5F00BA2784 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		FC399CE32CCB837000AAE6DD /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		FC399CE52CCB86D300AAE6DD /* GetUserDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserDataUseCase.swift; sourceTree = "<group>"; };
+		FC399CE72CCB871800AAE6DD /* UserDataResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataResponseModel.swift; sourceTree = "<group>"; };
+		FC399CE92CCB882900AAE6DD /* GetUserDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserDataRepository.swift; sourceTree = "<group>"; };
+		FC399CEB2CCB891600AAE6DD /* GetUserDataRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserDataRepositoryImpl.swift; sourceTree = "<group>"; };
+		FC399CED2CCB8B9A00AAE6DD /* UserDataEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataEndpoint.swift; sourceTree = "<group>"; };
+		FC399CEF2CCBB05500AAE6DD /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterRequestModel.swift; sourceTree = "<group>"; };
@@ -237,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				FC1DC3A72CC3C44E00FF55F4 /* ProfileViewController.swift */,
+				FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */,
 			);
 			path = ProfileScreen;
 			sourceTree = "<group>";
@@ -247,6 +264,7 @@
 				FC2876322CBEAB1600255264 /* UserRegisterEndpoint.swift */,
 				FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */,
 				FC1DC3AF2CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift */,
+				FC399CED2CCB8B9A00AAE6DD /* UserDataEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -340,6 +358,8 @@
 				FC08D80E2CBBE72B00252D21 /* LoginCredentials.swift */,
 				FC08D8102CBBE76F00252D21 /* RegistrationCredentials.swift */,
 				FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */,
+				FC399CE32CCB837000AAE6DD /* UserData.swift */,
+				FC399CEF2CCBB05500AAE6DD /* Gender.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -350,6 +370,7 @@
 				FC1DC38C2CC3B8DD00FF55F4 /* SignUpUseCase.swift */,
 				FC1DC3922CC3BB5800FF55F4 /* SignInUseCase.swift */,
 				FC1DC3B12CC5389000FF55F4 /* GetMoviesUseCase.swift */,
+				FC399CE52CCB86D300AAE6DD /* GetUserDataUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -360,6 +381,7 @@
 				FC1DC3882CC3B87200FF55F4 /* SignUpRepository.swift */,
 				FC1DC3902CC3BB5100FF55F4 /* SignInRepository.swift */,
 				FC1DC3B32CC5398700FF55F4 /* GetMoviesRepository.swift */,
+				FC399CE92CCB882900AAE6DD /* GetUserDataRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -380,6 +402,7 @@
 				FC1DC38A2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift */,
 				FC1DC38E2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift */,
 				FC1DC3B52CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift */,
+				FC399CEB2CCB891600AAE6DD /* GetUserDataRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -392,6 +415,7 @@
 				FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */,
 				FC1DC3AD2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift */,
 				FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */,
+				FC399CE72CCB871800AAE6DD /* UserDataResponseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -548,9 +572,11 @@
 				FC1DC3A62CC3C44700FF55F4 /* FavouritesViewController.swift in Sources */,
 				FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */,
 				FC1DC3BD2CC57D3B00FF55F4 /* FeedMovieData.swift in Sources */,
+				FC399CEE2CCB8B9A00AAE6DD /* UserDataEndpoint.swift in Sources */,
 				FC1DC3AA2CC51D2100FF55F4 /* CustomTabBarItem.swift in Sources */,
 				FC1DC38F2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift in Sources */,
 				FC1DC3992CC3C37600FF55F4 /* MainTabBarController.swift in Sources */,
+				FC399CEC2CCB891600AAE6DD /* GetUserDataRepositoryImpl.swift in Sources */,
 				FC1DC3B62CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift in Sources */,
 				FC1DC3892CC3B87200FF55F4 /* SignUpRepository.swift in Sources */,
 				FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */,
@@ -559,6 +585,7 @@
 				FC08D8112CBBE76F00252D21 /* RegistrationCredentials.swift in Sources */,
 				FCF7D8EE2CBAAF3100A4F82C /* SignUpViewModel.swift in Sources */,
 				FC3896172CC68D5F00BA2784 /* LocalizedString.swift in Sources */,
+				FC8BCEF22CC96CB900D54004 /* ProfileViewModel.swift in Sources */,
 				FC1DC3B22CC5389000FF55F4 /* GetMoviesUseCase.swift in Sources */,
 				FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */,
 				FCF7D8E82CB99EEB00A4F82C /* UIView+Extensions.swift in Sources */,
@@ -569,15 +596,20 @@
 				FC08D80F2CBBE72B00252D21 /* LoginCredentials.swift in Sources */,
 				FC2876332CBEAB1600255264 /* UserRegisterEndpoint.swift in Sources */,
 				FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */,
+				FC399CE62CCB86D300AAE6DD /* GetUserDataUseCase.swift in Sources */,
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
 				FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */,
 				FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */,
 				FC2876312CBEA8E100255264 /* BaseURL.swift in Sources */,
+				FC399CE42CCB837000AAE6DD /* UserData.swift in Sources */,
 				FCF7D8F02CBAB99100A4F82C /* SplitButton.swift in Sources */,
 				FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */,
+				FC399CF02CCBB05500AAE6DD /* Gender.swift in Sources */,
 				FCEADE282CBD7FD900B28E7F /* UserRegisterResponseModel.swift in Sources */,
+				FC399CEA2CCB882900AAE6DD /* GetUserDataRepository.swift in Sources */,
 				FCF7D8EA2CB99F4100A4F82C /* SignInViewModel.swift in Sources */,
+				FC399CE82CCB871800AAE6DD /* UserDataResponseModel.swift in Sources */,
 				FC1DC3A42CC3C43F00FF55F4 /* MoviesViewController.swift in Sources */,
 				FC1DC3A22CC3C43500FF55F4 /* FeedViewController.swift in Sources */,
 				FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */,

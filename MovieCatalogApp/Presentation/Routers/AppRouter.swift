@@ -19,7 +19,7 @@ class AppRouter {
     func start() {
         let keychain = Keychain()
         
-        if let authToken = try? keychain.get("authToken1") {
+        if let authToken = try? keychain.get("authToken") {
             let mainTabBarController = MainTabBarController()
             window?.rootViewController = mainTabBarController
         } else {

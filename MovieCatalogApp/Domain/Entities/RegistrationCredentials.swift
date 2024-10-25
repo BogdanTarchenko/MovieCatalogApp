@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum Gender: Int {
-    case male = 0
-    case female = 1
-}
-
 struct RegistrationCredentials {
     var username: String
     var email: String
