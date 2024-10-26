@@ -29,7 +29,7 @@ class CustomTabBarItem: UIView {
         addSubview(stackView)
         
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.top.bottom.equalToSuperview()
         }
     }
 

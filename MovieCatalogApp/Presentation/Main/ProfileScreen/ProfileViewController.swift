@@ -21,13 +21,20 @@ final class ProfileViewController: UIViewController {
     
     private let profileInformationContainer = UIView()
     private let profileImageView = UIImageView()
-    
     private let greetingStackView = UIStackView()
     private let timeLabel = UILabel()
     private let nameLabel = UILabel()
     private let logoutButton = UIButton()
-
+    
     private let friendsButton = UIButton()
+    
+    private let informationStackView = UIStackView()
+    private let privateInformationLabel = GradientLabel()
+    private let usernameTextField = ProfileTextField(title: LocalizedString.Profile.usernameTitle, style: .information)
+    private let emailTextField = ProfileTextField(title: LocalizedString.Profile.emailTitle, style: .information)
+    private let nameTextField = ProfileTextField(title: LocalizedString.Profile.nameTitle, style: .information)
+    private let birthDateTextField = ProfileTextField(title: LocalizedString.Profile.birthDateTitle, style: .date)
+    private let genderButton = ProfileGenderButton(title: LocalizedString.Profile.genderTitle)
     
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -99,6 +106,8 @@ private extension ProfileViewController {
     
     func setupScrollView() {
         view.addSubview(scrollView)
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.backgroundColor = .clear
         scrollView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -108,8 +117,8 @@ private extension ProfileViewController {
     func setupContentView() {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.size.equalTo(scrollView)
+            make.top.bottom.leading.trailing.equalToSuperview()
+            make.width.equalToSuperview()
         }
         
         setupContent()
@@ -117,12 +126,17 @@ private extension ProfileViewController {
     
     func setupView() {
         view.backgroundColor = .background
+        
+        if let tabBar = tabBarController?.tabBar {
+            tabBar.backgroundImage = UIImage()
+        }
     }
     
     func setupContent() {
         configureBackgroundImageView()
         configureProfileInformationContainer()
         configureFriendsButton()
+        configureInformationStackView()
     }
     
     func configureBackgroundImageView() {
@@ -211,8 +225,46 @@ private extension ProfileViewController {
     
     func configureFriendsButton() {
         friendsButton.setTitle(LocalizedString.Profile.friends, for: .normal)
+        friendsButton.titleLabel?.font = UIFont(name: "Manrope-Medium", size: 16)
+        friendsButton.titleLabel?.textColor = .textDefault
+        friendsButton.titleLabel?.textAlignment = .center
         friendsButton.backgroundColor = .darkFaded
         
+        friendsButton.layer.cornerRadius = Constants.friendsButtonCornerRadius
+        
+        contentView.addSubview(friendsButton)
+        
+        friendsButton.snp.makeConstraints { make in
+            make.height.equalTo(Constants.friendsButtonHeight)
+            make.leading.trailing.equalToSuperview().inset(Constants.horizontalInset)
+            make.top.equalTo(profileInformationContainer.snp.bottom).offset(Constants.defaultOffset)
+        }
+        
+    }
+    
+    func configureInformationLabel() {
+        privateInformationLabel.text = LocalizedString.Profile.privateInformationLabel
+    }
+    
+    func configureInformationStackView() {
+        informationStackView.addArrangedSubview(privateInformationLabel)
+        informationStackView.addArrangedSubview(usernameTextField)
+        informationStackView.addArrangedSubview(emailTextField)
+        informationStackView.addArrangedSubview(nameTextField)
+        informationStackView.addArrangedSubview(birthDateTextField)
+        informationStackView.addArrangedSubview(genderButton)
+        
+        contentView.addSubview(informationStackView)
+        informationStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(Constants.horizontalInset)
+            make.top.equalTo(friendsButton.snp.bottom).offset(Constants.defaultOffset)
+            make.bottom.equalToSuperview().offset(-32)
+        }
+        
+        informationStackView.spacing = 16
+        informationStackView.axis = .vertical
+        
+        configureInformationLabel()
     }
     
     func presentInputAlert(title: String, message: String) {
@@ -251,5 +303,9 @@ private extension ProfileViewController {
         static let backgroundImageCornerRadius: CGFloat = 32
         static let horizontalInset: CGFloat = 24
         static let imageViewSize: CGFloat = 96
+        static let friendsButtonHeight: CGFloat = 64
+        static let defaultOffset: CGFloat = 36
+        static let friendsButtonCornerRadius: CGFloat = 16
+        static let informationStackViewSpacing: CGFloat = 16
     }
 }

@@ -182,6 +182,16 @@
         }
       }
     },
+    "private_information_label" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Личная информация"
+          }
+        }
+      }
+    },
     "profile" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -189,6 +199,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Профиль"
+          }
+        }
+      }
+    },
+    "profile_birthDate_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата рождения"
+          }
+        }
+      }
+    },
+    "profile_email_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Электронная почта"
+          }
+        }
+      }
+    },
+    "profile_friends" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мои друзья"
+          }
+        }
+      }
+    },
+    "profile_gender_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пол"
           }
         }
       }
@@ -209,6 +259,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сменить изображение"
+          }
+        }
+      }
+    },
+    "profile_name_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
+          }
+        }
+      }
+    },
+    "profile_username_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Логин"
           }
         }
       }

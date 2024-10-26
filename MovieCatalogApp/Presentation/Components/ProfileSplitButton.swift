@@ -1,34 +1,22 @@
 //
-//  ProfileTextField.swift
+//  ProfileSplitButton.swift
 //  MovieCatalogApp
 //
-//  Created by Богдан Тарченко on 26.10.2024.
+//  Created by Богдан Тарченко on 27.10.2024.
 //
 
 import UIKit
 import SnapKit
 
-class ProfileTextField: UIView {
-    
-    enum ProfileTextFieldStyle {
-        case information
-        case date
-    }
+class ProfileGenderButton: UIView {
     
     private var titleLabel = UILabel()
-    private var textField: CustomTextField
+    private var genderButton = SplitButton(style: .genderPicker)
     
-    init(title: String, style: ProfileTextFieldStyle) {
-        switch style {
-        case .date:
-            self.textField = CustomTextField(style: .date(.dateOfBirth))
-        case .information:
-            self.textField = CustomTextField(style: .plain)
-        }
-        
+    init(title: String) {
         super.init(frame: .zero)
         
-        setupTextField()
+        setupGenderButton()
         setupTitleLabel(with: title)
         setupConstraints()
     }
@@ -45,17 +33,17 @@ class ProfileTextField: UIView {
         addSubview(titleLabel)
     }
     
-    private func setupTextField() {
-        addSubview(textField)
+    private func setupGenderButton() {
+        addSubview(genderButton)
     }
     
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.bottom.equalTo(textField.snp.top).offset(-4)
+            make.bottom.equalTo(genderButton.snp.top).offset(-4)
         }
         
-        textField.snp.makeConstraints { make in
+        genderButton.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(48)
         }
@@ -65,3 +53,4 @@ class ProfileTextField: UIView {
         }
     }
 }
+

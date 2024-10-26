@@ -13,8 +13,8 @@ class SplitButton: UIView {
         case genderPicker
     }
     
-    private let leftButton: CustomButton
-    private let rightButton: CustomButton
+     let leftButton: CustomButton
+     let rightButton: CustomButton
     
     private var style: ButtonStyle
     

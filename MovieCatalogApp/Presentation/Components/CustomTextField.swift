@@ -28,7 +28,7 @@ class CustomTextField: UITextField {
     }
     
     private var placeholderText: String = ""
-    private var textFieldStyle: TextFieldStyle
+    var textFieldStyle: TextFieldStyle
     private let rightButton = UIButton(type: .custom)
     
     init(style: TextFieldStyle) {

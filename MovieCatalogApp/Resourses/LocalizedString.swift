@@ -104,5 +104,29 @@ enum LocalizedString {
         static var friends: String {
             return NSLocalizedString("profile_friends", comment: SC.empty)
         }
+        
+        static var privateInformationLabel: String {
+            return NSLocalizedString("private_information_label", comment: SC.empty)
+        }
+        
+        static var usernameTitle: String {
+            return NSLocalizedString("profile_username_title", comment: SC.empty)
+        }
+        
+        static var emailTitle: String {
+            return NSLocalizedString("profile_email_title", comment: SC.empty)
+        }
+        
+        static var nameTitle: String {
+            return NSLocalizedString("profile_name_title", comment: SC.empty)
+        }
+        
+        static var birthDateTitle: String {
+            return NSLocalizedString("profile_birthDate_title", comment: SC.empty)
+        }
+        
+        static var genderTitle: String {
+            return NSLocalizedString("profile_gender_title", comment: SC.empty)
+        }
     }
 }
