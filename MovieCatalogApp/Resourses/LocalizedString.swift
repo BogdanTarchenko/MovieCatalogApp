@@ -81,4 +81,28 @@ enum LocalizedString {
             return NSLocalizedString("night_greeting", comment: SC.empty)
         }
     }
+    
+    enum Alert {
+        static var changeProfileImagePlaceholder: String {
+            return NSLocalizedString("profile_image_placeholder", comment: SC.empty)
+        }
+        
+        static var OK: String {
+            return NSLocalizedString("alert_ok", comment: SC.empty)
+        }
+        
+        static var cancel: String {
+            return NSLocalizedString("alert_cancel", comment: SC.empty)
+        }
+        
+        static var changeProfileImageTitle: String {
+            return NSLocalizedString("profile_image_title", comment: SC.empty)
+        }
+    }
+    
+    enum Profile {
+        static var friends: String {
+            return NSLocalizedString("profile_friends", comment: SC.empty)
+        }
+    }
 }

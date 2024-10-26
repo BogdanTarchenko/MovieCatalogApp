@@ -22,6 +22,6 @@ class SignUpRepositoryImpl: SignUpRepository {
     }
     
     func saveToken(token: String) throws {
-        try keychain.set(token, key: "authToken")
+        try keychain.set(token, key: "authToken2")
     }
 }

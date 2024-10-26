@@ -26,6 +26,8 @@ final class ProfileViewController: UIViewController {
     private let timeLabel = UILabel()
     private let nameLabel = UILabel()
     private let logoutButton = UIButton()
+
+    private let friendsButton = UIButton()
     
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -42,6 +44,14 @@ final class ProfileViewController: UIViewController {
         bindToViewModel()
         viewModel.onDidLoad()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        Task {
+            try await viewModel.changeUserData()
+        }
+    }
 }
 
 private extension ProfileViewController {
@@ -52,6 +62,10 @@ private extension ProfileViewController {
             DispatchQueue.main.async {
                 self?.configureProfileInformationContainer()
             }
+        }
+        
+        viewModel.onPresentAlert = { [weak self] title, message in
+            self?.presentInputAlert(title: title, message: message)
         }
         
         viewModel.onDidStartLoad = { [weak self] in
@@ -90,7 +104,7 @@ private extension ProfileViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
-
+    
     func setupContentView() {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in
@@ -104,10 +118,11 @@ private extension ProfileViewController {
     func setupView() {
         view.backgroundColor = .background
     }
-
+    
     func setupContent() {
         configureBackgroundImageView()
         configureProfileInformationContainer()
+        configureFriendsButton()
     }
     
     func configureBackgroundImageView() {
@@ -146,6 +161,10 @@ private extension ProfileViewController {
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.layer.cornerRadius = Constants.imageViewSize / 2
         profileImageView.clipsToBounds = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
+        profileImageView.addGestureRecognizer(tapGesture)
+        profileImageView.isUserInteractionEnabled = true
         
         profileInformationContainer.addSubview(profileImageView)
         
@@ -188,6 +207,37 @@ private extension ProfileViewController {
             make.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+    }
+    
+    func configureFriendsButton() {
+        friendsButton.setTitle(LocalizedString.Profile.friends, for: .normal)
+        friendsButton.backgroundColor = .darkFaded
+        
+    }
+    
+    func presentInputAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertController.addTextField { textField in
+            textField.placeholder = LocalizedString.Alert.changeProfileImagePlaceholder
+        }
+        
+        let confirmAction = UIAlertAction(title: LocalizedString.Alert.OK, style: .default) { _ in
+            if let inputText = alertController.textFields?.first?.text {
+                self.viewModel.updateProfileImage(with: inputText)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: LocalizedString.Alert.cancel, style: .cancel)
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    @objc func profileImageTapped() {
+        presentInputAlert(title: LocalizedString.Alert.changeProfileImageTitle, message: SC.empty)
     }
     
     @objc func logoutButtonTapped() {

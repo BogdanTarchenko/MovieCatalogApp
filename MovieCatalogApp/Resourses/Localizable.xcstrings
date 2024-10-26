@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "alert_cancel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "alert_ok" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
+          }
+        }
+      }
+    },
     "date_of_birth" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -169,6 +189,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Профиль"
+          }
+        }
+      }
+    },
+    "profile_image_placeholder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL изображения"
+          }
+        }
+      }
+    },
+    "profile_image_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сменить изображение"
           }
         }
       }

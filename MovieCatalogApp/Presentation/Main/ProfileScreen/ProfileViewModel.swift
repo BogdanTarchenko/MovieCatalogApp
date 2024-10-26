@@ -13,6 +13,7 @@ final class ProfileViewModel {
     weak var appRouterDelegate: AppRouterDelegate?
     
     private let getUserDataUseCase: GetUserDataUseCase
+    private let changeUserDataUseCase: ChangeUserDataUseCase
     private let logoutUseCase: LogoutUseCase
     
     var userData = UserData()
@@ -20,9 +21,11 @@ final class ProfileViewModel {
     var onDidLoadUserData: ((UserData) -> Void)?
     var onDidStartLoad: (() -> Void)?
     var onDidFinishLoad: (() -> Void)?
+    var onPresentAlert: ((String, String) -> Void)?
     
     init() {
         self.getUserDataUseCase = GetUserDataUseCaseImpl.create()
+        self.changeUserDataUseCase = ChangeUserDataUseCaseImpl.create()
         self.logoutUseCase = LogoutUseCaseImpl.create()
     }
     
@@ -123,6 +126,38 @@ final class ProfileViewModel {
             birthDate: userData.birthDate,
             gender: Gender(rawValue: userData.gender) ?? .male
         )
+    }
+    
+    private func mapToUserDataRequestModel(_ userData: UserData) -> UserDataRequestModel {
+        return UserDataRequestModel(
+            id: userData.id,
+            nickName: userData.username,
+            email: userData.email,
+            avatarLink: userData.profileImageURL,
+            name: userData.name,
+            birthDate: userData.birthDate,
+            gender: userData.gender.rawValue)
+    }
+    
+    func showInputAlert(title: String, message: String) {
+        onPresentAlert?(title, message)
+    }
+    
+    func updateProfileImage(with urlString: String) {
+        userData.profileImageURL = urlString
+        onDidLoadUserData?(userData)
+    }
+    
+    func changeUserData() async throws {
+        let requestModel = mapToUserDataRequestModel(userData)
+        
+        do {
+            try await changeUserDataUseCase.execute(request: requestModel)
+        } catch {
+            print("Ошибка изменения данных пользователя: \(error)")
+            print(requestModel)
+            throw error
+        }
     }
 }
 

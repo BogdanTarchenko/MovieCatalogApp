@@ -42,4 +42,31 @@ final class AlamofireHTTPClient: HTTPClient {
                 }
         }
     }
+    
+    func sendRequestWithoutResponse<U: Encodable>(endpoint: APIEndpoint, requestBody: U? = nil) async throws {
+        let url = baseURL.baseURL + endpoint.path
+        let method = endpoint.method
+        let headers = endpoint.headers
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: method, parameters: requestBody, encoder: JSONParameterEncoder.default, headers: headers)
+                .validate()
+                .response { response in
+                    switch response.result {
+                    case .success:
+                        continuation.resume()
+                    case .failure(let error):
+                        if let statusCode = response.response?.statusCode, statusCode == 401 {
+                            do {
+                                let keychain = Keychain()
+                                try keychain.remove("authToken2")
+                            } catch {
+                                print("Ошибка удаления токена: \(error)")
+                            }
+                        }
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
 }
