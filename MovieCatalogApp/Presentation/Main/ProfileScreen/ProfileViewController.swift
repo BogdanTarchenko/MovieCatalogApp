@@ -50,10 +50,13 @@ final class ProfileViewController: UIViewController {
         setup()
         bindToViewModel()
         viewModel.onDidLoad()
+        updateUserData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        updateUserData()
         
         Task {
             try await viewModel.changeUserData()
@@ -68,6 +71,7 @@ private extension ProfileViewController {
         viewModel.onDidLoadUserData = { [weak self] userData in
             DispatchQueue.main.async {
                 self?.configureProfileInformationContainer()
+                self?.configureInformationStackView()
             }
         }
         
@@ -242,10 +246,6 @@ private extension ProfileViewController {
         
     }
     
-    func configureInformationLabel() {
-        privateInformationLabel.text = LocalizedString.Profile.privateInformationLabel
-    }
-    
     func configureInformationStackView() {
         informationStackView.addArrangedSubview(privateInformationLabel)
         informationStackView.addArrangedSubview(usernameTextField)
@@ -264,7 +264,28 @@ private extension ProfileViewController {
         informationStackView.spacing = 16
         informationStackView.axis = .vertical
         
-        configureInformationLabel()
+        privateInformationLabel.text = LocalizedString.Profile.privateInformationLabel
+        
+        usernameTextField.textField.text = viewModel.userData.username
+        usernameTextField.isUserInteractionEnabled = false
+        
+        emailTextField.textField.text = viewModel.userData.email
+        
+        nameTextField.textField.text = viewModel.userData.name
+        
+        let isoDateFormatter = ISO8601DateFormatter()
+        if let date = isoDateFormatter.date(from: (viewModel.userData.birthDate + "Z")) {
+            let outputDateFormatter = DateFormatter()
+            outputDateFormatter.locale = Locale(identifier: "ru_RU")
+            outputDateFormatter.dateFormat = "dd MMMM yyyy"
+
+            let formattedDateString = outputDateFormatter.string(from: date)
+            birthDateTextField.textField.text = formattedDateString
+        } else {
+            print("Ошибка преобразования даты")
+        }
+        
+        updateGenderButtonState()
     }
     
     func presentInputAlert(title: String, message: String) {
@@ -286,6 +307,31 @@ private extension ProfileViewController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
+    }
+    
+    private func updateUserData() {
+        viewModel.userData.email = emailTextField.textField.text ?? SC.empty
+        
+        viewModel.userData.name = nameTextField.textField.text ?? SC.empty
+        
+        if let datePicker = birthDateTextField.textField.inputView as? UIDatePicker {
+            let selectedDate = datePicker.date
+            viewModel.userData.birthDate = selectedDate.ISO8601Format()
+        }
+        
+        genderButton.genderButton.onGenderSelected = { [weak self] gender in
+            self?.viewModel.userData.gender = gender
+        }
+    }
+    
+    private func updateGenderButtonState() {
+        if viewModel.userData.gender == .male {
+            genderButton.genderButton.leftButton.toggleStyle(.gradient)
+            genderButton.genderButton.rightButton.toggleStyle(.plain)
+        } else {
+            genderButton.genderButton.rightButton.toggleStyle(.gradient)
+            genderButton.genderButton.leftButton.toggleStyle(.plain)
+        }
     }
     
     @objc func profileImageTapped() {

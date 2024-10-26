@@ -16,7 +16,7 @@ class ProfileTextField: UIView {
     }
     
     private var titleLabel = UILabel()
-    private var textField: CustomTextField
+    var textField: CustomTextField
     
     init(title: String, style: ProfileTextFieldStyle) {
         switch style {

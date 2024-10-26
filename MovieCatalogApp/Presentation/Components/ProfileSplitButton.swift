@@ -11,7 +11,7 @@ import SnapKit
 class ProfileGenderButton: UIView {
     
     private var titleLabel = UILabel()
-    private var genderButton = SplitButton(style: .genderPicker)
+    var genderButton = SplitButton(style: .genderPicker)
     
     init(title: String) {
         super.init(frame: .zero)
@@ -53,4 +53,3 @@ class ProfileGenderButton: UIView {
         }
     }
 }
-
