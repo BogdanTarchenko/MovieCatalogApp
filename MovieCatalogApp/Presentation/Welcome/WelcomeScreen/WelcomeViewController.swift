@@ -41,13 +41,12 @@ private extension WelcomeViewController {
     
     func setupView() {
         view.backgroundColor = .background
+        self.background.image = UIImage(named: Constants.backgroundImageName)
+        self.background.contentMode = .scaleAspectFill
         
-        background.image = UIImage(named: Constants.backgroundImageName)
-        background.contentMode = .scaleAspectFill
+        self.view.addSubview(self.background)
         
-        view.addSubview(background)
-        
-        background.snp.makeConstraints { make in
+        self.background.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }

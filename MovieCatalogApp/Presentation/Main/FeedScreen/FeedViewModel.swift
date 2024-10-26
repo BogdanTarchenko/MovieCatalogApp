@@ -9,6 +9,8 @@ import Foundation
 
 final class FeedViewModel {
     
+    weak var appRouterDelegate: AppRouterDelegate?
+    
     private let getMoviesUseCase: GetMoviesUseCase
     
     var currentMovieData = FeedMovieData()

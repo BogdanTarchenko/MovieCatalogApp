@@ -47,10 +47,15 @@
 		FC399CEE2CCB8B9A00AAE6DD /* UserDataEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CED2CCB8B9A00AAE6DD /* UserDataEndpoint.swift */; };
 		FC399CF02CCBB05500AAE6DD /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CEF2CCBB05500AAE6DD /* Gender.swift */; };
 		FC399CF22CCBC66000AAE6DD /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF12CCBC66000AAE6DD /* Loader.swift */; };
+		FC399CF42CCC008000AAE6DD /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF32CCC008000AAE6DD /* LogoutUseCase.swift */; };
+		FC399CF62CCC00CF00AAE6DD /* LogoutRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */; };
+		FC399CF82CCC015E00AAE6DD /* LogoutRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */; };
+		FC399CFA2CCC018D00AAE6DD /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */; };
 		FC8BCEF22CC96CB900D54004 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */; };
 		FCA4F62B2CC929CA009DAB74 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FCA4F62A2CC929CA009DAB74 /* Lottie */; };
 		FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */; };
 		FCA4F6312CC931A7009DAB74 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */; };
+		FCAEA5312CCCDE5A00A3D97E /* DayTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */; };
 		FCEADE112CBD699400B28E7F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FCEADE102CBD699400B28E7F /* Alamofire */; };
 		FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */; };
 		FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */; };
@@ -121,9 +126,14 @@
 		FC399CED2CCB8B9A00AAE6DD /* UserDataEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataEndpoint.swift; sourceTree = "<group>"; };
 		FC399CEF2CCBB05500AAE6DD /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		FC399CF12CCBC66000AAE6DD /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		FC399CF32CCC008000AAE6DD /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
+		FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepository.swift; sourceTree = "<group>"; };
+		FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepositoryImpl.swift; sourceTree = "<group>"; };
+		FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpoint.swift; sourceTree = "<group>"; };
 		FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTime.swift; sourceTree = "<group>"; };
 		FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterResponseModel.swift; sourceTree = "<group>"; };
@@ -267,6 +277,7 @@
 				FC2876342CBEB47F00255264 /* UserLoginEndpoint.swift */,
 				FC1DC3AF2CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift */,
 				FC399CED2CCB8B9A00AAE6DD /* UserDataEndpoint.swift */,
+				FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -371,6 +382,7 @@
 			children = (
 				FC1DC38C2CC3B8DD00FF55F4 /* SignUpUseCase.swift */,
 				FC1DC3922CC3BB5800FF55F4 /* SignInUseCase.swift */,
+				FC399CF32CCC008000AAE6DD /* LogoutUseCase.swift */,
 				FC1DC3B12CC5389000FF55F4 /* GetMoviesUseCase.swift */,
 				FC399CE52CCB86D300AAE6DD /* GetUserDataUseCase.swift */,
 			);
@@ -384,6 +396,7 @@
 				FC1DC3902CC3BB5100FF55F4 /* SignInRepository.swift */,
 				FC1DC3B32CC5398700FF55F4 /* GetMoviesRepository.swift */,
 				FC399CE92CCB882900AAE6DD /* GetUserDataRepository.swift */,
+				FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -405,6 +418,7 @@
 				FC1DC38E2CC3BB4800FF55F4 /* SignInRepositoryImpl.swift */,
 				FC1DC3B52CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift */,
 				FC399CEB2CCB891600AAE6DD /* GetUserDataRepositoryImpl.swift */,
+				FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -464,6 +478,7 @@
 				FC1DC3A92CC51D2100FF55F4 /* CustomTabBarItem.swift */,
 				FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */,
 				FC399CF12CCBC66000AAE6DD /* Loader.swift */,
+				FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -583,6 +598,7 @@
 				FC399CF22CCBC66000AAE6DD /* Loader.swift in Sources */,
 				FC1DC3B62CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift in Sources */,
 				FC1DC3892CC3B87200FF55F4 /* SignUpRepository.swift in Sources */,
+				FC399CF62CCC00CF00AAE6DD /* LogoutRepository.swift in Sources */,
 				FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */,
 				FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */,
 				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
@@ -602,19 +618,23 @@
 				FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */,
 				FC399CE62CCB86D300AAE6DD /* GetUserDataUseCase.swift in Sources */,
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
+				FC399CF42CCC008000AAE6DD /* LogoutUseCase.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
 				FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */,
 				FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */,
 				FC2876312CBEA8E100255264 /* BaseURL.swift in Sources */,
 				FC399CE42CCB837000AAE6DD /* UserData.swift in Sources */,
 				FCF7D8F02CBAB99100A4F82C /* SplitButton.swift in Sources */,
+				FCAEA5312CCCDE5A00A3D97E /* DayTime.swift in Sources */,
 				FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */,
 				FC399CF02CCBB05500AAE6DD /* Gender.swift in Sources */,
 				FCEADE282CBD7FD900B28E7F /* UserRegisterResponseModel.swift in Sources */,
 				FC399CEA2CCB882900AAE6DD /* GetUserDataRepository.swift in Sources */,
 				FCF7D8EA2CB99F4100A4F82C /* SignInViewModel.swift in Sources */,
 				FC399CE82CCB871800AAE6DD /* UserDataResponseModel.swift in Sources */,
+				FC399CF82CCC015E00AAE6DD /* LogoutRepositoryImpl.swift in Sources */,
 				FC1DC3A42CC3C43F00FF55F4 /* MoviesViewController.swift in Sources */,
+				FC399CFA2CCC018D00AAE6DD /* LogoutEndpoint.swift in Sources */,
 				FC1DC3A22CC3C43500FF55F4 /* FeedViewController.swift in Sources */,
 				FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */,
 				FCF7D8EC2CBA829F00A4F82C /* UITextField+Extensions.swift in Sources */,

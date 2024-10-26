@@ -63,4 +63,22 @@ enum LocalizedString {
             return NSLocalizedString("profile", comment: SC.empty)
         }
     }
+    
+    enum Greeting {
+        static var morning: String {
+            return NSLocalizedString("morning_greeting", comment: SC.empty)
+        }
+        
+        static var day: String {
+            return NSLocalizedString("day_greeting", comment: SC.empty)
+        }
+        
+        static var evening: String {
+            return NSLocalizedString("evening_greeting", comment: SC.empty)
+        }
+        
+        static var night: String {
+            return NSLocalizedString("night_greeting", comment: SC.empty)
+        }
+    }
 }

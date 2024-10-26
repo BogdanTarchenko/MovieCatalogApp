@@ -21,6 +21,8 @@ final class ProfileViewController: UIViewController {
     
     private let profileInformationContainer = UIView()
     private let profileImageView = UIImageView()
+    
+    private let greetingStackView = UIStackView()
     private let timeLabel = UILabel()
     private let nameLabel = UILabel()
     private let logoutButton = UIButton()
@@ -84,15 +86,16 @@ private extension ProfileViewController {
     func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 
     func setupContentView() {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview()
-            make.width.equalTo(scrollView)
+            make.edges.equalToSuperview()
+            make.size.equalTo(scrollView)
         }
         
         setupContent()
@@ -131,6 +134,8 @@ private extension ProfileViewController {
         }
         
         configureProfileImageView()
+        configureLogoutButton()
+        configureGreetingStackView()
     }
     
     func configureProfileImageView() {
@@ -148,6 +153,45 @@ private extension ProfileViewController {
             make.leading.top.bottom.equalToSuperview()
             make.width.equalTo(profileImageView.snp.height)
         }
+    }
+    
+    func configureGreetingStackView() {
+        greetingStackView.addArrangedSubview(timeLabel)
+        timeLabel.text = viewModel.getCurrentGreeting()
+        timeLabel.font = UIFont(name: "Manrope-Medium", size: 16)
+        timeLabel.textColor = .textDefault
+        
+        greetingStackView.addArrangedSubview(nameLabel)
+        nameLabel.text = viewModel.userData.name
+        nameLabel.font = UIFont(name: "Manrope-Bold", size: 24)
+        nameLabel.textColor = .textDefault
+        
+        greetingStackView.spacing = 0
+        greetingStackView.axis = .vertical
+        
+        profileInformationContainer.addSubview(greetingStackView)
+        
+        greetingStackView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
+            make.trailing.equalTo(logoutButton.snp.leading).offset(-16)
+        }
+    }
+    
+    func configureLogoutButton() {
+        logoutButton.setImage(UIImage(named: "logout"), for: .normal)
+        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        
+        profileInformationContainer.addSubview(logoutButton)
+        
+        logoutButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+    
+    @objc func logoutButtonTapped() {
+        viewModel.onLogoutButtonTapped()
     }
 }
 

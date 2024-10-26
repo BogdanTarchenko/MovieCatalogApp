@@ -10,13 +10,13 @@ import KeychainAccess
 
 final class SignUpViewModel {
     
-    private let router: AppRouter
+    weak var appRouterDelegate: AppRouterDelegate?
+    
     private let signUpUseCase: SignUpUseCase
     var isSignUpButtonActive: ((Bool) -> Void)?
     var credentials = RegistrationCredentials()
     
-    init(router: AppRouter) {
-        self.router = router
+    init() {
         self.signUpUseCase = SignUpUseCaseImpl.create()
     }
     
@@ -69,7 +69,7 @@ final class SignUpViewModel {
         Task {
             do {
                 try await signUpUseCase.execute(request: requestBody)
-                self.router.navigateToFeed()
+                self.appRouterDelegate?.navigateToMain()
             } catch {
                 print(error)
                 // TODO: - добавить обработку ошибки

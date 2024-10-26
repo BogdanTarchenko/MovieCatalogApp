@@ -12,6 +12,16 @@
         }
       }
     },
+    "day_greeting" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добрый день,"
+          }
+        }
+      }
+    },
     "done" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -41,6 +51,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Фильмы закончились"
+          }
+        }
+      }
+    },
+    "evening_greeting" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добрый вечер,"
           }
         }
       }
@@ -89,6 +109,16 @@
         }
       }
     },
+    "morning_greeting" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доброе утро,"
+          }
+        }
+      }
+    },
     "movies" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -107,6 +137,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Имя"
+          }
+        }
+      }
+    },
+    "night_greeting" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доброй ночи,"
           }
         }
       }

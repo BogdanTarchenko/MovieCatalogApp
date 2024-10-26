@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import KeychainAccess
 
 final class AlamofireHTTPClient: HTTPClient {
     
@@ -28,6 +29,14 @@ final class AlamofireHTTPClient: HTTPClient {
                     case .success(let decodedData):
                         continuation.resume(returning: decodedData)
                     case .failure(let error):
+                        if let statusCode = response.response?.statusCode, statusCode == 401 {
+                            do {
+                                let keychain = Keychain()
+                                try keychain.remove("authToken2")
+                            } catch {
+                                print("Ошибка удаления токена: \(error)")
+                            }
+                        }
                         continuation.resume(throwing: error)
                     }
                 }

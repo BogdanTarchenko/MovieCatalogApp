@@ -10,7 +10,10 @@ import Kingfisher
 
 final class ProfileViewModel {
     
+    weak var appRouterDelegate: AppRouterDelegate?
+    
     private let getUserDataUseCase: GetUserDataUseCase
+    private let logoutUseCase: LogoutUseCase
     
     var userData = UserData()
     
@@ -20,6 +23,7 @@ final class ProfileViewModel {
     
     init() {
         self.getUserDataUseCase = GetUserDataUseCaseImpl.create()
+        self.logoutUseCase = LogoutUseCaseImpl.create()
     }
     
     func onDidLoad() {
@@ -39,6 +43,63 @@ final class ProfileViewModel {
                     onDidFinishLoad?()
                 }
             }
+        }
+    }
+    
+    func onLogoutButtonTapped() {
+        Task { @MainActor in
+            onDidStartLoad?()
+        }
+        
+        Task {
+            do {
+                try await logoutUseCase.execute()
+                Task { @MainActor in
+                    onDidFinishLoad?()
+                }
+                appRouterDelegate?.navigateToWelcome()
+            } catch {
+                Task { @MainActor in
+                    onDidFinishLoad?()
+                }
+            }
+        }
+    }
+    
+    func getCurrentTime() -> Int {
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        return hour
+    }
+    
+    func getCurrentDayTime() -> DayTime {
+        let hour = getCurrentTime()
+        if (hour >= 6 && hour < 12) {
+            return .morning
+        }
+        else if (hour >= 12 && hour < 18) {
+            return .day
+        }
+        else if (hour >= 18 && hour < 24) {
+            return .evening
+        }
+        else {
+            return .night
+        }
+    }
+    
+    func getCurrentGreeting() -> String {
+        let dayTime: DayTime = getCurrentDayTime()
+        switch dayTime {
+        case .morning:
+            return LocalizedString.Greeting.morning
+        case .day:
+            return LocalizedString.Greeting.day
+        case .evening:
+            return LocalizedString.Greeting.evening
+        case .night:
+            return LocalizedString.Greeting.night
         }
     }
     

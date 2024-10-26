@@ -10,14 +10,14 @@ import KeychainAccess
 
 final class SignInViewModel {
     
-    private let router: AppRouter
+    weak var appRouterDelegate: AppRouterDelegate?
+    
     private let signInUseCase: SignInUseCase
     
     var isSignInButtonActive: ((Bool) -> Void)?
     var credentials = LoginCredentials()
     
-    init(router: AppRouter) {
-        self.router = router
+    init() {
         self.signInUseCase = SignInUseCaseImpl.create()
     }
     
@@ -41,7 +41,7 @@ final class SignInViewModel {
         Task {
             do {
                 try await signInUseCase.execute(request: requestBody)
-                self.router.navigateToFeed()
+                self.appRouterDelegate?.navigateToMain()
             } catch {
                 print(error)
             }

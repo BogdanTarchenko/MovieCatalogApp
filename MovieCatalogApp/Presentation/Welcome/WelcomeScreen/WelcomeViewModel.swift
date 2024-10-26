@@ -7,18 +7,14 @@
 
 final class WelcomeViewModel {
     
-    private let router: AppRouter
-    
-    init(router: AppRouter) {
-        self.router = router
-    }
+    weak var appRouterDelegate: AppRouterDelegate?
     
     // MARK: - Public Methods
     func signInButtonTapped() {
-        router.navigateToSignIn()
+        appRouterDelegate?.navigateToSignIn()
     }
     
     func signUpButtonTapped() {
-        router.navigateToSignUp()
+        appRouterDelegate?.navigateToSignUp()
     }
 }
