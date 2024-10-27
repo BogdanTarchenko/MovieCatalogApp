@@ -50,13 +50,10 @@ final class ProfileViewController: UIViewController {
         setup()
         bindToViewModel()
         viewModel.onDidLoad()
-        updateUserData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        updateUserData()
         
         Task {
             try await viewModel.changeUserData()
@@ -176,7 +173,7 @@ private extension ProfileViewController {
             self.profileImageView.kf.setImage(with: profileImageURL)
         }
         
-        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = Constants.imageViewSize / 2
         profileImageView.clipsToBounds = true
         
@@ -263,11 +260,11 @@ private extension ProfileViewController {
         
         informationStackView.spacing = 16
         informationStackView.axis = .vertical
+        informationStackView.isUserInteractionEnabled = false
         
         privateInformationLabel.text = LocalizedString.Profile.privateInformationLabel
         
         usernameTextField.textField.text = viewModel.userData.username
-        usernameTextField.isUserInteractionEnabled = false
         
         emailTextField.textField.text = viewModel.userData.email
         
@@ -307,21 +304,6 @@ private extension ProfileViewController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
-    }
-    
-    private func updateUserData() {
-        viewModel.userData.email = emailTextField.textField.text ?? SC.empty
-        
-        viewModel.userData.name = nameTextField.textField.text ?? SC.empty
-        
-        if let datePicker = birthDateTextField.textField.inputView as? UIDatePicker {
-            let selectedDate = datePicker.date
-            viewModel.userData.birthDate = selectedDate.ISO8601Format()
-        }
-        
-        genderButton.genderButton.onGenderSelected = { [weak self] gender in
-            self?.viewModel.userData.gender = gender
-        }
     }
     
     private func updateGenderButtonState() {
