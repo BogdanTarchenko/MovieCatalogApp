@@ -15,7 +15,11 @@ final class MainTabBarController: UITabBarController {
     private let feedViewController = FeedViewController(viewModel: FeedViewModel())
     private let moviesViewController = MoviesViewController()
     private let favouritesViewController = FavouritesViewController()
-    private let profileViewController = ProfileViewController(viewModel: ProfileViewModel())
+    private lazy var profileViewController: ProfileViewController = {
+        let viewModel = ProfileViewModel()
+        viewModel.delegate = self
+        return ProfileViewController(viewModel: viewModel)
+    }()
     
     private lazy var feedButton = getButton(icon: "feed", title: LocalizedString.TabBar.feed, action: action(for: 0))
     private lazy var moviesButton = getButton(icon: "movies", title: LocalizedString.TabBar.movies, action: action(for: 1))
@@ -83,7 +87,8 @@ final class MainTabBarController: UITabBarController {
             case 3:
                 selectedIndex = index
                 setColor(selectedIndex: index)
-                appRouterDelegate?.navigateToProfile()
+                let profileViewModel = ProfileViewModel()
+                print("hello")
                 
             default:
                 break
@@ -105,5 +110,12 @@ final class MainTabBarController: UITabBarController {
                 }
             }
         }
+    }
+}
+
+extension MainTabBarController: ProfileViewModelDelegate {
+    func navigateToWelcome() {
+        print("2")
+        appRouterDelegate?.navigateToWelcome()
     }
 }

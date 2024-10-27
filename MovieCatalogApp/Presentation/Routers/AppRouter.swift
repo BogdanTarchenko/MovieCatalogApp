@@ -13,10 +13,6 @@ protocol AppRouterDelegate: AnyObject {
     func navigateToSignIn()
     func navigateToSignUp()
     func navigateToMain()
-    func navigateToProfile()
-    func navigateToFeed()
-    func navigateToMovie()
-    func navigateToFavourites()
 }
 
 final class AppRouter: AppRouterDelegate {
@@ -42,8 +38,10 @@ final class AppRouter: AppRouterDelegate {
 extension AppRouter {
     
     func navigateToWelcome() {
-        let welcomeViewController = createWelcomeViewController()
-        transition(to: welcomeViewController)
+        DispatchQueue.main.async {
+            let welcomeViewController = self.createWelcomeViewController()
+            self.transition(to: welcomeViewController)
+        }
     }
     
     func navigateToSignIn() {
@@ -62,26 +60,6 @@ extension AppRouter {
             let mainTabBarController = self.createMainTabBarController()
             self.transition(to: mainTabBarController)
         }
-    }
-    
-    func navigateToProfile() {
-        let profileViewModel = ProfileViewModel()
-        profileViewModel.appRouterDelegate = self
-    }
-    
-    func navigateToFeed() {
-        let feedViewModel = FeedViewModel()
-        feedViewModel.appRouterDelegate = self
-    }
-    
-    func navigateToMovie() {
-        //        let movieViewModel = MovieViewModel()
-        //        movieViewModel.appRouterDelegate = self
-    }
-    
-    func navigateToFavourites() {
-        //        let favouritesViewModel = FavouritesViewModel()
-        //        favouritesViewModel.appRouterDelegate = self
     }
 }
 
@@ -155,3 +133,5 @@ extension AppRouter {
         }
     }
 }
+
+extension AppRouter: ProfileViewModelDelegate {}

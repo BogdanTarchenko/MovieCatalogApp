@@ -8,8 +8,13 @@
 import UIKit
 import Kingfisher
 
+protocol ProfileViewModelDelegate: AnyObject {
+    func navigateToWelcome()
+}
+
 final class ProfileViewModel {
     
+    weak var delegate: ProfileViewModelDelegate?
     weak var appRouterDelegate: AppRouterDelegate?
     
     private let getUserDataUseCase: GetUserDataUseCase
@@ -60,7 +65,7 @@ final class ProfileViewModel {
                 Task { @MainActor in
                     onDidFinishLoad?()
                 }
-                appRouterDelegate?.navigateToWelcome()
+                delegate?.navigateToWelcome()
             } catch {
                 Task { @MainActor in
                     onDidFinishLoad?()
