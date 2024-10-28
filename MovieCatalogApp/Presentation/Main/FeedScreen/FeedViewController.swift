@@ -80,6 +80,7 @@ final class FeedViewController: UIViewController {
     private func handleSwipeRight() {
         showSwipeIndicator(isLike: true)
         animateCardSwipe(to: Constants.Swipe.offScreenRight)
+        viewModel.addMovieToFavorites()
     }
     
     private func handleSwipeLeft() {

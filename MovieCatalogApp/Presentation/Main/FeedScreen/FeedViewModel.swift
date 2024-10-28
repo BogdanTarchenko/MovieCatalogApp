@@ -12,12 +12,14 @@ final class FeedViewModel {
     weak var appRouterDelegate: AppRouterDelegate?
     
     private let getMoviesUseCase: GetMoviesUseCase
+    private let addMovieToFavoritesUseCase: AddMovieToFavoritesUseCase
     
     var currentMovieData = FeedMovieData()
     var nextMovieData = FeedMovieData()
     
     init() {
         self.getMoviesUseCase = GetMoviesUseCaseImpl.create()
+        self.addMovieToFavoritesUseCase = AddMovieToFavoritesUseCaseImpl.create()
     }
     
     func loadInitialMovies() async {
@@ -41,6 +43,12 @@ final class FeedViewModel {
         } catch {
             print("Ошибка загрузки филмьа: \(error)")
             return nil
+        }
+    }
+    
+    func addMovieToFavorites() {
+        Task {
+            try? await addMovieToFavoritesUseCase.execute(movieID: currentMovieData.id)
         }
     }
     

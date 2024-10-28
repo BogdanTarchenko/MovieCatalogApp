@@ -10,13 +10,15 @@ import KeychainAccess
 
 struct AddMovieToFavoritesEndpoint: APIEndpoint {
     
+    let movieID: String
+    
     private var authToken: String? {
         let keychain = Keychain()
         return try? keychain.get("authToken2")
     }
     
     var path: String {
-        return "/api/account/profile"
+        return "/api/favorites/\(movieID)/add"
     }
     
     var method: Alamofire.HTTPMethod {
@@ -32,11 +34,5 @@ struct AddMovieToFavoritesEndpoint: APIEndpoint {
         return [
             "Authorization": "Bearer \(token)"
         ]
-    }
-    
-    private let movieID: String
-    
-    init(movieID: String) {
-        self.movieID = movieID
     }
 }
