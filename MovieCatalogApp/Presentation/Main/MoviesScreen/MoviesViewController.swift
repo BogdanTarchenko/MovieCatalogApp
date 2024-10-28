@@ -115,6 +115,7 @@ class MoviesViewController: UIViewController {
         setupCollectionView()
         setupProgressBar()
         setupRandomMovieButton()
+        setupFavoritesStackView()
     }
 
     private func setupCollectionView() {
@@ -146,12 +147,46 @@ class MoviesViewController: UIViewController {
     }
     
     private func setupRandomMovieButton() {
+        randomMovieButton.addTarget(self, action: #selector(randomMovieButtonTapped), for: .touchUpInside)
+        
         contentView.addSubview(randomMovieButton)
         
         randomMovieButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.top.equalTo(collectionView.snp.bottom).offset(32)
             make.height.equalTo(96)
+        }
+    }
+    
+    private func setupFavoritesStackView() {
+        favoritesLabelStackView.axis = .horizontal
+        favoritesLabelStackView.distribution = .fill
+        
+        let favoritesLabel: GradientLabel = {
+            let label = GradientLabel()
+            label.text = LocalizedString.Movies.favoritesLabel
+            return label
+        }()
+        
+        let allButton: UIButton = {
+            let button = UIButton()
+            button.setTitle(LocalizedString.Movies.allButtonTitle, for: .normal)
+            button.titleLabel?.font = UIFont(name: "Manrope-Bold", size: 20)
+            button.setTitleColor(.textInformation, for: .normal)
+            button.backgroundColor = .clear
+            button.addTarget(self, action: #selector(allButtonTapped), for: .touchUpInside)
+            return button
+        }()
+        
+        favoritesLabelStackView.addArrangedSubview(favoritesLabel)
+        favoritesLabelStackView.addArrangedSubview(UIView())
+        favoritesLabelStackView.addArrangedSubview(allButton)
+        
+        contentView.addSubview(favoritesLabelStackView)
+        
+        favoritesLabelStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.top.equalTo(randomMovieButton.snp.bottom).offset(32)
         }
     }
 
@@ -201,6 +236,14 @@ class MoviesViewController: UIViewController {
 
     deinit {
         timer?.invalidate()
+    }
+    
+    // MARK: Button Actions
+    @objc private func randomMovieButtonTapped() {
+        print("2")
+    }
+    @objc private func allButtonTapped() {
+        print("2")
     }
 }
 

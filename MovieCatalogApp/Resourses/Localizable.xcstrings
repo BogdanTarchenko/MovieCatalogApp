@@ -139,6 +139,26 @@
         }
       }
     },
+    "movie_all_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все"
+          }
+        }
+      }
+    },
+    "movie_favorites_label" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мне нравится"
+          }
+        }
+      }
+    },
     "movie_random_title" : {
       "localizations" : {
         "ru" : {

@@ -138,5 +138,13 @@ enum LocalizedString {
         static var randomMovieButtonTitle: String {
             return NSLocalizedString("movie_random_title", comment: SC.empty)
         }
+        
+        static var favoritesLabel: String {
+            return NSLocalizedString("movie_favorites_label", comment: SC.empty)
+        }
+        
+        static var allButtonTitle: String {
+            return NSLocalizedString("movie_all_title", comment: SC.empty)
+        }
     }
 }
