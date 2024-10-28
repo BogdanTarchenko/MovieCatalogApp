@@ -139,6 +139,26 @@
         }
       }
     },
+    "movie_random_title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Случайный фильм"
+          }
+        }
+      }
+    },
+    "movie_watch__title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смотреть"
+          }
+        }
+      }
+    },
     "movies" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -279,16 +299,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Логин"
-          }
-        }
-      }
-    },
-    "profile_watch__title" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смотреть"
           }
         }
       }

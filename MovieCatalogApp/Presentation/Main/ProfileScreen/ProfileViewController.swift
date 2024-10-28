@@ -98,6 +98,7 @@ private extension ProfileViewController {
         }
     }
     
+    
     func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.contentInsetAdjustmentBehavior = .never

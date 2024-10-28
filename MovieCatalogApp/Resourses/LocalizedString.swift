@@ -132,7 +132,11 @@ enum LocalizedString {
     
     enum Movies {
         static var watchButtonTitle: String {
-            return NSLocalizedString("profile_watch__title", comment: SC.empty)
+            return NSLocalizedString("movie_watch__title", comment: SC.empty)
+        }
+        
+        static var randomMovieButtonTitle: String {
+            return NSLocalizedString("movie_random_title", comment: SC.empty)
         }
     }
 }

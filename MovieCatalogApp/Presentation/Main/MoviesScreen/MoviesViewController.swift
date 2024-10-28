@@ -22,6 +22,10 @@ class MoviesViewController: UIViewController {
         UIColor(red: 255/255, green: 102/255, blue: 51/255, alpha: 1).cgColor
     ])
     
+    private let randomMovieButton = RandomMovieButton(title: LocalizedString.Movies.randomMovieButtonTitle)
+    
+    private let favoritesLabelStackView = UIStackView()
+    
     private var timer: Timer?
     private var lastTapTime: TimeInterval = 0
     private let tapDelay: TimeInterval = 0.4
@@ -110,6 +114,7 @@ class MoviesViewController: UIViewController {
     private func setupContent() {
         setupCollectionView()
         setupProgressBar()
+        setupRandomMovieButton()
     }
 
     private func setupCollectionView() {
@@ -137,6 +142,16 @@ class MoviesViewController: UIViewController {
         progressBar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+        }
+    }
+    
+    private func setupRandomMovieButton() {
+        contentView.addSubview(randomMovieButton)
+        
+        randomMovieButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.top.equalTo(collectionView.snp.bottom).offset(32)
+            make.height.equalTo(96)
         }
     }
 

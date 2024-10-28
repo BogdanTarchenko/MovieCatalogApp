@@ -72,6 +72,7 @@
 		FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */; };
 		FCEADE282CBD7FD900B28E7F /* UserRegisterResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */; };
 		FCED515D2CCFBDC0007BB8CA /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED515C2CCFBDC0007BB8CA /* MovieCell.swift */; };
+		FCED515F2CCFC645007BB8CA /* RandomMovieButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED515E2CCFC645007BB8CA /* RandomMovieButton.swift */; };
 		FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */; };
 		FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */; };
 		FCF7D8AA2CB96D7300A4F82C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */; };
@@ -161,6 +162,7 @@
 		FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterResponseModel.swift; sourceTree = "<group>"; };
 		FCED515C2CCFBDC0007BB8CA /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		FCED515E2CCFC645007BB8CA /* RandomMovieButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMovieButton.swift; sourceTree = "<group>"; };
 		FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCatalogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				FCAEA53E2CCD556500A3D97E /* GradientLabel.swift */,
 				FCAEA5402CCD763300A3D97E /* ProfileSplitButton.swift */,
 				FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */,
+				FCED515E2CCFC645007BB8CA /* RandomMovieButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				FC1DC3892CC3B87200FF55F4 /* SignUpRepository.swift in Sources */,
 				FC399CF62CCC00CF00AAE6DD /* LogoutRepository.swift in Sources */,
 				FC2876352CBEB47F00255264 /* UserLoginEndpoint.swift in Sources */,
+				FCED515F2CCFC645007BB8CA /* RandomMovieButton.swift in Sources */,
 				FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */,
 				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
 				FC08D8112CBBE76F00252D21 /* RegistrationCredentials.swift in Sources */,
