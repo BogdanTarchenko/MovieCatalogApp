@@ -349,8 +349,11 @@ final class FeedViewController: UIViewController {
     
     // MARK: - Button Action
     @objc private func buttonTapped(sender: CustomButton) {
-        sender.toggleStyle(.gradient)
-        // TODO: - добавить проверку на избранное
+        if (sender.getCurrentStyle() == .plain) {
+            sender.toggleStyle(.gradient)
+        } else {
+            sender.toggleStyle(.plain)
+        }
     }
 }
 

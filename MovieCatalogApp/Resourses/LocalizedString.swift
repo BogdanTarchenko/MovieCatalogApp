@@ -129,4 +129,10 @@ enum LocalizedString {
             return NSLocalizedString("profile_gender_title", comment: SC.empty)
         }
     }
+    
+    enum Movies {
+        static var watchButtonTitle: String {
+            return NSLocalizedString("profile_watch__title", comment: SC.empty)
+        }
+    }
 }

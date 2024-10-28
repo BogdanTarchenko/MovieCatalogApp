@@ -100,6 +100,10 @@ class CustomButton: UIButton {
         }
     }
     
+    func getCurrentStyle() -> ButtonStyle {
+        return self.buttonStyle
+    }
+    
     func toggleStyle(_ style: ButtonStyle) {
         buttonStyle = style
         configureStyle()

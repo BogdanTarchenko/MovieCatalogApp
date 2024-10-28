@@ -283,6 +283,16 @@
         }
       }
     },
+    "profile_watch__title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смотреть"
+          }
+        }
+      }
+    },
     "repeat_password" : {
       "localizations" : {
         "ru" : {

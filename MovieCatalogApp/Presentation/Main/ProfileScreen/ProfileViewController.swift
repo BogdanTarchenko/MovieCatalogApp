@@ -51,20 +51,12 @@ final class ProfileViewController: UIViewController {
         bindToViewModel()
         viewModel.onDidLoad()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        Task {
-            try await viewModel.changeUserData()
-        }
-    }
 }
 
 private extension ProfileViewController {
     
+    // MARK: - Bindings
     func bindToViewModel() {
-        
         viewModel.onDidLoadUserData = { [weak self] userData in
             DispatchQueue.main.async {
                 self?.configureProfileInformationContainer()
@@ -87,6 +79,7 @@ private extension ProfileViewController {
         }
     }
     
+    // MARK: - Setup
     func setup() {
         setupScrollView()
         setupContentView()
@@ -121,7 +114,6 @@ private extension ProfileViewController {
             make.top.bottom.leading.trailing.equalToSuperview()
             make.width.equalToSuperview()
         }
-        
         setupContent()
     }
     
@@ -140,6 +132,7 @@ private extension ProfileViewController {
         configureInformationStackView()
     }
     
+    // MARK: - Configure
     func configureBackgroundImageView() {
         backgroundImageView.image = UIImage(named: "profile_background")
         backgroundImageView.contentMode = .scaleAspectFill
@@ -278,13 +271,11 @@ private extension ProfileViewController {
 
             let formattedDateString = outputDateFormatter.string(from: date)
             birthDateTextField.textField.text = formattedDateString
-        } else {
-            print("Ошибка преобразования даты")
         }
-        
         updateGenderButtonState()
     }
     
+    // MARK: - Alert
     func presentInputAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -306,6 +297,7 @@ private extension ProfileViewController {
         present(alertController, animated: true)
     }
     
+    // MARK: - Update Gender State
     private func updateGenderButtonState() {
         if viewModel.userData.gender == .male {
             genderButton.genderButton.leftButton.toggleStyle(.gradient)
@@ -316,6 +308,7 @@ private extension ProfileViewController {
         }
     }
     
+    // MARK: - Button Actions
     @objc func profileImageTapped() {
         presentInputAlert(title: LocalizedString.Alert.changeProfileImageTitle, message: SC.empty)
     }

@@ -13,7 +13,7 @@ final class MainTabBarController: UITabBarController {
     weak var appRouterDelegate: AppRouterDelegate?
     
     private let feedViewController = FeedViewController(viewModel: FeedViewModel())
-    private let moviesViewController = MoviesViewController()
+    private let moviesViewController = MoviesViewController(viewModel: MoviesViewModel())
     private let favouritesViewController = FavouritesViewController()
     private lazy var profileViewController: ProfileViewController = {
         let viewModel = ProfileViewModel()
@@ -72,23 +72,18 @@ final class MainTabBarController: UITabBarController {
             case 0:
                 selectedIndex = index
                 setColor(selectedIndex: index)
-                appRouterDelegate?.navigateToFeed()
                 
             case 1:
                 selectedIndex = index
                 setColor(selectedIndex: index)
-                appRouterDelegate?.navigateToMovie()
                 
             case 2:
                 selectedIndex = index
                 setColor(selectedIndex: index)
-                appRouterDelegate?.navigateToFavourites()
                 
             case 3:
                 selectedIndex = index
                 setColor(selectedIndex: index)
-                let profileViewModel = ProfileViewModel()
-                print("hello")
                 
             default:
                 break

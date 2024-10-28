@@ -51,6 +51,10 @@
 		FC399CF62CCC00CF00AAE6DD /* LogoutRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */; };
 		FC399CF82CCC015E00AAE6DD /* LogoutRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */; };
 		FC399CFA2CCC018D00AAE6DD /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */; };
+		FC7715752CCE86830095284E /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715742CCE86820095284E /* MoviesViewModel.swift */; };
+		FC7715772CCE87E50095284E /* StoriesMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715762CCE87E50095284E /* StoriesMovieData.swift */; };
+		FC7715792CCE89B70095284E /* GetMoviesForStoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */; };
+		FC77157E2CCEC26F0095284E /* SegmentedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */; };
 		FC8BCEF22CC96CB900D54004 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */; };
 		FCA4F62B2CC929CA009DAB74 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FCA4F62A2CC929CA009DAB74 /* Lottie */; };
 		FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */; };
@@ -67,6 +71,7 @@
 		FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */; };
 		FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */; };
 		FCEADE282CBD7FD900B28E7F /* UserRegisterResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */; };
+		FCED515D2CCFBDC0007BB8CA /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED515C2CCFBDC0007BB8CA /* MovieCell.swift */; };
 		FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */; };
 		FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */; };
 		FCF7D8AA2CB96D7300A4F82C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF7D8A92CB96D7300A4F82C /* Assets.xcassets */; };
@@ -137,6 +142,10 @@
 		FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepository.swift; sourceTree = "<group>"; };
 		FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepositoryImpl.swift; sourceTree = "<group>"; };
 		FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpoint.swift; sourceTree = "<group>"; };
+		FC7715742CCE86820095284E /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
+		FC7715762CCE87E50095284E /* StoriesMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMovieData.swift; sourceTree = "<group>"; };
+		FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesForStoriesUseCase.swift; sourceTree = "<group>"; };
+		FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressBar.swift; sourceTree = "<group>"; };
 		FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -151,6 +160,7 @@
 		FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterResponseModel.swift; sourceTree = "<group>"; };
+		FCED515C2CCFBDC0007BB8CA /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCatalogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7D8A02CB96D7100A4F82C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF7D8A22CB96D7100A4F82C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -263,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				FC1DC3A32CC3C43F00FF55F4 /* MoviesViewController.swift */,
+				FCED515C2CCFBDC0007BB8CA /* MovieCell.swift */,
+				FC7715742CCE86820095284E /* MoviesViewModel.swift */,
 			);
 			path = MoviesScreen;
 			sourceTree = "<group>";
@@ -388,6 +400,7 @@
 				FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */,
 				FC399CE32CCB837000AAE6DD /* UserData.swift */,
 				FC399CEF2CCBB05500AAE6DD /* Gender.swift */,
+				FC7715762CCE87E50095284E /* StoriesMovieData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -401,6 +414,7 @@
 				FC1DC3B12CC5389000FF55F4 /* GetMoviesUseCase.swift */,
 				FC399CE52CCB86D300AAE6DD /* GetUserDataUseCase.swift */,
 				FCAEA5382CCD1DE400A3D97E /* ChangeUserDataUseCase.swift */,
+				FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -500,6 +514,7 @@
 				FCAEA53C2CCD50C000A3D97E /* ProfileTextField.swift */,
 				FCAEA53E2CCD556500A3D97E /* GradientLabel.swift */,
 				FCAEA5402CCD763300A3D97E /* ProfileSplitButton.swift */,
+				FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -631,6 +646,7 @@
 				FC8BCEF22CC96CB900D54004 /* ProfileViewModel.swift in Sources */,
 				FC1DC3B22CC5389000FF55F4 /* GetMoviesUseCase.swift in Sources */,
 				FCF7D8A12CB96D7100A4F82C /* AppDelegate.swift in Sources */,
+				FCED515D2CCFBDC0007BB8CA /* MovieCell.swift in Sources */,
 				FCF7D8E82CB99EEB00A4F82C /* UIView+Extensions.swift in Sources */,
 				FCF7D8E32CB98DF100A4F82C /* SignUpViewController.swift in Sources */,
 				FCAEA5332CCD1C6E00A3D97E /* UserDataChangeEndpoint.swift in Sources */,
@@ -638,12 +654,14 @@
 				FCAEA53D2CCD50C000A3D97E /* ProfileTextField.swift in Sources */,
 				FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */,
 				FC28762E2CBEA82100255264 /* AlamofireHTTPClient.swift in Sources */,
+				FC7715792CCE89B70095284E /* GetMoviesForStoriesUseCase.swift in Sources */,
 				FC08D80F2CBBE72B00252D21 /* LoginCredentials.swift in Sources */,
 				FC2876332CBEAB1600255264 /* UserRegisterEndpoint.swift in Sources */,
 				FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */,
 				FC399CE62CCB86D300AAE6DD /* GetUserDataUseCase.swift in Sources */,
 				FCAEA5412CCD763400A3D97E /* ProfileSplitButton.swift in Sources */,
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
+				FC77157E2CCEC26F0095284E /* SegmentedProgressBar.swift in Sources */,
 				FC399CF42CCC008000AAE6DD /* LogoutUseCase.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
 				FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */,
@@ -668,9 +686,11 @@
 				FCF7D8EC2CBA829F00A4F82C /* UITextField+Extensions.swift in Sources */,
 				FC1DC3B82CC5403F00FF55F4 /* EmptyRequestModel.swift in Sources */,
 				FC1DC3B42CC5398700FF55F4 /* GetMoviesRepository.swift in Sources */,
+				FC7715772CCE87E50095284E /* StoriesMovieData.swift in Sources */,
 				FC1DC38D2CC3B8DD00FF55F4 /* SignUpUseCase.swift in Sources */,
 				FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */,
 				FCF7D8DA2CB9733400A4F82C /* CustomButton.swift in Sources */,
+				FC7715752CCE86830095284E /* MoviesViewModel.swift in Sources */,
 				FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */,
 				FC1DC3A82CC3C44E00FF55F4 /* ProfileViewController.swift in Sources */,
 				FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */,

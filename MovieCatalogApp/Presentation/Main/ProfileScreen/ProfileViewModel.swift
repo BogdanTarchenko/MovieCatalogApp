@@ -15,7 +15,6 @@ protocol ProfileViewModelDelegate: AnyObject {
 final class ProfileViewModel {
     
     weak var delegate: ProfileViewModelDelegate?
-    weak var appRouterDelegate: AppRouterDelegate?
     
     private let getUserDataUseCase: GetUserDataUseCase
     private let changeUserDataUseCase: ChangeUserDataUseCase
@@ -34,72 +33,77 @@ final class ProfileViewModel {
         self.logoutUseCase = LogoutUseCaseImpl.create()
     }
     
+    // MARK: - Public Methods
     func onDidLoad() {
-        Task { @MainActor in
-            onDidStartLoad?()
-        }
+        notifyLoadingStart()
         
         Task {
             do {
                 userData = try await fetchUserData()
                 onDidLoadUserData?(userData)
-                Task { @MainActor in
-                    onDidFinishLoad?()
-                }
+                notifyLoadingFinish()
             } catch {
-                Task { @MainActor in
-                    onDidFinishLoad?()
-                }
+                notifyLoadingFinish()
             }
         }
     }
     
     func onLogoutButtonTapped() {
-        Task { @MainActor in
-            onDidStartLoad?()
-        }
+        notifyLoadingStart()
         
         Task {
             do {
                 try await logoutUseCase.execute()
-                Task { @MainActor in
-                    onDidFinishLoad?()
-                }
+                notifyLoadingFinish()
                 delegate?.navigateToWelcome()
             } catch {
-                Task { @MainActor in
-                    onDidFinishLoad?()
-                }
+                notifyLoadingFinish()
             }
         }
     }
     
+    func showInputAlert(title: String, message: String) {
+        onPresentAlert?(title, message)
+    }
+    
+    func updateProfileImage(with urlString: String) {
+        userData.profileImageURL = urlString
+        onDidLoadUserData?(userData)
+        Task {
+            try? await changeUserData()
+        }
+    }
+    
+    // MARK: - User Data
+    func changeUserData() async throws {
+        let requestModel = mapToUserDataRequestModel(userData)
+        
+        do {
+            try await changeUserDataUseCase.execute(request: requestModel)
+        } catch {
+            throw error
+        }
+    }
+    
+    // MARK: - Time
     func getCurrentTime() -> Int {
         let date = Date()
         let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
-        return hour
+        return calendar.component(.hour, from: date)
     }
     
     func getCurrentDayTime() -> DayTime {
         let hour = getCurrentTime()
-        if (hour >= 6 && hour < 12) {
-            return .morning
-        }
-        else if (hour >= 12 && hour < 18) {
-            return .day
-        }
-        else if (hour >= 18 && hour < 24) {
-            return .evening
-        }
-        else {
-            return .night
+        switch hour {
+        case 6..<12: return .morning
+        case 12..<18: return .day
+        case 18..<24: return .evening
+        default: return .night
         }
     }
     
     func getCurrentGreeting() -> String {
-        let dayTime: DayTime = getCurrentDayTime()
-        switch dayTime {
+        switch getCurrentDayTime() {
         case .morning:
             return LocalizedString.Greeting.morning
         case .day:
@@ -111,25 +115,37 @@ final class ProfileViewModel {
         }
     }
     
+    // MARK: - Private Methods
+    private func notifyLoadingStart() {
+        Task { @MainActor in
+            onDidStartLoad?()
+        }
+    }
+    
+    private func notifyLoadingFinish() {
+        Task { @MainActor in
+            onDidFinishLoad?()
+        }
+    }
+    
     private func fetchUserData() async throws -> UserData {
         do {
-            let userData = try await getUserDataUseCase.execute()
-            return mapToUserData(userData)
+            let userDataResponse = try await getUserDataUseCase.execute()
+            return mapToUserData(userDataResponse)
         } catch {
-            print("Ошибка загрузки профиля: \(error)")
             throw error
         }
     }
     
-    private func mapToUserData(_ userData: UserDataResponseModel) -> UserData {
+    private func mapToUserData(_ userDataResponse: UserDataResponseModel) -> UserData {
         return UserData(
-            id: userData.id,
-            username: userData.nickName,
-            email: userData.email,
-            profileImageURL: userData.avatarLink ?? Constants.profileImageBaseURL,
-            name: userData.name,
-            birthDate: userData.birthDate,
-            gender: Gender(rawValue: userData.gender) ?? .male
+            id: userDataResponse.id,
+            username: userDataResponse.nickName,
+            email: userDataResponse.email,
+            profileImageURL: userDataResponse.avatarLink ?? Constants.profileImageBaseURL,
+            name: userDataResponse.name,
+            birthDate: userDataResponse.birthDate,
+            gender: Gender(rawValue: userDataResponse.gender) ?? .male
         )
     }
     
@@ -141,28 +157,8 @@ final class ProfileViewModel {
             avatarLink: userData.profileImageURL,
             name: userData.name,
             birthDate: userData.birthDate,
-            gender: userData.gender.rawValue)
-    }
-    
-    func showInputAlert(title: String, message: String) {
-        onPresentAlert?(title, message)
-    }
-    
-    func updateProfileImage(with urlString: String) {
-        userData.profileImageURL = urlString
-        onDidLoadUserData?(userData)
-    }
-    
-    func changeUserData() async throws {
-        let requestModel = mapToUserDataRequestModel(userData)
-        
-        do {
-            try await changeUserDataUseCase.execute(request: requestModel)
-        } catch {
-            print("Ошибка изменения данных пользователя: \(error)")
-            print(requestModel)
-            throw error
-        }
+            gender: userData.gender.rawValue
+        )
     }
 }
 
