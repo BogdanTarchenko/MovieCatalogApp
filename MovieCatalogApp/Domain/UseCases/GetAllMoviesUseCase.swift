@@ -6,7 +6,7 @@
 //
 
 protocol GetAllMoviesUseCase {
-    func execute() async throws -> MovieElementModel?
+    func execute() async throws -> [MovieElementModel]?
 }
 
 class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
@@ -28,13 +28,13 @@ class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
         return GetAllMoviesUseCaseImpl(repository: repository)
     }
     
-    func execute() async throws -> MovieElementModel? {
+    func execute() async throws -> [MovieElementModel]? {
         if moviesBuffer.isEmpty {
             let pagedResponse = try await loadNextPage()
             moviesBuffer = pagedResponse.movies ?? []
             currentPage += 1
         }
-        return moviesBuffer.popLast()
+        return moviesBuffer
     }
     
     private func loadInitialMovies() async {

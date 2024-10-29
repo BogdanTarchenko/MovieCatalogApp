@@ -11,18 +11,22 @@ final class MoviesViewModel {
     
     private let getMoviesUseCase: GetMoviesForStoriesUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+    private let getAllMoviesUseCase: GetAllMoviesUseCase
     
     var storiesMovieData = [StoriesMovieData]()
     var favoritesMovieData = [FavoritesMovieData]()
+    var allMovieData = [AllMovieData]()
     
     var onDidLoadStoriesMovieData: (([StoriesMovieData]) -> Void)?
     var onDidLoadFavoritesMovieData: (([FavoritesMovieData]) -> Void)?
+    var onDidLoadAllMovieData: (([AllMovieData]) -> Void)?
     var onDidStartLoad: (() -> Void)?
     var onDidFinishLoad: (() -> Void)?
     
     init() {
         self.getMoviesUseCase = GetMoviesForStoriesUseCaseImpl.create()
         self.getFavoriteMoviesUseCase = GetFavoriteMoviesUseCaseImpl.create()
+        self.getAllMoviesUseCase = GetAllMoviesUseCaseImpl.create()
     }
     
     // MARK: - Public Methods
@@ -33,8 +37,9 @@ final class MoviesViewModel {
             do {
                 async let storiesMovieDataResult = try await fetchStoriesMovieData()
                 async let favoritesMovieDataResult = try await fetchFavoritesMovieData()
+                async let allMoviesDataResult = try await fetchAllMovieData()
                 
-                (storiesMovieData, favoritesMovieData) = await (try storiesMovieDataResult, try favoritesMovieDataResult)
+                (storiesMovieData, favoritesMovieData, allMovieData) = await (try storiesMovieDataResult, try favoritesMovieDataResult, try allMoviesDataResult ?? [])
                 
                 notifyLoadingSuccess()
             } catch {
@@ -54,6 +59,7 @@ final class MoviesViewModel {
         Task { @MainActor in
             onDidLoadStoriesMovieData?(storiesMovieData)
             onDidLoadFavoritesMovieData?(favoritesMovieData)
+            onDidLoadAllMovieData?(allMovieData)
             onDidFinishLoad?()
         }
     }
@@ -74,6 +80,18 @@ final class MoviesViewModel {
         return mapToFavoritesMovieData(movies)
     }
     
+    private func fetchAllMovieData() async throws -> [AllMovieData]? {
+        do {
+            if let movie = try await getAllMoviesUseCase.execute() {
+                return mapToAllMovieData(movie)
+            } else {
+                return nil
+            }
+        } catch {
+            return nil
+        }
+    }
+    
     private func mapToStoriesMovieData(_ movies: [MovieElementModel]) -> [StoriesMovieData] {
         return movies.map { movie in
             StoriesMovieData(
@@ -90,6 +108,16 @@ final class MoviesViewModel {
             FavoritesMovieData(
                 posterURL: movie.poster ?? SC.empty,
                 id: movie.id
+            )
+        }
+    }
+    
+    private func mapToAllMovieData(_ movies: [MovieElementModel]) -> [AllMovieData] {
+        return movies.map { movie in
+            AllMovieData(
+                posterURL: movie.poster ?? SC.empty,
+                id: movie.id,
+                reviews: movie.reviews?.map { ReviewShort(id: $0.id, rating: $0.rating) } ?? []
             )
         }
     }

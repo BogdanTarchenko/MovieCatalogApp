@@ -290,6 +290,10 @@ extension MoviesViewController {
             self?.carousel.reloadData()
         }
         
+        viewModel.onDidLoadAllMovieData = { [weak self] allMovieData in
+            
+        }
+        
         viewModel.onDidStartLoad = { [weak self] in
             self?.loaderView.isHidden = false
             self?.loaderView.startAnimating()
