@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileTextField: UIView {
+final class ProfileTextField: UIView {
     
     enum ProfileTextFieldStyle {
         case information

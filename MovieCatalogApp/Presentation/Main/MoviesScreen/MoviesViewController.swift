@@ -25,6 +25,7 @@ class MoviesViewController: UIViewController {
     private let randomMovieButton = RandomMovieButton(title: LocalizedString.Movies.randomMovieButtonTitle)
     
     private let favoritesLabelStackView = UIStackView()
+    let carousel = CarouselView(withFrame: .zero, andInset: 8)
     
     private var timer: Timer?
     private var lastTapTime: TimeInterval = 0
@@ -34,10 +35,12 @@ class MoviesViewController: UIViewController {
 
     init(viewModel: MoviesViewModel) {
         self.viewModel = viewModel
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -116,6 +119,7 @@ class MoviesViewController: UIViewController {
         setupProgressBar()
         setupRandomMovieButton()
         setupFavoritesStackView()
+        setupCarousel()
     }
 
     private func setupCollectionView() {
@@ -128,7 +132,6 @@ class MoviesViewController: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(464)
-            make.bottom.equalToSuperview()
         }
     }
 
@@ -142,7 +145,7 @@ class MoviesViewController: UIViewController {
         contentView.addSubview(progressBar)
         progressBar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+            make.top.equalToSuperview().offset(60)
         }
     }
     
@@ -187,6 +190,21 @@ class MoviesViewController: UIViewController {
         favoritesLabelStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.top.equalTo(randomMovieButton.snp.bottom).offset(32)
+        }
+    }
+    
+    func setupCarousel() {
+        carousel.backgroundColor = .clear
+        carousel.delegate = self
+        carousel.dataSource = self
+        carousel.register(FavoritesMovieCell.self, forCellWithReuseIdentifier: "FavoritesMovieCell")
+        
+        contentView.addSubview(carousel)
+        carousel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(favoritesLabelStackView.snp.bottom).offset(16)
+            make.height.equalTo(252)
+            make.bottom.equalToSuperview()
         }
     }
 
@@ -240,10 +258,8 @@ class MoviesViewController: UIViewController {
     
     // MARK: Button Actions
     @objc private func randomMovieButtonTapped() {
-        print("2")
     }
     @objc private func allButtonTapped() {
-        print("2")
     }
 }
 
@@ -251,11 +267,13 @@ class MoviesViewController: UIViewController {
 extension MoviesViewController {
     private func bindToViewModel() {
         viewModel.onDidLoadStoriesMovieData = { [weak self] storiesMovieData in
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-                self?.progressBar.isPaused = false
-                self?.startTimer()
-            }
+            self?.collectionView.reloadData()
+            self?.progressBar.isPaused = false
+            self?.startTimer()
+        }
+
+        viewModel.onDidLoadFavoritesMovieData = { [weak self] favoritesMovieData in
+            self?.carousel.reloadData()
         }
         
         viewModel.onDidStartLoad = { [weak self] in
@@ -272,41 +290,69 @@ extension MoviesViewController {
 
 // MARK: - UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
 extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.storiesMovieData.count
+        if collectionView == self.collectionView {
+            return viewModel.storiesMovieData.count
+        } else if collectionView == self.carousel {
+            return viewModel.favoritesMovieData.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let movie = viewModel.storiesMovieData[indexPath.row]
-        cell.configure(with: movie)
-        
-        cell.onTap = { [weak self] isNext in
-            guard let self = self else { return }
-            let currentTime = Date().timeIntervalSince1970
-            
-            if currentTime - self.lastTapTime < self.tapDelay || self.isAnimating {
-                return
+        // MARK: - CollectionView
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
+            let movie = viewModel.storiesMovieData[indexPath.row]
+            cell.configure(with: movie)
+
+            cell.onTap = { [weak self] isNext in
+                guard let self = self else { return }
+                let currentTime = Date().timeIntervalSince1970
+                
+                if currentTime - self.lastTapTime < self.tapDelay || self.isAnimating {
+                    return
+                }
+                
+                self.lastTapTime = currentTime
+                
+                if isNext {
+                    self.scrollToNextItem()
+                    self.progressBar.skip()
+                } else {
+                    self.scrollToPreviousItem()
+                    self.progressBar.rewind()
+                }
+                
+                self.stopTimer()
+                self.startTimer()
             }
-            
-            self.lastTapTime = currentTime
-            
-            if isNext {
-                self.scrollToNextItem()
-                self.progressBar.skip()
-            } else {
-                self.scrollToPreviousItem()
-                self.progressBar.rewind()
-            }
-            
-            self.stopTimer()
-            self.startTimer()
+            return cell
         }
         
-        return cell
+        // MARK: - Carousel
+        else if collectionView == self.carousel {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesMovieCell", for: indexPath) as! FavoritesMovieCell
+            let favoriteMovie = viewModel.favoritesMovieData[indexPath.row]
+            cell.configure(with: favoriteMovie)
+            
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+            
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == self.collectionView {
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }
+        else if collectionView == self.carousel {
+            return CGSize(width: collectionView.frame.width * 0.37, height: collectionView.frame.height / 1.07)
+        }
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
 }

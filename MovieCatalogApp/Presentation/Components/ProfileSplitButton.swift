@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileGenderButton: UIView {
+final class ProfileGenderButton: UIView {
     
     private var titleLabel = UILabel()
     var genderButton = SplitButton(style: .genderPicker)

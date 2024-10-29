@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
     
     enum PlaceholderText {
         enum Information {

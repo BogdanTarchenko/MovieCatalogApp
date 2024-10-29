@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GradientLabel: UILabel {
+final class GradientLabel: UILabel {
     
     private let gradientColors = [
         UIColor(red: 223/255, green: 40/255, blue: 0/255, alpha: 1).cgColor,

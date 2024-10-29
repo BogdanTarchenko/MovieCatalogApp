@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RandomMovieButton: UIButton {
+final class RandomMovieButton: UIButton {
     private let button = CustomButton(style: .gradient)
     private let diceImage = UIImageView(image: UIImage(named: "dice"))
     

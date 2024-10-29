@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CustomTabBarItem: UIView {
+final class CustomTabBarItem: UIView {
     let button: UIButton
     let titleLabel: UILabel
 

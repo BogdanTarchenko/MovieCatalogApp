@@ -13,7 +13,7 @@ protocol SegmentedProgressBarDelegate: AnyObject {
     func segmentedProgressBarFinished()
 }
 
-class SegmentedProgressBar: UIView {
+final class SegmentedProgressBar: UIView {
     
     weak var delegate: SegmentedProgressBarDelegate?
     

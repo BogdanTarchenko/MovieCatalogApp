@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class LoadingViewController: UIViewController {
+final class LoadingViewController: UIViewController {
     private var animationView: LottieAnimationView!
 
     override func viewDidLoad() {

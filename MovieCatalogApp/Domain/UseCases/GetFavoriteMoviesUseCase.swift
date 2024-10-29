@@ -23,10 +23,7 @@ class GetFavoriteMoviesUseCaseImpl: GetFavoriteMoviesUseCase {
     }
     
     func execute() async throws -> [MovieElementModel] {
-        do {
-            return try await repository.getFavorites()
-        } catch {
-            throw error
-        }
+        let movies = try await repository.getFavorites()
+        return movies.movies ?? []
     }
 }
