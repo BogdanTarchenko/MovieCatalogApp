@@ -29,6 +29,12 @@ final class MoviePosterCell: UICollectionViewCell {
         return label
     }()
     
+    var likeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "liked_movie"), for: .normal)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -42,21 +48,38 @@ final class MoviePosterCell: UICollectionViewCell {
     private func setupViews() {
         contentView.addSubview(posterImageView)
         posterImageView.addSubview(ratingLabel)
+        posterImageView.addSubview(likeButton)
         
         posterImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
         ratingLabel.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().inset(8)
+            make.top.leading.equalToSuperview().inset(8)
+            make.height.equalTo(22)
+        }
+        
+        likeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(8)
+            make.leading.equalTo(ratingLabel.snp.trailing).offset(4)
         }
     }
     
-    func configure(with poster: UIImage, title: String, rating: Double) {
-        posterImageView.image = poster
-        ratingLabel.text = "\(rating)"
+    func configure(with movie: AllMovieData) {
+        let posterURL = movie.posterURL
+        posterImageView.kf.setImage(with: URL(string: posterURL))
+        
+        guard !movie.reviews.isEmpty else {
+            ratingLabel.isHidden = true
+            return
+        }
+        
+        let totalRating = movie.reviews.reduce(0) { $0 + $1.rating }
+        let averageRating = Double(totalRating) / Double(movie.reviews.count)
 
-        let color = colorForRating(rating)
+        ratingLabel.text = String(format: "%.1f", averageRating)
+
+        let color = colorForRating(averageRating)
         ratingLabel.backgroundColor = color
     }
 

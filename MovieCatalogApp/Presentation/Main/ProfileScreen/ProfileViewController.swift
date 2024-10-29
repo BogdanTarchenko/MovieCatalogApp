@@ -249,7 +249,7 @@ private extension ProfileViewController {
         informationStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(Constants.horizontalInset)
             make.top.equalTo(friendsButton.snp.bottom).offset(Constants.defaultOffset)
-            make.bottom.equalToSuperview().offset(-32)
+            make.bottom.equalToSuperview().inset(32)
         }
         
         informationStackView.spacing = 16

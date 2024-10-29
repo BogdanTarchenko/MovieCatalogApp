@@ -25,10 +25,12 @@ class MoviesViewController: UIViewController {
     private let randomMovieButton = RandomMovieButton(title: LocalizedString.Movies.randomMovieButtonTitle)
     
     private let favoritesLabelStackView = UIStackView()
-    let carousel = CarouselView(withFrame: .zero, andInset: 8)
+    private let carousel = CarouselView(withFrame: .zero, andInset: 8)
     
     private let allMoviesLabel = GradientLabel()
+    private let allMoviesCollectionView: UICollectionView
     
+    private var lastFetchedRow: Int = -1
     private var timer: Timer?
     private var lastTapTime: TimeInterval = 0
     private let tapDelay: TimeInterval = 0.4
@@ -42,6 +44,12 @@ class MoviesViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        let allMovieLayout = UICollectionViewFlowLayout()
+        allMovieLayout.scrollDirection = .vertical
+        allMovieLayout.minimumInteritemSpacing = 8
+        allMovieLayout.minimumLineSpacing = 8
+        self.allMoviesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: allMovieLayout)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -78,10 +86,10 @@ class MoviesViewController: UIViewController {
         setupContentView()
         setupLoaderView()
         setupView()
-        collectionView.isScrollEnabled = false
     }
 
     private func setupScrollView() {
+        self.scrollView.delegate = self
         view.addSubview(scrollView)
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.backgroundColor = .clear
@@ -123,9 +131,11 @@ class MoviesViewController: UIViewController {
         setupFavoritesStackView()
         setupCarousel()
         setupGradientLabel()
+        setupAllMoviewCollectionView()
     }
 
     private func setupCollectionView() {
+        collectionView.isScrollEnabled = false
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -202,12 +212,14 @@ class MoviesViewController: UIViewController {
         carousel.dataSource = self
         carousel.register(FavoritesMovieCell.self, forCellWithReuseIdentifier: "FavoritesMovieCell")
         
+        carousel.showsHorizontalScrollIndicator = false
+        
         contentView.addSubview(carousel)
         carousel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(favoritesLabelStackView.snp.bottom).offset(16)
             make.height.equalTo(252)
-            make.bottom.equalToSuperview()
+
         }
     }
     
@@ -219,6 +231,23 @@ class MoviesViewController: UIViewController {
         allMoviesLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.top.equalTo(carousel.snp.bottom).offset(32)
+        }
+    }
+    
+    func setupAllMoviewCollectionView() {
+        allMoviesCollectionView.isScrollEnabled = false
+        allMoviesCollectionView.backgroundColor = .clear
+        allMoviesCollectionView.delegate = self
+        allMoviesCollectionView.dataSource = self
+        allMoviesCollectionView.register(MoviePosterCell.self, forCellWithReuseIdentifier: "MoviePosterCell")
+        
+        contentView.addSubview(allMoviesCollectionView)
+        
+        allMoviesCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.top.equalTo(allMoviesLabel.snp.bottom).offset(16)
+            make.height.equalTo(0)
+            make.bottom.equalToSuperview().inset(32)
         }
     }
 
@@ -265,15 +294,34 @@ class MoviesViewController: UIViewController {
             self.isAnimating = false
         }
     }
+    
+    // MARK: Update AllMoviesCollectionViewHeight
+    private func updateCollectionViewHeight() {
+        let collectionViewHeight = calculateCollectionViewHeight()
+        allMoviesCollectionView.snp.updateConstraints { make in
+            make.height.equalTo(collectionViewHeight)
+        }
+        view.layoutIfNeeded()
+    }
 
-    deinit {
-        timer?.invalidate()
+    private func calculateCollectionViewHeight() -> CGFloat {
+        let numberOfItems = viewModel.allMovieData.count
+        let itemHeight: CGFloat = 166
+        let spacing: CGFloat = 8
+
+        let rows = ceil(CGFloat(numberOfItems) / 3.0)
+        let totalHeight = (itemHeight * rows) + (spacing * (rows - 1))
+        return totalHeight
     }
     
     // MARK: Button Actions
     @objc private func randomMovieButtonTapped() {
     }
     @objc private func allButtonTapped() {
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
 }
 
@@ -288,10 +336,11 @@ extension MoviesViewController {
 
         viewModel.onDidLoadFavoritesMovieData = { [weak self] favoritesMovieData in
             self?.carousel.reloadData()
+            self?.updateCollectionViewHeight()
         }
         
         viewModel.onDidLoadAllMovieData = { [weak self] allMovieData in
-            
+            self?.allMoviesCollectionView.reloadData()
         }
         
         viewModel.onDidStartLoad = { [weak self] in
@@ -312,8 +361,12 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return viewModel.storiesMovieData.count
-        } else if collectionView == self.carousel {
+        }
+        else if collectionView == self.carousel {
             return viewModel.favoritesMovieData.count
+        }
+        else if collectionView == self.allMoviesCollectionView {
+            return viewModel.allMovieData.count
         }
         return 0
     }
@@ -360,6 +413,18 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             
             return cell
         }
+        
+        // MARK: - AllMovies
+        else if collectionView == self.allMoviesCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviePosterCell", for: indexPath) as! MoviePosterCell
+            let allMovie = viewModel.allMovieData[indexPath.row]
+            cell.configure(with: allMovie)
+            
+            let isFavorite = viewModel.favoritesMovieData.contains { $0.id == allMovie.id }
+            cell.likeButton.isHidden = !isFavorite
+
+            return cell
+        }
         return UICollectionViewCell()
     }
     
@@ -371,7 +436,28 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         else if collectionView == self.carousel {
             return CGSize(width: collectionView.frame.width * 0.37, height: collectionView.frame.height / 1.07)
         }
+        else if collectionView == self.allMoviesCollectionView {
+            let baseHeight: CGFloat = 166
+            return CGSize(width: (allMoviesCollectionView.frame.width - 16) / 3, height: baseHeight)
+        }
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension MoviesViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView == self.scrollView else { return }
+
+        let contentOffsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.size.height
+
+        if contentOffsetY + frameHeight >= contentHeight - 340 {
+            viewModel.onDidScrolledToEnd()
+            allMoviesCollectionView.reloadData()
+            updateCollectionViewHeight()
+        }
     }
 }
 
