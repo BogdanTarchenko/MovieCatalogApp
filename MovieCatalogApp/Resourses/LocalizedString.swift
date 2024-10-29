@@ -146,5 +146,9 @@ enum LocalizedString {
         static var allButtonTitle: String {
             return NSLocalizedString("movie_all_title", comment: SC.empty)
         }
+        
+        static var allMoviesLabel: String {
+            return NSLocalizedString("all_movies_label", comment: SC.empty)
+        }
     }
 }

@@ -21,6 +21,16 @@
         }
       }
     },
+    "all_movies_label" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все фильмы"
+          }
+        }
+      }
+    },
     "date_of_birth" : {
       "extractionState" : "manual",
       "localizations" : {

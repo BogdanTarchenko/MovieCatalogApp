@@ -27,6 +27,8 @@ class MoviesViewController: UIViewController {
     private let favoritesLabelStackView = UIStackView()
     let carousel = CarouselView(withFrame: .zero, andInset: 8)
     
+    private let allMoviesLabel = GradientLabel()
+    
     private var timer: Timer?
     private var lastTapTime: TimeInterval = 0
     private let tapDelay: TimeInterval = 0.4
@@ -120,6 +122,7 @@ class MoviesViewController: UIViewController {
         setupRandomMovieButton()
         setupFavoritesStackView()
         setupCarousel()
+        setupGradientLabel()
     }
 
     private func setupCollectionView() {
@@ -205,6 +208,17 @@ class MoviesViewController: UIViewController {
             make.top.equalTo(favoritesLabelStackView.snp.bottom).offset(16)
             make.height.equalTo(252)
             make.bottom.equalToSuperview()
+        }
+    }
+    
+    func setupGradientLabel() {
+        allMoviesLabel.text = LocalizedString.Movies.allMoviesLabel
+        
+        contentView.addSubview(allMoviesLabel)
+        
+        allMoviesLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.top.equalTo(carousel.snp.bottom).offset(32)
         }
     }
 
