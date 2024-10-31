@@ -13,7 +13,11 @@ final class MainTabBarController: UITabBarController {
     weak var appRouterDelegate: AppRouterDelegate?
     
     private let feedViewController = FeedViewController(viewModel: FeedViewModel())
-    private let moviesViewController = MoviesViewController(viewModel: MoviesViewModel())
+    private lazy var moviesViewController: MoviesViewController = {
+        let viewModel = MoviesViewModel()
+        viewModel.delegate = self
+        return MoviesViewController(viewModel: viewModel)
+    }()
     private let favouritesViewController = FavouritesViewController()
     private lazy var profileViewController: ProfileViewController = {
         let viewModel = ProfileViewModel()
@@ -54,10 +58,6 @@ final class MainTabBarController: UITabBarController {
             self?.setViewControllers([self?.feedViewController, self?.moviesViewController, self?.favouritesViewController, self?.profileViewController].compactMap { $0 }, animated: true)
             self?.setColor(selectedIndex: 0)
         }
-    }
-    
-    func setDelegate(_ delegate: AppRouterDelegate) {
-        self.appRouterDelegate = delegate
     }
     
     private func getButton(icon: String, title: String, action: UIAction) -> CustomTabBarItem {
@@ -110,7 +110,12 @@ final class MainTabBarController: UITabBarController {
 
 extension MainTabBarController: ProfileViewModelDelegate {
     func navigateToWelcome() {
-        print("2")
         appRouterDelegate?.navigateToWelcome()
+    }
+}
+
+extension MainTabBarController: MoviesViewModelRouterDelegate {
+    func navigateToMovieDetails(movieID: String) {
+        appRouterDelegate?.navigateToMovieDetails(movieID: movieID)
     }
 }

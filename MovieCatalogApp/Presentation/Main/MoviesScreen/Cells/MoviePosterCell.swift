@@ -35,14 +35,18 @@ final class MoviePosterCell: UICollectionViewCell {
         return button
     }()
     
+    var onTap: (() -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        setupGestureRecognizers()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupViews()
+        setupGestureRecognizers()
     }
     
     private func setupViews() {
@@ -65,6 +69,17 @@ final class MoviePosterCell: UICollectionViewCell {
         }
     }
     
+    private func setupGestureRecognizers() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        contentView.isUserInteractionEnabled = true
+        contentView.addGestureRecognizer(tapGesture)
+    }
+    
+    // MARK: - Actions
+    @objc private func handleTap() {
+        onTap?()
+    }
+    
     func configure(with movie: AllMovieData) {
         let posterURL = movie.posterURL
         posterImageView.kf.setImage(with: URL(string: posterURL))
@@ -78,22 +93,17 @@ final class MoviePosterCell: UICollectionViewCell {
         let averageRating = Double(totalRating) / Double(movie.reviews.count)
 
         ratingLabel.text = String(format: "%.1f", averageRating)
-
-        let color = colorForRating(averageRating)
-        ratingLabel.backgroundColor = color
+        ratingLabel.backgroundColor = colorForRating(averageRating)
     }
 
     private func colorForRating(_ rating: Double) -> UIColor {
         switch rating {
         case 0.0..<2.5:
-            let normalizedValue = rating / 4.0
-            return blend(color1: .darkRed, color2: .red, ratio: CGFloat(normalizedValue))
+            return blend(color1: .darkRed, color2: .red, ratio: CGFloat(rating / 4.0))
         case 2.5..<6.0:
-            let normalizedValue = (rating - 2.5) / 3.0
-            return blend(color1: .red, color2: .orange, ratio: CGFloat(normalizedValue))
+            return blend(color1: .red, color2: .orange, ratio: CGFloat((rating - 2.5) / 3.0))
         case 6.0...10.0:
-            let normalizedValue = (rating - 6.0) / 3.0
-            return blend(color1: .orange, color2: .green, ratio: CGFloat(normalizedValue))
+            return blend(color1: .orange, color2: .green, ratio: CGFloat((rating - 6.0) / 3.0))
         default:
             return .green
         }

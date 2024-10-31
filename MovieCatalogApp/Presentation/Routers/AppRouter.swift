@@ -7,15 +7,18 @@
 
 import UIKit
 import KeychainAccess
+import SwiftUI
 
 protocol AppRouterDelegate: AnyObject {
     func navigateToWelcome()
     func navigateToSignIn()
     func navigateToSignUp()
     func navigateToMain()
+    func navigateToMovieDetails(movieID: String)
 }
 
 final class AppRouter: AppRouterDelegate {
+    
     
     private var window: UIWindow?
     
@@ -61,6 +64,14 @@ extension AppRouter {
             self.transition(to: mainTabBarController)
         }
     }
+    
+    func navigateToMovieDetails(movieID: String) {
+        let movieDetailsView = createMovieDetailsView(movieID: movieID)
+        let hostingController = UIHostingController(rootView: movieDetailsView)
+        let navigationController = UINavigationController(rootViewController: hostingController)
+        setupNavigationBar(for: hostingController, title: SC.empty)
+        transition(to: navigationController)
+    }
 }
 
 // MARK: - View Controller Creation
@@ -89,6 +100,11 @@ extension AppRouter {
         let signUpViewModel = SignUpViewModel()
         signUpViewModel.appRouterDelegate = self
         return SignUpViewController(viewModel: signUpViewModel)
+    }
+    
+    private func createMovieDetailsView(movieID: String) -> MovieDetailsView {
+        let movieDetailsViewModel = MovieDetailsViewModel(movieID: movieID)
+        return MovieDetailsView(viewModel: movieDetailsViewModel)
     }
 }
 
@@ -133,5 +149,3 @@ extension AppRouter {
         }
     }
 }
-
-extension AppRouter: ProfileViewModelDelegate {}

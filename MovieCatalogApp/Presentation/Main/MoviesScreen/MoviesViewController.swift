@@ -430,6 +430,11 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             let isFavorite = viewModel.favoritesMovieData.contains { $0.id == allMovie.id }
             cell.likeButton.isHidden = !isFavorite
             
+            cell.onTap = { [weak self] in
+                guard let self = self else { return }
+                self.viewModel.onAllMovieCellTapped(movieID: allMovie.id)
+            }
+            
             return cell
         }
         return UICollectionViewCell()

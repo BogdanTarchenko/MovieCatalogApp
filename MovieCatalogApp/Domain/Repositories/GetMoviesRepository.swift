@@ -7,4 +7,5 @@
 
 protocol GetMoviesRepository {
     func getMovies(page: Int) async throws -> MoviesPagedListResponseModel
+    func getMovieDetails(movieID: String) async throws -> MovieDetailsModel
 }

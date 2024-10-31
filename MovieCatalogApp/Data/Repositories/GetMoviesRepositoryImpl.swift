@@ -16,4 +16,9 @@ class GetMoviesRepositoryImpl: GetMoviesRepository {
         let endpoint = MoviesPagedListEndpoint(page: page)
         return try await httpClient.sendRequest(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
     }
+    
+    func getMovieDetails(movieID: String) async throws -> MovieDetailsModel {
+        let endpoint = GetMovieDetailsEndpoint(movieID: movieID)
+        return try await httpClient.sendRequest(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
+    }
 }
