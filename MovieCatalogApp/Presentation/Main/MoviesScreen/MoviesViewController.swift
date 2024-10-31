@@ -326,6 +326,9 @@ class MoviesViewController: UIViewController {
     }
     @objc private func allButtonTapped() {
     }
+    @objc private func onDidLikeButtonTapped() {
+        
+    }
     
     deinit {
         timer?.invalidate()
@@ -430,6 +433,10 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             let isFavorite = viewModel.favoritesMovieData.contains { $0.id == allMovie.id }
             cell.likeButton.isHidden = !isFavorite
             
+            cell.onLikeButtonTapped = { [weak self] in
+                self?.handleLikeButtonTapped(for: allMovie)
+            }
+            
             return cell
         }
         return UICollectionViewCell()
@@ -448,6 +455,17 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             return CGSize(width: (allMoviesCollectionView.frame.width - 16) / 3, height: baseHeight)
         }
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    private func handleLikeButtonTapped(for movie: AllMovieData) {
+        Task {
+            await viewModel.onDidLikeButtonTapped(movieID: movie.id)
+            
+            DispatchQueue.main.async {
+                self.allMoviesCollectionView.reloadData()
+                self.carousel.reloadData()
+            }
+        }
     }
 }
 
