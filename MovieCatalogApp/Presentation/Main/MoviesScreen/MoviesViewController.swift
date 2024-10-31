@@ -10,7 +10,7 @@ import Kingfisher
 import SnapKit
 
 class MoviesViewController: UIViewController {
-
+    
     private var viewModel: MoviesViewModel
     private let loaderView = LoaderView()
     private let scrollView = UIScrollView()
@@ -36,7 +36,7 @@ class MoviesViewController: UIViewController {
     private let tapDelay: TimeInterval = 0.4
     private var isAnimating = false
     private var isFirstAppearance = true
-
+    
     init(viewModel: MoviesViewModel) {
         self.viewModel = viewModel
         
@@ -53,33 +53,40 @@ class MoviesViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         bindToViewModel()
         viewModel.onDidLoad()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopTimer()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isFirstAppearance {
             isFirstAppearance = false
             return
         }
+        
         startTimer()
         progressBar.continueAnimation()
+        
+        Task {
+            await viewModel.onDidUpdateFavorites()
+            carousel.reloadData()
+            allMoviesCollectionView.reloadData()
+        }
     }
-
+    
     // MARK: - Setup
     private func setup() {
         setupScrollView()
@@ -87,7 +94,7 @@ class MoviesViewController: UIViewController {
         setupLoaderView()
         setupView()
     }
-
+    
     private func setupScrollView() {
         self.scrollView.delegate = self
         view.addSubview(scrollView)
@@ -98,7 +105,7 @@ class MoviesViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
-
+    
     private func setupContentView() {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in
@@ -107,7 +114,7 @@ class MoviesViewController: UIViewController {
         }
         setupContent()
     }
-
+    
     private func setupLoaderView() {
         loaderView.isHidden = true
         view.addSubview(loaderView)
@@ -116,14 +123,14 @@ class MoviesViewController: UIViewController {
             make.size.equalTo(100)
         }
     }
-
+    
     private func setupView() {
         view.backgroundColor = .background
         if let tabBar = tabBarController?.tabBar {
             tabBar.backgroundImage = UIImage()
         }
     }
-
+    
     private func setupContent() {
         setupCollectionView()
         setupProgressBar()
@@ -133,7 +140,7 @@ class MoviesViewController: UIViewController {
         setupGradientLabel()
         setupAllMoviewCollectionView()
     }
-
+    
     private func setupCollectionView() {
         collectionView.isScrollEnabled = false
         collectionView.backgroundColor = .clear
@@ -147,7 +154,7 @@ class MoviesViewController: UIViewController {
             make.height.equalTo(464)
         }
     }
-
+    
     private func setupProgressBar() {
         progressBar.frame = CGRect(x: 0, y: 0, width: view.frame.width - 48, height: 4)
         progressBar.delegate = self
@@ -219,7 +226,7 @@ class MoviesViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(favoritesLabelStackView.snp.bottom).offset(16)
             make.height.equalTo(252)
-
+            
         }
     }
     
@@ -250,7 +257,7 @@ class MoviesViewController: UIViewController {
             make.bottom.equalToSuperview().inset(32)
         }
     }
-
+    
     // MARK: - Timer
     private func startTimer() {
         guard timer == nil else { return }
@@ -258,12 +265,12 @@ class MoviesViewController: UIViewController {
             self?.scrollToNextItem()
         }
     }
-
+    
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
     }
-
+    
     // MARK: - Scrolling
     private func scrollToNextItem() {
         guard !isAnimating else { return }
@@ -279,7 +286,7 @@ class MoviesViewController: UIViewController {
             self.isAnimating = false
         }
     }
-
+    
     private func scrollToPreviousItem() {
         guard !isAnimating else { return }
         isAnimating = true
@@ -303,12 +310,12 @@ class MoviesViewController: UIViewController {
         }
         view.layoutIfNeeded()
     }
-
+    
     private func calculateCollectionViewHeight() -> CGFloat {
         let numberOfItems = viewModel.allMovieData.count
         let itemHeight: CGFloat = 166
         let spacing: CGFloat = 8
-
+        
         let rows = ceil(CGFloat(numberOfItems) / 3.0)
         let totalHeight = (itemHeight * rows) + (spacing * (rows - 1))
         return totalHeight
@@ -333,14 +340,14 @@ extension MoviesViewController {
             self?.progressBar.isPaused = false
             self?.startTimer()
         }
-
+        
         viewModel.onDidLoadFavoritesMovieData = { [weak self] favoritesMovieData in
             self?.carousel.reloadData()
-            self?.updateCollectionViewHeight()
         }
         
         viewModel.onDidLoadAllMovieData = { [weak self] allMovieData in
             self?.allMoviesCollectionView.reloadData()
+            self?.updateCollectionViewHeight()
         }
         
         viewModel.onDidStartLoad = { [weak self] in
@@ -357,7 +364,7 @@ extension MoviesViewController {
 
 // MARK: - UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
 extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return viewModel.storiesMovieData.count
@@ -377,7 +384,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
             let movie = viewModel.storiesMovieData[indexPath.row]
             cell.configure(with: movie)
-
+            
             cell.onTap = { [weak self] isNext in
                 guard let self = self else { return }
                 let currentTime = Date().timeIntervalSince1970
@@ -422,7 +429,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             
             let isFavorite = viewModel.favoritesMovieData.contains { $0.id == allMovie.id }
             cell.likeButton.isHidden = !isFavorite
-
+            
             return cell
         }
         return UICollectionViewCell()
@@ -448,11 +455,11 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
 extension MoviesViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView == self.scrollView else { return }
-
+        
         let contentOffsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let frameHeight = scrollView.frame.size.height
-
+        
         if contentOffsetY + frameHeight >= contentHeight - 340 {
             viewModel.onDidScrolledToEnd()
             allMoviesCollectionView.reloadData()

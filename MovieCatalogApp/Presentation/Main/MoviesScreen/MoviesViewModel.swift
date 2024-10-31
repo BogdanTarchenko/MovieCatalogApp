@@ -66,6 +66,11 @@ final class MoviesViewModel {
         }
     }
     
+    func onDidUpdateFavorites() async {
+        let movies = try? await getFavoriteMoviesUseCase.execute()
+        favoritesMovieData = mapToFavoritesMovieData(movies ?? [])
+    }
+    
     // MARK: - Private Methods
     private func notifyLoadingStart() {
         Task { @MainActor in
