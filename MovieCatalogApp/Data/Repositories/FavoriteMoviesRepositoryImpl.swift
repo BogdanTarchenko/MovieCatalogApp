@@ -17,6 +17,11 @@ class FavoriteMoviesRepositoryImpl: FavoriteMoviesRepository {
         try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
     }
     
+    func deleteFromFavorites(movieID: String) async throws {
+        let endpoint = DeleteMovieFromFavoritesEndpoint(movieID: movieID)
+        try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
+    }
+    
     func getFavorites() async throws -> MoviesListResponseModel {
         let endpoint = GetFavoriteMoviesEndpoint()
         return try await httpClient.sendRequest(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)

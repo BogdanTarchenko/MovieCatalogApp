@@ -7,5 +7,6 @@
 
 protocol FavoriteMoviesRepository {
     func addToFavorites(movieID: String) async throws
+    func deleteFromFavorites(movieID: String) async throws
     func getFavorites() async throws -> MoviesListResponseModel
 }
