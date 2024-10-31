@@ -14,8 +14,6 @@ class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
     private let repository: GetMoviesRepository
     
     private var currentPage = 4
-    private var moviesBuffer: [MovieElementModel] = []
-    private var initialMoviesBuffer: [MovieElementModel] = []
     
     init(repository: GetMoviesRepository) {
         self.repository = repository
@@ -30,10 +28,17 @@ class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
     func execute() async throws -> [MovieElementModel]? {
         let pagedResponse = try await loadNextPage()
         currentPage += 1
+        
+        if currentPage == 6, let movies = pagedResponse.movies {
+            return Array(movies.dropLast())
+        }
+        
         return pagedResponse.movies
     }
     
     func loadInitialMovies() async throws -> [MovieElementModel] {
+        var initialMoviesBuffer: [MovieElementModel] = []
+        
         let firstPageResponse = try await repository.getMovies(page: 1)
         if let lastMovieFromFirstPage = firstPageResponse.movies?.last {
             initialMoviesBuffer.append(lastMovieFromFirstPage)
