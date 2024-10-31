@@ -85,14 +85,14 @@ final class MoviePosterCell: UICollectionViewCell {
 
     private func colorForRating(_ rating: Double) -> UIColor {
         switch rating {
-        case 0.0..<4.0:
+        case 0.0..<2.5:
             let normalizedValue = rating / 4.0
             return blend(color1: .darkRed, color2: .red, ratio: CGFloat(normalizedValue))
-        case 4.0..<7.0:
-            let normalizedValue = (rating - 4.0) / 3.0
+        case 2.5..<6.0:
+            let normalizedValue = (rating - 2.5) / 3.0
             return blend(color1: .red, color2: .orange, ratio: CGFloat(normalizedValue))
-        case 7.0...10.0:
-            let normalizedValue = (rating - 7.0) / 3.0
+        case 6.0...10.0:
+            let normalizedValue = (rating - 6.0) / 3.0
             return blend(color1: .orange, color2: .green, ratio: CGFloat(normalizedValue))
         default:
             return .green
@@ -100,7 +100,7 @@ final class MoviePosterCell: UICollectionViewCell {
     }
 
     private func blend(color1: UIColor, color2: UIColor, ratio: CGFloat) -> UIColor {
-        let ratio = max(0, min(1, ratio))
+        let ratio = max(0, min(0.75, ratio))
         var (r1, g1, b1, a1): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
         var (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
 
