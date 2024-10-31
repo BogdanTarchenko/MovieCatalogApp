@@ -12,7 +12,6 @@ final class MoviesViewModel {
     private let getMoviesUseCase: GetMoviesForStoriesUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
     private let getAllMoviesUseCase: GetAllMoviesUseCase
-    private let deleteMovieFromFavoritesUseCase: DeleteMovieFromFavoritesUseCase
     
     var storiesMovieData = [StoriesMovieData]()
     var favoritesMovieData = [FavoritesMovieData]()
@@ -30,7 +29,6 @@ final class MoviesViewModel {
         self.getMoviesUseCase = GetMoviesForStoriesUseCaseImpl.create()
         self.getFavoriteMoviesUseCase = GetFavoriteMoviesUseCaseImpl.create()
         self.getAllMoviesUseCase = GetAllMoviesUseCaseImpl.create()
-        self.deleteMovieFromFavoritesUseCase = DeleteMovieFromFavoritesUseCaseImpl.create()
     }
     
     // MARK: - Public Methods
@@ -71,13 +69,6 @@ final class MoviesViewModel {
     func onDidUpdateFavorites() async {
         let movies = try? await getFavoriteMoviesUseCase.execute()
         favoritesMovieData = mapToFavoritesMovieData(movies ?? [])
-    }
-    
-    func onDidLikeButtonTapped(movieID: String) async {
-        notifyLoadingStart()
-        try? await deleteMovieFromFavoritesUseCase.execute(movieID: movieID)
-        await onDidUpdateFavorites()
-        notifyLoadingFinish()
     }
     
     // MARK: - Private Methods

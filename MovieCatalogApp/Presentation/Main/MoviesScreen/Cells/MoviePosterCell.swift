@@ -15,7 +15,6 @@ final class MoviePosterCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
-        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -36,17 +35,13 @@ final class MoviePosterCell: UICollectionViewCell {
         return button
     }()
     
-    var onLikeButtonTapped: (() -> Void)?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         setupViews()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         setupViews()
     }
     
@@ -66,7 +61,6 @@ final class MoviePosterCell: UICollectionViewCell {
         
         likeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
-            make.width.height.equalTo(22)
             make.leading.equalTo(ratingLabel.snp.trailing).offset(4)
         }
     }
@@ -82,13 +76,13 @@ final class MoviePosterCell: UICollectionViewCell {
         
         let totalRating = movie.reviews.reduce(0) { $0 + $1.rating }
         let averageRating = Double(totalRating) / Double(movie.reviews.count)
-        
+
         ratingLabel.text = String(format: "%.1f", averageRating)
-        
+
         let color = colorForRating(averageRating)
         ratingLabel.backgroundColor = color
     }
-    
+
     private func colorForRating(_ rating: Double) -> UIColor {
         switch rating {
         case 0.0..<4.0:
@@ -104,24 +98,20 @@ final class MoviePosterCell: UICollectionViewCell {
             return .green
         }
     }
-    
+
     private func blend(color1: UIColor, color2: UIColor, ratio: CGFloat) -> UIColor {
         let ratio = max(0, min(1, ratio))
         var (r1, g1, b1, a1): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
         var (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-        
+
         color1.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
         color2.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
-        
+
         return UIColor(
             red: r1 + (r2 - r1) * ratio,
             green: g1 + (g2 - g1) * ratio,
             blue: b1 + (b2 - b1) * ratio,
             alpha: a1 + (a2 - a1) * ratio
         )
-    }
-    
-    @objc private func likeButtonTapped() {
-        onLikeButtonTapped?()
     }
 }
