@@ -14,7 +14,6 @@ protocol AppRouterDelegate: AnyObject {
     func navigateToSignIn()
     func navigateToSignUp()
     func navigateToMain()
-    func navigateToMovieDetails(movieID: String)
 }
 
 final class AppRouter: AppRouterDelegate {
@@ -64,17 +63,9 @@ extension AppRouter {
             self.transition(to: mainTabBarController)
         }
     }
-    
-    func navigateToMovieDetails(movieID: String) {
-        let movieDetailsView = createMovieDetailsView(movieID: movieID)
-        let hostingController = UIHostingController(rootView: movieDetailsView)
-        let navigationController = UINavigationController(rootViewController: hostingController)
-        setupNavigationBar(for: hostingController, title: SC.empty)
-        transition(to: navigationController)
-    }
 }
 
-// MARK: - View Controller Creation
+// MARK: - ViewController Creation
 extension AppRouter {
     
     private func createMainTabBarController() -> MainTabBarController {

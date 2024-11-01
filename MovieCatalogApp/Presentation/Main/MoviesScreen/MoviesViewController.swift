@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SnapKit
+import SwiftUI
 
 class MoviesViewController: UIViewController {
     
@@ -432,7 +433,18 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             
             cell.onTap = { [weak self] in
                 guard let self = self else { return }
-                self.viewModel.onAllMovieCellTapped(movieID: allMovie.id)
+                
+                let movieDetailsViewModel = MovieDetailsViewModel(movieID: allMovie.id)
+                movieDetailsViewModel.onDismiss = { [weak self] in
+                    self?.dismiss(animated: true)
+                }
+
+                let movieDetailsView = MovieDetailsView(viewModel: movieDetailsViewModel)
+                let hostingController = UIHostingController(rootView: movieDetailsView)
+                let navigationController = UINavigationController(rootViewController: hostingController)
+                navigationController.modalPresentationStyle = .fullScreen
+
+                self.present(navigationController, animated: true)
             }
             
             return cell

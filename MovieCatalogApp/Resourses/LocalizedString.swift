@@ -151,4 +151,32 @@ enum LocalizedString {
             return NSLocalizedString("all_movies_label", comment: SC.empty)
         }
     }
+    
+    enum MovieDetails {
+        static var ratingTitle: String {
+            return NSLocalizedString("ratingTitle", comment: SC.empty)
+        }
+        
+        enum Information {
+            static var informationTitle: String {
+                return NSLocalizedString("informationTitle", comment: SC.empty)
+            }
+            
+            static var countryTitle: String {
+                return NSLocalizedString("countryTitle", comment: SC.empty)
+            }
+            
+            static var ageTitle: String {
+                return NSLocalizedString("ageTitle", comment: SC.empty)
+            }
+            
+            static var timeTitle: String {
+                return NSLocalizedString("timeTitle", comment: SC.empty)
+            }
+            
+            static var yearTitle: String {
+                return NSLocalizedString("yearTitle", comment: SC.empty)
+            }
+        }
+    }
 }

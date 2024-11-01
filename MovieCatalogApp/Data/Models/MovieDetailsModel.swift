@@ -13,8 +13,8 @@ struct MovieDetailsModel: Codable {
     let poster: String?
     let year: Int
     let country: String?
-    let genres: [Genre]
-    let reviews: [ReviewModel]
+    let genres: [Genre?]?
+    let reviews: [ReviewModel?]?
     let time: Int
     let tagline: String?
     let description: String?
@@ -34,7 +34,7 @@ struct ReviewModel: Codable {
     let rating: Int
     let reviewText: String?
     let isAnonymous: Bool
-    let createDateTime: Date
+    let createDateTime: String
     let author: Author
 }
 

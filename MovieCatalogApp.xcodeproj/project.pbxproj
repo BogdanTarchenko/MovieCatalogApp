@@ -67,6 +67,11 @@
 		FCAEA53D2CCD50C000A3D97E /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEA53C2CCD50C000A3D97E /* ProfileTextField.swift */; };
 		FCAEA53F2CCD556500A3D97E /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEA53E2CCD556500A3D97E /* GradientLabel.swift */; };
 		FCAEA5412CCD763400A3D97E /* ProfileSplitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEA5402CCD763300A3D97E /* ProfileSplitButton.swift */; };
+		FCD6ACE42CD523CA00DF87E9 /* LoaderSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACE32CD523CA00DF87E9 /* LoaderSUI.swift */; };
+		FCD6ACEA2CD5623200DF87E9 /* GradientBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACE92CD5623200DF87E9 /* GradientBoxSUI.swift */; };
+		FCD6ACEC2CD56E7600DF87E9 /* GrayBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */; };
+		FCD6ACEE2CD5703100DF87E9 /* RatingBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */; };
+		FCD6ACF02CD5767F00DF87E9 /* InformationBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */; };
 		FCEADE112CBD699400B28E7F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FCEADE102CBD699400B28E7F /* Alamofire */; };
 		FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */; };
 		FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */; };
@@ -182,6 +187,11 @@
 		FCAEA53C2CCD50C000A3D97E /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
 		FCAEA53E2CCD556500A3D97E /* GradientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
 		FCAEA5402CCD763300A3D97E /* ProfileSplitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSplitButton.swift; sourceTree = "<group>"; };
+		FCD6ACE32CD523CA00DF87E9 /* LoaderSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderSUI.swift; sourceTree = "<group>"; };
+		FCD6ACE92CD5623200DF87E9 /* GradientBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBoxSUI.swift; sourceTree = "<group>"; };
+		FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayBoxSUI.swift; sourceTree = "<group>"; };
+		FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBoxSUI.swift; sourceTree = "<group>"; };
+		FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationBoxSUI.swift; sourceTree = "<group>"; };
 		FCEADE212CBD6F0200B28E7F /* UserRegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE252CBD748100B28E7F /* LoginCredentialsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsRequestModel.swift; sourceTree = "<group>"; };
 		FCEADE272CBD7FD900B28E7F /* UserRegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterResponseModel.swift; sourceTree = "<group>"; };
@@ -586,6 +596,11 @@
 				FCED51752CD025D8007BB8CA /* CarouselCell.swift */,
 				FCED51772CD025F5007BB8CA /* CarouselView.swift */,
 				FCF832E32CD0FFF500814992 /* PaddingLabel.swift */,
+				FCD6ACE32CD523CA00DF87E9 /* LoaderSUI.swift */,
+				FCD6ACE92CD5623200DF87E9 /* GradientBoxSUI.swift */,
+				FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */,
+				FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */,
+				FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -754,6 +769,7 @@
 				FCAEA5332CCD1C6E00A3D97E /* UserDataChangeEndpoint.swift in Sources */,
 				FCF7D8DF2CB98BB200A4F82C /* WelcomeViewModel.swift in Sources */,
 				FCF832E42CD0FFF500814992 /* PaddingLabel.swift in Sources */,
+				FCD6ACF02CD5767F00DF87E9 /* InformationBoxSUI.swift in Sources */,
 				FCAEA53D2CCD50C000A3D97E /* ProfileTextField.swift in Sources */,
 				FCEADE222CBD6F0200B28E7F /* UserRegisterRequestModel.swift in Sources */,
 				FC28762E2CBEA82100255264 /* AlamofireHTTPClient.swift in Sources */,
@@ -769,12 +785,14 @@
 				FCED51762CD025D8007BB8CA /* CarouselCell.swift in Sources */,
 				FCF832E22CD0FD8100814992 /* MoviePosterCell.swift in Sources */,
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
+				FCD6ACEC2CD56E7600DF87E9 /* GrayBoxSUI.swift in Sources */,
 				FC77157E2CCEC26F0095284E /* SegmentedProgressBar.swift in Sources */,
 				FC399CF42CCC008000AAE6DD /* LogoutUseCase.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
 				FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */,
 				FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */,
 				FC2876312CBEA8E100255264 /* BaseURL.swift in Sources */,
+				FCD6ACEA2CD5623200DF87E9 /* GradientBoxSUI.swift in Sources */,
 				FC399CE42CCB837000AAE6DD /* UserData.swift in Sources */,
 				FCF7D8F02CBAB99100A4F82C /* SplitButton.swift in Sources */,
 				FCAEA5372CCD1CD400A3D97E /* ChangeUserDataRepositoryImpl.swift in Sources */,
@@ -807,10 +825,12 @@
 				FCEADE262CBD748100B28E7F /* LoginCredentialsRequestModel.swift in Sources */,
 				FC1DC3A82CC3C44E00FF55F4 /* ProfileViewController.swift in Sources */,
 				FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */,
+				FCD6ACE42CD523CA00DF87E9 /* LoaderSUI.swift in Sources */,
 				FCED51672CCFD9FA007BB8CA /* FavoriteMoviesRepositoryImpl.swift in Sources */,
 				FCA4F6312CC931A7009DAB74 /* UIViewController+Extensions.swift in Sources */,
 				FC1DC3932CC3BB5800FF55F4 /* SignInUseCase.swift in Sources */,
 				FC1DC3AC2CC52DC200FF55F4 /* FeedViewModel.swift in Sources */,
+				FCD6ACEE2CD5703100DF87E9 /* RatingBoxSUI.swift in Sources */,
 				FCED51612CCFD7A6007BB8CA /* AddMovieToFavoritesEndpoint.swift in Sources */,
 				FC1DC3B02CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift in Sources */,
 				FCFCD3FF2CD3F5EE0062E472 /* GetMovieDetailsEndpoint.swift in Sources */,

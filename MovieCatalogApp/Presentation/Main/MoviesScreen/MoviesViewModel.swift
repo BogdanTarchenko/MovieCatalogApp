@@ -7,13 +7,7 @@
 
 import Foundation
 
-protocol MoviesViewModelRouterDelegate: AnyObject {
-    func navigateToMovieDetails(movieID: String)
-}
-
 final class MoviesViewModel {
-    
-    weak var delegate: MoviesViewModelRouterDelegate?
     
     private let getMoviesUseCase: GetMoviesForStoriesUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
@@ -75,10 +69,6 @@ final class MoviesViewModel {
     func onDidUpdateFavorites() async {
         let movies = try? await getFavoriteMoviesUseCase.execute()
         favoritesMovieData = mapToFavoritesMovieData(movies ?? [])
-    }
-    
-    func onAllMovieCellTapped(movieID: String) {
-        delegate?.navigateToMovieDetails(movieID: movieID)
     }
     
     // MARK: - Private Methods

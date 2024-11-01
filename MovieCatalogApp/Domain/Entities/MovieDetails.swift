@@ -34,7 +34,7 @@ struct ReviewDetails {
     let rating: Int
     let reviewText: String
     let isAnonymous: Bool
-    let createDateTime: Date
+    let createDateTime: String
     let author: AuthorDetails
 }
 

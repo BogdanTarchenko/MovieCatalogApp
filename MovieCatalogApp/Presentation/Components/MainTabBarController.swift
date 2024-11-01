@@ -15,7 +15,6 @@ final class MainTabBarController: UITabBarController {
     private let feedViewController = FeedViewController(viewModel: FeedViewModel())
     private lazy var moviesViewController: MoviesViewController = {
         let viewModel = MoviesViewModel()
-        viewModel.delegate = self
         return MoviesViewController(viewModel: viewModel)
     }()
     private let favouritesViewController = FavouritesViewController()
@@ -111,11 +110,5 @@ final class MainTabBarController: UITabBarController {
 extension MainTabBarController: ProfileViewModelDelegate {
     func navigateToWelcome() {
         appRouterDelegate?.navigateToWelcome()
-    }
-}
-
-extension MainTabBarController: MoviesViewModelRouterDelegate {
-    func navigateToMovieDetails(movieID: String) {
-        appRouterDelegate?.navigateToMovieDetails(movieID: movieID)
     }
 }

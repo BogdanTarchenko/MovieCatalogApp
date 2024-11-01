@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "ageTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возраст"
+          }
+        }
+      }
+    },
     "alert_cancel" : {
       "localizations" : {
         "ru" : {
@@ -27,6 +37,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Все фильмы"
+          }
+        }
+      }
+    },
+    "countryTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Страны"
           }
         }
       }
@@ -128,8 +148,15 @@
         }
       }
     },
-    "Hello, World!" : {
-
+    "informationTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
+          }
+        }
+      }
     },
     "male" : {
       "extractionState" : "manual",
@@ -336,6 +363,16 @@
         }
       }
     },
+    "ratingTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рейтинг"
+          }
+        }
+      }
+    },
     "repeat_password" : {
       "localizations" : {
         "ru" : {
@@ -387,6 +424,16 @@
         }
       }
     },
+    "timeTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время"
+          }
+        }
+      }
+    },
     "username" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -424,6 +471,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добро пожаловать в MovieCatalog"
+          }
+        }
+      }
+    },
+    "yearTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Год выхода"
           }
         }
       }
