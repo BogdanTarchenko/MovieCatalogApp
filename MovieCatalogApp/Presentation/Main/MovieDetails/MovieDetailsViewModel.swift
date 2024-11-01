@@ -151,8 +151,4 @@ class MovieDetailsViewModel: ObservableObject {
             ageLimit: movie.ageLimit
         )
     }
-
-    func backButtonTapped() {
-        
-    }
 }

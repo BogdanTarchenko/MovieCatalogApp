@@ -41,6 +41,16 @@
         }
       }
     },
+    "budget" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бюджет"
+          }
+        }
+      }
+    },
     "countryTitle" : {
       "localizations" : {
         "ru" : {
@@ -89,6 +99,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Готово"
+          }
+        }
+      }
+    },
+    "earnings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сборы в мире"
           }
         }
       }
@@ -154,6 +174,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Женщина"
+          }
+        }
+      }
+    },
+    "financeTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Финансы"
           }
         }
       }

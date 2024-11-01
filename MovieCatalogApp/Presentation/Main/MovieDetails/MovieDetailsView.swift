@@ -22,7 +22,10 @@ struct MovieDetailsView: View {
     @State private var year: String = SC.empty
     @State private var directorName: String = SC.empty
     @State private var genres: [String] = [SC.empty]
-    
+    @State private var isTitleVisible: Bool = false
+    @State private var budget: String = SC.empty
+    @State private var earnings: String = SC.empty
+
     var body: some View {
         ZStack(alignment: .top) {
             Color(.background)
@@ -37,20 +40,34 @@ struct MovieDetailsView: View {
                 .ignoresSafeArea(edges: .top)
             
             ScrollView {
+                GeometryReader { geometry in
+                    Color.clear
+                        .preference(key: ScrollOffsetKey.self, value: geometry.frame(in: .global).minY)
+                }
+                .frame(height: 0)
+
                 VStack(spacing: 16) {
                     Spacer(minLength: 260)
                     
                     MovieContainerView(title: title, tagline: tagline)
+                        .background(GeometryReader { geo in
+                            Color.clear
+                                .preference(key: MovieContainerVisibilityKey.self, value: geo.frame(in: .global).maxY)
+                        })
                     GrayBoxView(title: description)
                     RatingContainerView(rating: ["9.9","7.1","7.3"])
                     InformationContainerView(itemInformations: [country, age, time, year])
                     DirectorContainerView(name: directorName, avatar: UIImage())
                     GenresContainerView(genres: genres)
+                    FinanceContainerView(itemInformations: [budget, earnings])
                 }
                 .padding([.leading, .trailing], 24)
             }
             .toolbarBackground(.hidden, for: .navigationBar)
             .padding(.top, 32)
+            .onPreferenceChange(MovieContainerVisibilityKey.self) { maxY in
+                isTitleVisible = maxY < 128
+            }
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -60,12 +77,14 @@ struct MovieDetailsView: View {
                         }) {
                             Image(uiImage: UIImage(named: "back_button") ?? UIImage())
                         }
-                        Text(title)
-                            .font(.custom("Manrope-Bold", size: 24))
-                            .foregroundColor(.textDefault)
-                            .lineLimit(1)
-                            .truncationMode(.tail)
-                            .frame(maxWidth: 250)
+                        if isTitleVisible {
+                            Text(title)
+                                .font(.custom("Manrope-Bold", size: 24))
+                                .foregroundColor(.textDefault)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .frame(maxWidth: 250)
+                        }
                     }
                 }
                 
@@ -99,6 +118,18 @@ struct MovieDetailsView: View {
     }
 }
 
+// MARK: - ScrollOffset
+struct ScrollOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
+}
+
+// MARK: - MovieContainerVisibility
+struct MovieContainerVisibilityKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
+}
+
 // MARK: - Binding
 extension MovieDetailsView {
     private func bindToViewModel() {
@@ -113,6 +144,8 @@ extension MovieDetailsView {
             year = "\(movieDetails.year)"
             directorName = movieDetails.director
             genres = movieDetails.genres.map { $0.name }
+            budget = formatBudget(budget: movieDetails.budget)
+            earnings = formatBudget(budget: movieDetails.fees)
         }
         
         viewModel.onDidStartLoad = {
@@ -132,5 +165,15 @@ extension MovieDetailsView {
         let remainingMinutes = minutes % 60
         return "\(hours) ч \(remainingMinutes) мин"
     }
-}
+    
+    func formatBudget(budget: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = SC.space
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
 
+        let formattedNumber = formatter.string(from: NSNumber(value: budget)) ?? "0"
+        return "$ \(formattedNumber)"
+    }
+}

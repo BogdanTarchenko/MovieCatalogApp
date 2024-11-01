@@ -186,5 +186,19 @@ enum LocalizedString {
         static var genresTitle: String {
             return NSLocalizedString("genresTitle", comment: SC.empty)
         }
+        
+        enum Finance {
+            static var financeTitle: String {
+                return NSLocalizedString("financeTitle", comment: SC.empty)
+            }
+            
+            static var budget: String {
+                return NSLocalizedString("budget", comment: SC.empty)
+            }
+            
+            static var earnings: String {
+                return NSLocalizedString("earnings", comment: SC.empty)
+            }
+        }
     }
 }
