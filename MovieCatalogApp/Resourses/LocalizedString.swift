@@ -178,5 +178,13 @@ enum LocalizedString {
                 return NSLocalizedString("yearTitle", comment: SC.empty)
             }
         }
+        
+        static var directorTitle: String {
+            return NSLocalizedString("directorTitle", comment: SC.empty)
+        }
+        
+        static var genresTitle: String {
+            return NSLocalizedString("genresTitle", comment: SC.empty)
+        }
     }
 }

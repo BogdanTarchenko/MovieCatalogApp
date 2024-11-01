@@ -11,9 +11,7 @@ import Kingfisher
 struct MovieDetailsView: View {
     
     @StateObject var viewModel: MovieDetailsViewModel
-    
     @State private var isLoading = false
-    
     @State private var title: String = SC.empty
     @State private var posterURL: String = SC.empty
     @State private var tagline: String = SC.empty
@@ -22,6 +20,8 @@ struct MovieDetailsView: View {
     @State private var age: String = SC.empty
     @State private var time: String = SC.empty
     @State private var year: String = SC.empty
+    @State private var directorName: String = SC.empty
+    @State private var genres: [String] = [SC.empty]
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -37,16 +37,21 @@ struct MovieDetailsView: View {
                 .ignoresSafeArea(edges: .top)
             
             ScrollView {
-                Spacer(minLength: 290)
                 VStack(spacing: 16) {
+                    Spacer(minLength: 260)
+                    
                     MovieContainerView(title: title, tagline: tagline)
                     GrayBoxView(title: description)
                     RatingContainerView(rating: ["9.9","7.1","7.3"])
                     InformationContainerView(itemInformations: [country, age, time, year])
+                    DirectorContainerView(name: directorName, avatar: UIImage())
+                    GenresContainerView(genres: genres)
                 }
                 .padding([.leading, .trailing], 24)
             }
             .toolbarBackground(.hidden, for: .navigationBar)
+            .padding(.top, 32)
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     HStack {
@@ -81,8 +86,6 @@ struct MovieDetailsView: View {
                     }
                 }
             }
-            .background(Color.clear)
-            .padding(.top, 0)
             
             if isLoading {
                 LoaderSwiftUI()
@@ -108,6 +111,8 @@ extension MovieDetailsView {
             age = ("\(movieDetails.ageLimit)+")
             time = formatMovieDuration(minutes: movieDetails.time)
             year = "\(movieDetails.year)"
+            directorName = movieDetails.director
+            genres = movieDetails.genres.map { $0.name }
         }
         
         viewModel.onDidStartLoad = {
@@ -128,3 +133,4 @@ extension MovieDetailsView {
         return "\(hours) ч \(remainingMinutes) мин"
     }
 }
+

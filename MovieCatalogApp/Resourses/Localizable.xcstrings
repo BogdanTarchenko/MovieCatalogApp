@@ -72,6 +72,16 @@
         }
       }
     },
+    "directorTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режиссер"
+          }
+        }
+      }
+    },
     "done" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -144,6 +154,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Женщина"
+          }
+        }
+      }
+    },
+    "genresTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жанры"
           }
         }
       }
