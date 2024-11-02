@@ -217,6 +217,22 @@ enum LocalizedString {
             static var emptyReviews: String {
                 return NSLocalizedString("emptyReviews", comment: SC.empty)
             }
+            
+            static var mark: String {
+                return NSLocalizedString("mark", comment: SC.empty)
+            }
+            
+            static var reviewPlaceholder: String {
+                return NSLocalizedString("reviewPlaceholder", comment: SC.empty)
+            }
+            
+            static var anonymusReview: String {
+                return NSLocalizedString("anonymusReview", comment: SC.empty)
+            }
+            
+            static var sendButtonTitle: String {
+                return NSLocalizedString("sendButtonTitle", comment: SC.empty)
+            }
         }
     }
 }

@@ -25,6 +25,6 @@ struct GetPersonByNameEndpoint: APIEndpoint {
     }
     
     var headers: Alamofire.HTTPHeaders? {
-        return ["X-API-KEY": "bd433242-6b95-4ee8-a05d-deb59acfa719"]
+        return ["X-API-KEY": "9027998c-d612-435a-9768-4cbbb73b7933"]
     }
 }

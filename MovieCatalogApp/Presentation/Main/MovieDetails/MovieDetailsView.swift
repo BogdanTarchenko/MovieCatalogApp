@@ -33,6 +33,8 @@ struct MovieDetailsView: View {
     
     @State private var currentReviewIndex: Int = 0
     
+    @State private var showCustomAlert = false
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color(.background)
@@ -77,7 +79,7 @@ struct MovieDetailsView: View {
                             mark: "\(currentReview?.rating ?? 1)",
                             review: currentReview?.reviewText ?? SC.empty,
                             action: {
-                                // Добавление отзывов крч (алерт открыть)
+                                showCustomAlert = true
                             },
                             backAction: {
                                 if currentReviewIndex > 0 {
@@ -97,7 +99,6 @@ struct MovieDetailsView: View {
                             .font(.custom("Manrope-Regular", size: 14))
                             .foregroundColor(.gray)
                     }
-
                 }
                 .padding([.leading, .trailing], 24)
             }
@@ -147,6 +148,21 @@ struct MovieDetailsView: View {
             if isLoading {
                 LoaderSwiftUI()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            
+            if showCustomAlert {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            showCustomAlert = false
+                        }
+                    
+                    ReviewAlertView(isPresented: $showCustomAlert, action: {} )
+                        .padding(.horizontal, 24)
+                        .frame(maxWidth: .infinity)
+                        .transition(.scale)
+                }
             }
         }
         .onAppear {

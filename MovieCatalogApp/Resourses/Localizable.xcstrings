@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
     "addReviewTitle" : {
       "localizations" : {
         "ru" : {
@@ -47,6 +50,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Все фильмы"
+          }
+        }
+      }
+    },
+    "anonymusReview" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анонимный отзыв"
           }
         }
       }
@@ -245,6 +258,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Мужчина"
+          }
+        }
+      }
+    },
+    "mark" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценка"
           }
         }
       }
@@ -463,12 +486,32 @@
         }
       }
     },
+    "reviewPlaceholder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст отзыва"
+          }
+        }
+      }
+    },
     "reviewsTitle" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отзывы"
+          }
+        }
+      }
+    },
+    "sendButtonTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить"
           }
         }
       }
