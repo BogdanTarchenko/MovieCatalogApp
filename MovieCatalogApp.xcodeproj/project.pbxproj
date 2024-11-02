@@ -69,6 +69,8 @@
 		FC639D562CD6A9FE007F4FB8 /* AddReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D552CD6A9FE007F4FB8 /* AddReviewEndpoint.swift */; };
 		FC639D582CD6AA6C007F4FB8 /* EditReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D572CD6AA6C007F4FB8 /* EditReviewEndpoint.swift */; };
 		FC639D5A2CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D592CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift */; };
+		FC639D5C2CD6AC51007F4FB8 /* ReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D5B2CD6AC51007F4FB8 /* ReviewRequest.swift */; };
+		FC639D5E2CD6ADA5007F4FB8 /* ReviewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D5D2CD6ADA5007F4FB8 /* ReviewsRepository.swift */; };
 		FC7715752CCE86830095284E /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715742CCE86820095284E /* MoviesViewModel.swift */; };
 		FC7715772CCE87E50095284E /* StoriesMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715762CCE87E50095284E /* StoriesMovieData.swift */; };
 		FC7715792CCE89B70095284E /* GetMoviesForStoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */; };
@@ -212,6 +214,8 @@
 		FC639D552CD6A9FE007F4FB8 /* AddReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewEndpoint.swift; sourceTree = "<group>"; };
 		FC639D572CD6AA6C007F4FB8 /* EditReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReviewEndpoint.swift; sourceTree = "<group>"; };
 		FC639D592CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteReviewEndpoint.swift; sourceTree = "<group>"; };
+		FC639D5B2CD6AC51007F4FB8 /* ReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRequest.swift; sourceTree = "<group>"; };
+		FC639D5D2CD6ADA5007F4FB8 /* ReviewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRepository.swift; sourceTree = "<group>"; };
 		FC7715742CCE86820095284E /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		FC7715762CCE87E50095284E /* StoriesMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMovieData.swift; sourceTree = "<group>"; };
 		FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesForStoriesUseCase.swift; sourceTree = "<group>"; };
@@ -556,6 +560,7 @@
 				FCAEA5342CCD1CA200A3D97E /* ChangeUserDataRepository.swift */,
 				FCED51642CCFD952007BB8CA /* FavoriteMovieRepository.swift */,
 				FC639D392CD64C13007F4FB8 /* KinopoiskRepository.swift */,
+				FC639D5D2CD6ADA5007F4FB8 /* ReviewsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 				FCFCD3F82CD3EC4A0062E472 /* MovieDetailsModel.swift */,
 				FC639D352CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift */,
 				FC639D3F2CD65843007F4FB8 /* PersonByNameResponse.swift */,
+				FC639D5B2CD6AC51007F4FB8 /* ReviewRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -868,6 +874,7 @@
 				FC399CF42CCC008000AAE6DD /* LogoutUseCase.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
 				FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */,
+				FC639D5C2CD6AC51007F4FB8 /* ReviewRequest.swift in Sources */,
 				FCE4493F2CD58DDB0023A257 /* FinanceBoxSUI.swift in Sources */,
 				FC639D402CD65843007F4FB8 /* PersonByNameResponse.swift in Sources */,
 				FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */,
@@ -918,6 +925,7 @@
 				FC1DC3AC2CC52DC200FF55F4 /* FeedViewModel.swift in Sources */,
 				FCD6ACEE2CD5703100DF87E9 /* RatingBoxSUI.swift in Sources */,
 				FC639D442CD659E7007F4FB8 /* GetPersonByNameUseCase.swift in Sources */,
+				FC639D5E2CD6ADA5007F4FB8 /* ReviewsRepository.swift in Sources */,
 				FC639D422CD65939007F4FB8 /* GetPersonByNameEndpoint.swift in Sources */,
 				FCED51612CCFD7A6007BB8CA /* AddMovieToFavoritesEndpoint.swift in Sources */,
 				FC1DC3B02CC5369D00FF55F4 /* MoviesPagedListEndpoint.swift in Sources */,
