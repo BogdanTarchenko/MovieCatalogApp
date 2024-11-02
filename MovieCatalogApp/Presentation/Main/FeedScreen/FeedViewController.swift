@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import SwiftUI
 
 final class FeedViewController: UIViewController {
     
@@ -22,6 +23,7 @@ final class FeedViewController: UIViewController {
     private let emptyMovieImageView = UIImageView()
     
     private var panGesture: UIPanGestureRecognizer!
+    private var tapGesture: UITapGestureRecognizer!
     
     init(viewModel: FeedViewModel) {
         self.viewModel = viewModel
@@ -40,13 +42,20 @@ final class FeedViewController: UIViewController {
         loadInitialMovies()
         setup()
         setupSwipeGestures()
+        setupTapGesture()
     }
     
-    // MARK: - Setup Swipe
+    // MARK: - Setup Swipe&Tap
     private func setupSwipeGestures() {
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         moviePoster.isUserInteractionEnabled = true
         moviePoster.addGestureRecognizer(panGesture)
+    }
+    
+    private func setupTapGesture() {
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(moviePosterTapped))
+        moviePoster.isUserInteractionEnabled = true
+        moviePoster.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - Swipe Handling
@@ -137,6 +146,20 @@ final class FeedViewController: UIViewController {
         UIView.animate(withDuration: Constants.Animation.duration) {
             self.moviePoster.transform = .identity
         }
+    }
+    
+    @objc private func moviePosterTapped() {
+        let movieDetailsViewModel = MovieDetailsViewModel(movieID: viewModel.currentMovieData.id)
+        movieDetailsViewModel.onDismiss = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+
+        let movieDetailsView = MovieDetailsView(viewModel: movieDetailsViewModel)
+        let hostingController = UIHostingController(rootView: movieDetailsView)
+        let navigationController = UINavigationController(rootViewController: hostingController)
+        navigationController.modalPresentationStyle = .fullScreen
+
+        self.present(navigationController, animated: true)
     }
     
     private func loadInitialMovies() {

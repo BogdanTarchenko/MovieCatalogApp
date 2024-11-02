@@ -10,6 +10,7 @@ import UIKit
 final class RandomMovieButton: UIButton {
     private let button = CustomButton(style: .gradient)
     private let diceImage = UIImageView(image: UIImage(named: "dice"))
+    var action: () -> Void = {}
     
     init(title: String) {
         super.init(frame: .zero)
@@ -24,6 +25,8 @@ final class RandomMovieButton: UIButton {
     
     private func setupButton() {
         addSubview(button)
+        
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         button.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -52,5 +55,9 @@ final class RandomMovieButton: UIButton {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(16)
         }
+    }
+    
+    @objc private func buttonTapped() {
+        action()
     }
 }
