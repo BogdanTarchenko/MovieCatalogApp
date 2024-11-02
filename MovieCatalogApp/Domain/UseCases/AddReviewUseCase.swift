@@ -26,6 +26,7 @@ class AddReviewUseCaseImpl: AddReviewUseCase {
         do {
             try await repository.addReview(movieID: movieID, request: request)
         } catch {
+            print(error.localizedDescription)
             throw error
         }
     }

@@ -18,7 +18,7 @@ struct EditReviewEndpoint: APIEndpoint {
     let reviewID: String
     
     var path: String {
-        return "/api/movies/\(movieID)/review/\(reviewID)/edit"
+        return "/api/movie/\(movieID)/review/\(reviewID)/edit"
     }
     
     var method: Alamofire.HTTPMethod {

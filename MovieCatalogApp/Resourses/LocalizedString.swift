@@ -210,6 +210,10 @@ enum LocalizedString {
                 return NSLocalizedString("addReviewTitle", comment: SC.empty)
             }
             
+            static var editReviewTitle: String {
+                return NSLocalizedString("editReviewTitle", comment: SC.empty)
+            }
+            
             static var anonymusUser: String {
                 return NSLocalizedString("anonymusUser", comment: SC.empty)
             }

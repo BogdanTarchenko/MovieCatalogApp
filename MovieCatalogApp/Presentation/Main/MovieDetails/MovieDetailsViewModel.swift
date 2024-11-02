@@ -15,6 +15,7 @@ class MovieDetailsViewModel: ObservableObject {
     @Published var isFavorite: Bool = false
     @Published var kinopoiskData = KinopoiskDetails()
     @Published var personData = PersonDetails()
+    @Published var currentUserId: String = SC.empty
     
     private let getMovieDetailsUseCase: GetMovieDetailsUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
@@ -25,6 +26,7 @@ class MovieDetailsViewModel: ObservableObject {
     private let addReviewUseCase: AddReviewUseCase
     private let editReviewUseCase: EditReviewUseCase
     private let deleteReviewUseCase: DeleteReviewUseCase
+    private let getUserProfileUseCase: GetUserDataUseCase
     
     var onDidLoadMovieDetails: ((MovieDetails) -> Void)?
     var onDidLoadKinopoiskDetails: ((KinopoiskDetails) -> Void)?
@@ -46,6 +48,7 @@ class MovieDetailsViewModel: ObservableObject {
         self.addReviewUseCase = AddReviewUseCaseImpl.create()
         self.editReviewUseCase = EditReviewUseCaseImpl.create()
         self.deleteReviewUseCase = DeleteReviewUseCaseImpl.create()
+        self.getUserProfileUseCase = GetUserDataUseCaseImpl.create()
         
         onDidLoad()
     }
@@ -57,9 +60,11 @@ class MovieDetailsViewModel: ObservableObject {
             do {
                 async let movieDetailsResult = fetchMovieDetails(movieID: movieID)
                 async let favoritesMovieDataResult = fetchFavoritesMovieData()
+                async let profileResult = getUserProfileUseCase.execute()
                 
                 let details = try await movieDetailsResult
                 let favorites = try await favoritesMovieDataResult
+                let profile = try await profileResult
                 
                 let kinopoiskDetails = try await fetchKinopoiskDetails(yearFrom: details.year, yearTo: details.year, keyword: details.name)
                 
@@ -77,6 +82,7 @@ class MovieDetailsViewModel: ObservableObject {
                     self.movieDetails = details
                     self.kinopoiskData = kinopoiskDetails
                     self.personData = personDetails
+                    self.currentUserId = profile.id
                     
                     Task { @MainActor in
                         onDidLoadKinopoiskDetails?(kinopoiskData)
@@ -110,6 +116,19 @@ class MovieDetailsViewModel: ObservableObject {
         Task {
             try await deleteMovieFromFavoritesUseCase.execute(movieID: movieID)
         }
+    }
+    
+    func addReview(request: ReviewRequest) async throws {
+        try await addReviewUseCase.execute(movieID: movieID, request: request)
+    }
+
+    
+    func editReview(reviewID: String, request: ReviewRequest) async throws {
+        try await editReviewUseCase.execute(movieID: movieID, reviewID: reviewID, request: request)
+    }
+    
+    func deleteReview(reviewID: String) async throws {
+        try await deleteReviewUseCase.execute(movieID: movieID, reviewID: reviewID)
     }
     
     func dismissView() {
@@ -146,7 +165,7 @@ class MovieDetailsViewModel: ObservableObject {
         return mapToFavoritesMovieData(movies)
     }
     
-    private func fetchMovieDetails(movieID: String) async throws -> MovieDetails {
+    func fetchMovieDetails(movieID: String) async throws -> MovieDetails {
         let movie = try await getMovieDetailsUseCase.execute(movieID: movieID)
         return mapToMovieDetails(movie)
     }

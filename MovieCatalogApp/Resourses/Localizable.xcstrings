@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%lld" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "addReviewTitle" : {
       "localizations" : {
@@ -142,6 +149,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сборы в мире"
+          }
+        }
+      }
+    },
+    "editReviewTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить отзыв"
           }
         }
       }

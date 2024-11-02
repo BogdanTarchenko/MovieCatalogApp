@@ -18,7 +18,7 @@ struct DeleteReviewEndpoint: APIEndpoint {
     let reviewID: String
     
     var path: String {
-        return "/api/movies/\(movieID)/review/\(reviewID)/delete"
+        return "/api/movie/\(movieID)/review/\(reviewID)/delete"
     }
     
     var method: Alamofire.HTTPMethod {

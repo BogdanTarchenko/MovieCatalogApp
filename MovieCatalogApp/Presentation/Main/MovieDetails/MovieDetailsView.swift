@@ -32,9 +32,13 @@ struct MovieDetailsView: View {
     @State private var directorURL: String = SC.empty
     
     @State private var currentReviewIndex: Int = 0
-    
     @State private var showCustomAlert = false
-    
+    @State private var isEditingReview = false
+
+    var hasSubmittedReview: Bool {
+        viewModel.movieDetails?.reviews.contains { $0.author.userId == viewModel.currentUserId } ?? false
+    }
+
     var body: some View {
         ZStack(alignment: .top) {
             Color(.background)
@@ -72,14 +76,39 @@ struct MovieDetailsView: View {
                     
                     if !(viewModel.movieDetails?.reviews.isEmpty ?? true) {
                         let currentReview = viewModel.movieDetails?.reviews[currentReviewIndex]
+                        let currentReviewId = currentReview?.id ?? SC.empty
+                        
+                        let avatarURL = currentReview?.isAnonymous == true && currentReview?.author.userId != viewModel.currentUserId
+                        ? Constants.defaultAvatarLink
+                        : currentReview?.author.avatar ?? Constants.defaultAvatarLink
+                        
+                        let authorName = currentReview?.isAnonymous == true && currentReview?.author.userId != viewModel.currentUserId
+                        ? Constants.anonymusUser
+                        : currentReview?.author.nickName ?? Constants.anonymusUser
+                        
                         ReviewContainerView(
-                            avatarURL: currentReview?.author.avatar ?? Constants.defaultAvatarLink,
-                            authorName: currentReview?.author.nickName ?? Constants.anonymusUser,
+                            avatarURL: avatarURL,
+                            authorName: authorName,
                             date: formatDate(currentReview?.createDateTime),
                             mark: "\(currentReview?.rating ?? 1)",
                             review: currentReview?.reviewText ?? SC.empty,
+                            isOwnReview: currentReview?.author.userId == viewModel.currentUserId,
+                            hasSubmittedReview: hasSubmittedReview,
                             action: {
                                 showCustomAlert = true
+                                isEditingReview = false
+                            },
+                            deleteAction: {
+                                Task {
+                                    currentReviewIndex -= 1
+                                    try await viewModel.deleteReview(reviewID: currentReviewId)
+                                    let updatedDetails = try await viewModel.fetchMovieDetails(movieID: viewModel.movieID)
+                                    viewModel.movieDetails = updatedDetails
+                                }
+                            },
+                            editAction: {
+                                showCustomAlert = true
+                                isEditingReview = true
                             },
                             backAction: {
                                 if currentReviewIndex > 0 {
@@ -94,11 +123,13 @@ struct MovieDetailsView: View {
                             isFirstReview: currentReviewIndex == 0,
                             isLastReview: currentReviewIndex == (viewModel.movieDetails?.reviews.count ?? 0) - 1
                         )
+                        
                     } else {
                         Text(LocalizedString.MovieDetails.Reviews.emptyReviews)
                             .font(.custom("Manrope-Regular", size: 14))
                             .foregroundColor(.gray)
                     }
+                    
                 }
                 .padding([.leading, .trailing], 24)
             }
@@ -158,9 +189,29 @@ struct MovieDetailsView: View {
                             showCustomAlert = false
                         }
                     
-                    ReviewAlertView(isPresented: $showCustomAlert, action: {} )
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity)
+                    let currentReview = viewModel.movieDetails?.reviews[currentReviewIndex]
+                    let currentReviewId = currentReview?.id ?? SC.empty
+                    ReviewAlertView(
+                        isPresented: $showCustomAlert,
+                        action: { rating, reviewText, isAnonymous in
+                            Task {
+                                if isEditingReview {
+                                    let reviewUpdate = ReviewRequest(reviewText: reviewText, rating: rating, isAnonymous: isAnonymous)
+                                    try await viewModel.editReview(reviewID: currentReviewId, request: reviewUpdate)
+                                } else {
+                                    try await viewModel.addReview(request: ReviewRequest(reviewText: reviewText, rating: rating, isAnonymous: isAnonymous))
+                                }
+                                let updatedDetails = try await viewModel.fetchMovieDetails(movieID: viewModel.movieID)
+                                viewModel.movieDetails = updatedDetails
+                                currentReviewIndex = (viewModel.movieDetails?.reviews.count ?? 0) - 1
+                            }
+                        },
+                        existingRating: isEditingReview ? currentReview?.rating : nil,
+                        existingReviewText: isEditingReview ? currentReview?.reviewText : nil,
+                        existingIsAnonymous: isEditingReview ? currentReview?.isAnonymous : nil
+                    )
+                    .padding(.horizontal, 24)
+                    .frame(maxWidth: .infinity)
                 }
             }
         }

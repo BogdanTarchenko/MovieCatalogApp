@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 
 struct ReviewContainerView: View {
-    
     var title: String = LocalizedString.MovieDetails.Reviews.reviewsTitle
     
     var avatarURL: String
@@ -18,7 +17,11 @@ struct ReviewContainerView: View {
     var mark: String
     var review: String
     
+    var isOwnReview: Bool
+    var hasSubmittedReview: Bool
     var action: () -> Void
+    var deleteAction: () -> Void
+    var editAction: () -> Void
     var backAction: () -> Void
     var nextAction: () -> Void
     
@@ -39,7 +42,7 @@ struct ReviewContainerView: View {
             ReviewsItemView(avatarURL: avatarURL, authorName: authorName, date: date, mark: mark, review: review)
             
             HStack(spacing: 24) {
-                AddReviewButtonView(action: action)
+                AddReviewButtonView(isOwnReview: isOwnReview, hasSubmittedReview: hasSubmittedReview, action: action, deleteAction: deleteAction, editAction: editAction)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 ReviewPickerView(backAction: backAction, nextAction: nextAction, isFirstReview: isFirstReview, isLastReview: isLastReview)
             }
@@ -135,33 +138,77 @@ struct MarkItemView: View {
 }
 
 struct AddReviewButtonView: View {
-    var title: String = LocalizedString.MovieDetails.Reviews.addReviewTitle
+    var isOwnReview: Bool
+    var hasSubmittedReview: Bool
+    var deleteButton: UIImage = UIImage(named: "bin")!
     var action: () -> Void
-    
+    var deleteAction: () -> Void
+    var editAction: () -> Void
+
     var body: some View {
-        Button(action: {
-            action()
-        }) {
-            Text(title)
-                .font(.custom("Manrope-Bold", size: 14))
-                .foregroundStyle(.textDefault)
-                .padding(.vertical, 10)
+        HStack(spacing: 4) {
+            if (!hasSubmittedReview) {
+                Button(action: {
+                    action()
+                }) {
+                    Text(LocalizedString.MovieDetails.Reviews.addReviewTitle)
+                        .font(.custom("Manrope-Bold", size: 14))
+                        .foregroundStyle(.textDefault)
+                        .padding(.vertical, 10)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [
+                                    Color(red: 223/255, green: 40/255, blue: 0/255),
+                                    Color(red: 255/255, green: 102/255, blue: 51/255)
+                                ]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(8)
+                }
                 .frame(maxWidth: .infinity)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [
-                            Color(red: 223/255, green: 40/255, blue: 0/255),
-                            Color(red: 255/255, green: 102/255, blue: 51/255)
-                        ]),
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
-                .cornerRadius(8)
+            }
+            
+            if (isOwnReview) {
+                Button(action: {
+                    editAction()
+                }) {
+                    Text(isOwnReview ? LocalizedString.MovieDetails.Reviews.editReviewTitle : LocalizedString.MovieDetails.Reviews.addReviewTitle)
+                        .font(.custom("Manrope-Bold", size: 14))
+                        .foregroundStyle(.textDefault)
+                        .padding(.vertical, 10)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [
+                                    Color(red: 223/255, green: 40/255, blue: 0/255),
+                                    Color(red: 255/255, green: 102/255, blue: 51/255)
+                                ]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(8)
+                }
+                .frame(maxWidth: .infinity)
+                
+                Button(action: {
+                    deleteAction()
+                }) {
+                    Image(uiImage: deleteButton)
+                        .renderingMode(.template)
+                        .padding(8)
+                        .background(Color.dark)
+                        .foregroundStyle(Color.textDefault)
+                        .cornerRadius(8)
+                }
+            }
         }
-        .frame(maxWidth: .infinity)
     }
 }
+
 
 struct ReviewPickerView: View {
     var backButton: UIImage = UIImage(named: "review_back_button")!
@@ -185,6 +232,7 @@ struct ReviewPickerView: View {
                     .foregroundStyle(isFirstReview ? Color.grayFaded : Color.textDefault)
                     .cornerRadius(8)
             }
+            .disabled(isFirstReview)
             
             Button(action: {
                 nextAction()
@@ -196,6 +244,7 @@ struct ReviewPickerView: View {
                     .foregroundStyle(isLastReview ? Color.grayFaded : Color.textDefault)
                     .cornerRadius(8)
             }
+            .disabled(isLastReview)
         }
     }
 }
