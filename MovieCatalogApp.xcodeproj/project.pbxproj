@@ -65,6 +65,10 @@
 		FC639D4A2CD68AA8007F4FB8 /* CustomAlertSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D492CD68AA8007F4FB8 /* CustomAlertSUI.swift */; };
 		FC639D4C2CD6920A007F4FB8 /* GradientToggleStyleSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D4B2CD6920A007F4FB8 /* GradientToggleStyleSUI.swift */; };
 		FC639D4E2CD6966A007F4FB8 /* CustomTextFieldSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D4D2CD6966A007F4FB8 /* CustomTextFieldSUI.swift */; };
+		FC639D542CD6A9EA007F4FB8 /* ReviewsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D532CD6A9EA007F4FB8 /* ReviewsRepositoryImpl.swift */; };
+		FC639D562CD6A9FE007F4FB8 /* AddReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D552CD6A9FE007F4FB8 /* AddReviewEndpoint.swift */; };
+		FC639D582CD6AA6C007F4FB8 /* EditReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D572CD6AA6C007F4FB8 /* EditReviewEndpoint.swift */; };
+		FC639D5A2CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D592CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift */; };
 		FC7715752CCE86830095284E /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715742CCE86820095284E /* MoviesViewModel.swift */; };
 		FC7715772CCE87E50095284E /* StoriesMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715762CCE87E50095284E /* StoriesMovieData.swift */; };
 		FC7715792CCE89B70095284E /* GetMoviesForStoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */; };
@@ -204,6 +208,10 @@
 		FC639D492CD68AA8007F4FB8 /* CustomAlertSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertSUI.swift; sourceTree = "<group>"; };
 		FC639D4B2CD6920A007F4FB8 /* GradientToggleStyleSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientToggleStyleSUI.swift; sourceTree = "<group>"; };
 		FC639D4D2CD6966A007F4FB8 /* CustomTextFieldSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldSUI.swift; sourceTree = "<group>"; };
+		FC639D532CD6A9EA007F4FB8 /* ReviewsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRepositoryImpl.swift; sourceTree = "<group>"; };
+		FC639D552CD6A9FE007F4FB8 /* AddReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewEndpoint.swift; sourceTree = "<group>"; };
+		FC639D572CD6AA6C007F4FB8 /* EditReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReviewEndpoint.swift; sourceTree = "<group>"; };
+		FC639D592CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteReviewEndpoint.swift; sourceTree = "<group>"; };
 		FC7715742CCE86820095284E /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		FC7715762CCE87E50095284E /* StoriesMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMovieData.swift; sourceTree = "<group>"; };
 		FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesForStoriesUseCase.swift; sourceTree = "<group>"; };
@@ -408,6 +416,9 @@
 				FCFCD3FE2CD3F5EE0062E472 /* GetMovieDetailsEndpoint.swift */,
 				FC639D332CD649A2007F4FB8 /* GetKinopoiskDetailsEndpoint.swift */,
 				FC639D412CD65939007F4FB8 /* GetPersonByNameEndpoint.swift */,
+				FC639D552CD6A9FE007F4FB8 /* AddReviewEndpoint.swift */,
+				FC639D572CD6AA6C007F4FB8 /* EditReviewEndpoint.swift */,
+				FC639D592CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -570,6 +581,7 @@
 				FCAEA5362CCD1CD400A3D97E /* ChangeUserDataRepositoryImpl.swift */,
 				FCED51662CCFD9FA007BB8CA /* FavoriteMoviesRepositoryImpl.swift */,
 				FC639D372CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift */,
+				FC639D532CD6A9EA007F4FB8 /* ReviewsRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -826,6 +838,7 @@
 				FC639D4A2CD68AA8007F4FB8 /* CustomAlertSUI.swift in Sources */,
 				FCED515D2CCFBDC0007BB8CA /* MovieCell.swift in Sources */,
 				FCF7D8E82CB99EEB00A4F82C /* UIView+Extensions.swift in Sources */,
+				FC639D5A2CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift in Sources */,
 				FCED51632CCFD91B007BB8CA /* AddMovieToFavoritesUseCase.swift in Sources */,
 				FCF7D8E32CB98DF100A4F82C /* SignUpViewController.swift in Sources */,
 				FCAEA5332CCD1C6E00A3D97E /* UserDataChangeEndpoint.swift in Sources */,
@@ -850,6 +863,8 @@
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
 				FCD6ACEC2CD56E7600DF87E9 /* GrayBoxSUI.swift in Sources */,
 				FC77157E2CCEC26F0095284E /* SegmentedProgressBar.swift in Sources */,
+				FC639D562CD6A9FE007F4FB8 /* AddReviewEndpoint.swift in Sources */,
+				FC639D582CD6AA6C007F4FB8 /* EditReviewEndpoint.swift in Sources */,
 				FC399CF42CCC008000AAE6DD /* LogoutUseCase.swift in Sources */,
 				FCF7D8A32CB96D7100A4F82C /* SceneDelegate.swift in Sources */,
 				FC1DC3AE2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift in Sources */,
@@ -864,6 +879,7 @@
 				FCAEA5372CCD1CD400A3D97E /* ChangeUserDataRepositoryImpl.swift in Sources */,
 				FCED51712CD01285007BB8CA /* MovieListResponseModel.swift in Sources */,
 				FCAEA53F2CCD556500A3D97E /* GradientLabel.swift in Sources */,
+				FC639D542CD6A9EA007F4FB8 /* ReviewsRepositoryImpl.swift in Sources */,
 				FC639D3A2CD64C13007F4FB8 /* KinopoiskRepository.swift in Sources */,
 				FCAEA5312CCCDE5A00A3D97E /* DayTime.swift in Sources */,
 				FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */,

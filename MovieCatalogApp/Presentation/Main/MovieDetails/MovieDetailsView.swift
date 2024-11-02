@@ -161,7 +161,6 @@ struct MovieDetailsView: View {
                     ReviewAlertView(isPresented: $showCustomAlert, action: {} )
                         .padding(.horizontal, 24)
                         .frame(maxWidth: .infinity)
-                        .transition(.scale)
                 }
             }
         }
