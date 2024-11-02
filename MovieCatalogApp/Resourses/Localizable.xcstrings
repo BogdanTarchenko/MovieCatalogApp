@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "addReviewTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить отзыв"
+          }
+        }
+      }
+    },
     "ageTitle" : {
       "localizations" : {
         "ru" : {
@@ -37,6 +47,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Все фильмы"
+          }
+        }
+      }
+    },
+    "anonymusUser" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анонимный пользователь"
           }
         }
       }
@@ -131,6 +151,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Фильмы закончились"
+          }
+        }
+      }
+    },
+    "emptyReviews" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет отзывов"
           }
         }
       }
@@ -429,6 +459,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Подтвердите пароль"
+          }
+        }
+      }
+    },
+    "reviewsTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отзывы"
           }
         }
       }

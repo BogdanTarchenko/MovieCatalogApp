@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DirectorContainerView: View {
     var title: String = LocalizedString.MovieDetails.directorTitle
     var name: String
-    var avatar: UIImage
-    
+    var avatar: String
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 4) {
-                Image(uiImage: UIImage(named: "director")!)
-                    .tint(.gray)
+                if let directorImage = UIImage(named: "director") {
+                    Image(uiImage: directorImage)
+                        .tint(.gray)
+                }
                 Text(title)
                     .font(.custom("Manrope-Medium", size: 16))
                     .foregroundStyle(.textDefault)
@@ -33,11 +36,16 @@ struct DirectorContainerView: View {
 
 struct DirectorItemView: View {
     var name: String
-    var avatar: UIImage
-    
+    var avatar: String
+
     var body: some View {
         HStack(spacing: 8) {
-            Image(uiImage: avatar)
+            KFImage(URL(string: avatar))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 48, height: 48)
+                .clipShape(Circle())
+            
             Text(name)
                 .font(.custom("Manrope-Medium", size: 16))
                 .foregroundStyle(.textDefault)
@@ -49,3 +57,4 @@ struct DirectorItemView: View {
         .cornerRadius(8)
     }
 }
+

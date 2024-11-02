@@ -29,7 +29,10 @@ struct MovieDetailsView: View {
     @State private var ratingKinopoisk: String = SC.empty
     @State private var ratingImdb: String = SC.empty
     @State private var kinopoiskId: Int = 0
-
+    @State private var directorURL: String = SC.empty
+    
+    @State private var currentReviewIndex: Int = 0
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color(.background)
@@ -49,7 +52,7 @@ struct MovieDetailsView: View {
                         .preference(key: ScrollOffsetKey.self, value: geometry.frame(in: .global).minY)
                 }
                 .frame(height: 0)
-
+                
                 VStack(spacing: 16) {
                     Spacer(minLength: 260)
                     
@@ -61,9 +64,40 @@ struct MovieDetailsView: View {
                     GrayBoxView(title: description)
                     RatingContainerView(rating: [averageRating, ratingKinopoisk , ratingImdb])
                     InformationContainerView(itemInformations: [country, age, time, year])
-                    DirectorContainerView(name: directorName, avatar: UIImage())
+                    DirectorContainerView(name: directorName, avatar: directorURL)
                     GenresContainerView(genres: genres)
                     FinanceContainerView(itemInformations: [budget, earnings])
+                    
+                    if !(viewModel.movieDetails?.reviews.isEmpty ?? true) {
+                        let currentReview = viewModel.movieDetails?.reviews[currentReviewIndex]
+                        ReviewContainerView(
+                            avatarURL: currentReview?.author.avatar ?? Constants.defaultAvatarLink,
+                            authorName: currentReview?.author.nickName ?? Constants.anonymusUser,
+                            date: formatDate(currentReview?.createDateTime),
+                            mark: "\(currentReview?.rating ?? 1)",
+                            review: currentReview?.reviewText ?? SC.empty,
+                            action: {
+                                // Добавление отзывов крч (алерт открыть)
+                            },
+                            backAction: {
+                                if currentReviewIndex > 0 {
+                                    currentReviewIndex -= 1
+                                }
+                            },
+                            nextAction: {
+                                if currentReviewIndex < (viewModel.movieDetails?.reviews.count ?? 0) - 1 {
+                                    currentReviewIndex += 1
+                                }
+                            },
+                            isFirstReview: currentReviewIndex == 0,
+                            isLastReview: currentReviewIndex == (viewModel.movieDetails?.reviews.count ?? 0) - 1
+                        )
+                    } else {
+                        Text(LocalizedString.MovieDetails.Reviews.emptyReviews)
+                            .font(.custom("Manrope-Regular", size: 14))
+                            .foregroundColor(.gray)
+                    }
+
                 }
                 .padding([.leading, .trailing], 24)
             }
@@ -159,6 +193,10 @@ extension MovieDetailsView {
             ratingImdb = "\(kinopoiskDetails.ratingImdb)"
         }
         
+        viewModel.onDidLoadPersonDetails = { personDetails in
+            directorURL = personDetails.posterURL
+        }
+        
         viewModel.onDidStartLoad = {
             isLoading = true
         }
@@ -177,21 +215,42 @@ extension MovieDetailsView {
         return "\(hours) ч \(remainingMinutes) мин"
     }
     
-    func formatBudget(budget: Int) -> String {
+    private func formatBudget(budget: Int) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = SC.space
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 0
-
+        
         let formattedNumber = formatter.string(from: NSNumber(value: budget)) ?? "0"
         return "$ \(formattedNumber)"
     }
     
-    func calculateAverageRating(from reviews: [ReviewDetails]) -> String {
+    private func calculateAverageRating(from reviews: [ReviewDetails]) -> String {
         guard !reviews.isEmpty else { return "0.0" }
         let totalRating = reviews.reduce(0) { $0 + $1.rating }
         let average = Double(totalRating) / Double(reviews.count)
         return String(format: "%.1f", average)
+    }
+    
+    private func formatDate(_ dateString: String?) -> String {
+        guard let dateString = dateString else { return SC.empty }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "d MMMM yyyy"
+            dateFormatter.locale = Locale(identifier: "ru")
+            return dateFormatter.string(from: date)
+        }
+        return SC.empty
+    }
+}
+
+extension MovieDetailsView {
+    enum Constants {
+        static var defaultAvatarLink: String = "https://s3-alpha-sig.figma.com/img/a92b/ba97/a13937d71ea4ab29b068a92fd325aa74?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NChlGzcfGZDhcEKxSkCuF2s07eic2KBzFrFDqDNR-cLTSRdLnoGdp3lgKFZJ70jgBCxUWz6J7LE~nBKRbeBagiPAx6PEpRfiaTPv5B5YMnrjkP3m9OshStQuDb7LJyufIqH1swKkFOywX7Wo3uEwUtueMagv6J~UzRAPWoxqvgJaRbi2uET-TmmLY4bCcB8tqfvPaCrjKm0ajPGWlpP7TzTfEuZbulvT2MgKpg5taY4z-iXg6Mrww8Xge05ioMU5V4raAnRNpOgFyRGbq3ZZkT1LsKjQ4HLyLWxycmaukA1zWwLcm7OfsDlOx~OB3Uwkl04nTnIxe8NfaOEwQSb1FQ__"
+        
+        static var anonymusUser: String = LocalizedString.MovieDetails.Reviews.anonymusUser
     }
 }

@@ -14,15 +14,18 @@ class MovieDetailsViewModel: ObservableObject {
     @Published var favoritesMovieData = [FavoritesMovieData]()
     @Published var isFavorite: Bool = false
     @Published var kinopoiskData = KinopoiskDetails()
+    @Published var personData = PersonDetails()
     
     private let getMovieDetailsUseCase: GetMovieDetailsUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
     private let addMovieToFavoritesUseCase: AddMovieToFavoritesUseCase
     private let deleteMovieFromFavoritesUseCase: DeleteMovieFromFavoritesUseCase
     private let getKinopoiskDetailsUseCase: GetKinopoiskDetailsUseCase
+    private let getPersonDetailsUseCase: GetPersonByNameUseCase
     
     var onDidLoadMovieDetails: ((MovieDetails) -> Void)?
     var onDidLoadKinopoiskDetails: ((KinopoiskDetails) -> Void)?
+    var onDidLoadPersonDetails: ((PersonDetails) -> Void)?
     var onDidStartLoad: (() -> Void)?
     var onDidFinishLoad: (() -> Void)?
     
@@ -36,6 +39,7 @@ class MovieDetailsViewModel: ObservableObject {
         self.addMovieToFavoritesUseCase = AddMovieToFavoritesUseCaseImpl.create()
         self.deleteMovieFromFavoritesUseCase = DeleteMovieFromFavoritesUseCaseImpl.create()
         self.getKinopoiskDetailsUseCase = GetKinopoiskDetailsUseCaseImpl.create()
+        self.getPersonDetailsUseCase = GetPersonByNameUseCaseImpl.create()
         
         onDidLoad()
     }
@@ -53,16 +57,30 @@ class MovieDetailsViewModel: ObservableObject {
                 
                 let kinopoiskDetails = try await fetchKinopoiskDetails(yearFrom: details.year, yearTo: details.year, keyword: details.name)
                 
+                let singleDirector: String
+                if let firstCommaIndex = details.director.firstIndex(of: ",") {
+                    singleDirector = String(details.director[..<firstCommaIndex]).trimmingCharacters(in: .whitespaces)
+                } else {
+                    singleDirector = details.director.trimmingCharacters(in: .whitespaces)
+                }
+                let personDetails = try await fetchPersonDetails(name: singleDirector)
+                
                 await MainActor.run {
                     self.favoritesMovieData = favorites
                     self.isFavorite = favorites.contains { $0.id == movieID }
                     self.movieDetails = details
                     self.kinopoiskData = kinopoiskDetails
-                    notifyMovieDetailsLoaded(details)
+                    self.personData = personDetails
                     
                     Task { @MainActor in
                         onDidLoadKinopoiskDetails?(kinopoiskData)
                     }
+                    
+                    Task { @MainActor in
+                        onDidLoadPersonDetails?(personDetails)
+                    }
+                    
+                    notifyMovieDetailsLoaded(details)
                     
                     notifyLoadingSuccess()
                 }
@@ -132,6 +150,11 @@ class MovieDetailsViewModel: ObservableObject {
         return mapToKinopoiskDetails(movie)
     }
     
+    private func fetchPersonDetails(name: String) async throws -> PersonDetails {
+        let person = try await getPersonDetailsUseCase.execute(name: name)
+        return mapToPersonDetails(person)
+    }
+    
     private func mapToFavoritesMovieData(_ movies: [MovieElementModel]) -> [FavoritesMovieData] {
         return movies.map { movie in
             FavoritesMovieData(
@@ -157,8 +180,8 @@ class MovieDetailsViewModel: ObservableObject {
                 createDateTime: $0.createDateTime,
                 author: AuthorDetails(
                     userId: $0.author.userId,
-                    nickName: $0.author.nickName ?? SC.empty,
-                    avatar: $0.author.avatar ?? SC.empty
+                    nickName: $0.author.nickName ?? Constants.anonymusUser,
+                    avatar: $0.author.avatar ?? Constants.avatarLink
                 )
             ) } ?? [],
             time: movie.time,
@@ -177,5 +200,19 @@ class MovieDetailsViewModel: ObservableObject {
             ratingKinoposik: movie.items.first?.ratingKinopoisk ?? 0,
             ratingImdb: movie.items.first?.ratingImdb ?? 0
         )
+    }
+    
+    private func mapToPersonDetails(_ person: PersonByNameResponse) -> PersonDetails {
+        return PersonDetails(
+            posterURL: person.items.first?.posterUrl ?? SC.empty
+        )
+    }
+}
+
+extension MovieDetailsViewModel {
+    enum Constants {
+        static var avatarLink: String = "https://s3-alpha-sig.figma.com/img/a92b/ba97/a13937d71ea4ab29b068a92fd325aa74?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NChlGzcfGZDhcEKxSkCuF2s07eic2KBzFrFDqDNR-cLTSRdLnoGdp3lgKFZJ70jgBCxUWz6J7LE~nBKRbeBagiPAx6PEpRfiaTPv5B5YMnrjkP3m9OshStQuDb7LJyufIqH1swKkFOywX7Wo3uEwUtueMagv6J~UzRAPWoxqvgJaRbi2uET-TmmLY4bCcB8tqfvPaCrjKm0ajPGWlpP7TzTfEuZbulvT2MgKpg5taY4z-iXg6Mrww8Xge05ioMU5V4raAnRNpOgFyRGbq3ZZkT1LsKjQ4HLyLWxycmaukA1zWwLcm7OfsDlOx~OB3Uwkl04nTnIxe8NfaOEwQSb1FQ__"
+        
+        static var anonymusUser: String = LocalizedString.MovieDetails.Reviews.anonymusUser
     }
 }

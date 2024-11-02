@@ -1,5 +1,5 @@
 //
-//  GetKinopoiskDetails.swift
+//  GetPersonByNameEndpoint.swift
 //  MovieCatalogApp
 //
 //  Created by Богдан Тарченко on 02.11.2024.
@@ -7,15 +7,13 @@
 
 import Alamofire
 
-struct GetKinopoiskDetailsEndpoint: APIEndpoint {
+struct GetPersonByNameEndpoint: APIEndpoint {
     
-    let yearFrom: Int
-    let yearTo: Int
-    let keyword: String
+    let name: String
     
     var path: String {
-        let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? SC.empty
-        return "/api/v2.2/films?yearFrom=\(yearFrom)&yearTo=\(yearTo)&keyword=\(encodedKeyword)"
+        let encodedName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? SC.empty
+        return "/api/v1/persons?name=\(encodedName)"
     }
     
     var method: Alamofire.HTTPMethod {

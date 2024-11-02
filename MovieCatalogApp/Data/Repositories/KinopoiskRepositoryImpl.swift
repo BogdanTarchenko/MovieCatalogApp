@@ -16,4 +16,9 @@ class KinoposkRepositoryImpl: KinopoiskRepository {
         let endpoint = GetKinopoiskDetailsEndpoint(yearFrom: yearFrom, yearTo: yearTo, keyword: keyword)
         return try await httpClient.sendRequest(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
     }
+    
+    func getDirectorPoster(name: String) async throws -> PersonByNameResponse {
+        let endpoint = GetPersonByNameEndpoint(name: name)
+        return try await httpClient.sendRequest(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
+    }
 }

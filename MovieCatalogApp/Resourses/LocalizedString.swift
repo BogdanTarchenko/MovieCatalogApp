@@ -200,5 +200,23 @@ enum LocalizedString {
                 return NSLocalizedString("earnings", comment: SC.empty)
             }
         }
+        
+        enum Reviews {
+            static var reviewsTitle: String {
+                return NSLocalizedString("reviewsTitle", comment: SC.empty)
+            }
+            
+            static var addReviewTitle: String {
+                return NSLocalizedString("addReviewTitle", comment: SC.empty)
+            }
+            
+            static var anonymusUser: String {
+                return NSLocalizedString("anonymusUser", comment: SC.empty)
+            }
+            
+            static var emptyReviews: String {
+                return NSLocalizedString("emptyReviews", comment: SC.empty)
+            }
+        }
     }
 }

@@ -7,4 +7,5 @@
 
 protocol KinopoiskRepository {
     func getKinopoiskDetails(yearFrom: Int, yearTo: Int, keyword: String) async throws -> FilmSearchByFiltersResponse
+    func getDirectorPoster(name: String) async throws -> PersonByNameResponse
 }
