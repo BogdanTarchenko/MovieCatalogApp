@@ -6,7 +6,7 @@
 //
 
 protocol EditReviewUseCase {
-    func execute(movieID: String, reviewID: String) async throws
+    func execute(movieID: String, reviewID: String, request: ReviewRequest) async throws
 }
 
 class EditReviewUseCaseImpl: EditReviewUseCase {
@@ -22,9 +22,9 @@ class EditReviewUseCaseImpl: EditReviewUseCase {
         return EditReviewUseCaseImpl(repository: repository)
     }
     
-    func execute(movieID: String, reviewID: String) async throws {
+    func execute(movieID: String, reviewID: String, request: ReviewRequest) async throws {
         do {
-            try await repository.editReview(movieID: movieID, reviewID: reviewID)
+            try await repository.editReview(movieID: movieID, reviewID: reviewID, request: request)
         } catch {
             throw error
         }
