@@ -22,6 +22,9 @@ class MovieDetailsViewModel: ObservableObject {
     private let deleteMovieFromFavoritesUseCase: DeleteMovieFromFavoritesUseCase
     private let getKinopoiskDetailsUseCase: GetKinopoiskDetailsUseCase
     private let getPersonDetailsUseCase: GetPersonByNameUseCase
+    private let addReviewUseCase: AddReviewUseCase
+    private let editReviewUseCase: EditReviewUseCase
+    private let deleteReviewUseCase: DeleteReviewUseCase
     
     var onDidLoadMovieDetails: ((MovieDetails) -> Void)?
     var onDidLoadKinopoiskDetails: ((KinopoiskDetails) -> Void)?
@@ -40,6 +43,9 @@ class MovieDetailsViewModel: ObservableObject {
         self.deleteMovieFromFavoritesUseCase = DeleteMovieFromFavoritesUseCaseImpl.create()
         self.getKinopoiskDetailsUseCase = GetKinopoiskDetailsUseCaseImpl.create()
         self.getPersonDetailsUseCase = GetPersonByNameUseCaseImpl.create()
+        self.addReviewUseCase = AddReviewUseCaseImpl.create()
+        self.editReviewUseCase = EditReviewUseCaseImpl.create()
+        self.deleteReviewUseCase = DeleteReviewUseCaseImpl.create()
         
         onDidLoad()
     }
