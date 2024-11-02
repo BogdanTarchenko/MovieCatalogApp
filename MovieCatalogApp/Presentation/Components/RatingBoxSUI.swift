@@ -21,7 +21,8 @@ struct RatingContainerView: View {
                 Spacer()
             }
             HStack(spacing: 8) {
-                RatingItemView(rating: rating[0], logo: UIImage(named: "small_logo")!)
+                MovieCatalogItemView(rating: rating[0], logo: UIImage(named: "small_logo")!)
+                    .frame(maxWidth: .infinity)
                 RatingItemView(rating: rating[1], logo: UIImage(named: "kinopoisk_logo")!)
                 RatingItemView(rating: rating[2], logo: UIImage(named: "imdb_logo")!)
             }
@@ -43,6 +44,25 @@ struct RatingItemView: View {
                 .font(.custom("Manrope-Bold", size: 20))
                 .foregroundStyle(.textDefault)
         }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(.dark)
+        .cornerRadius(8)
+    }
+}
+
+struct MovieCatalogItemView: View {
+    var rating: String
+    var logo: UIImage
+    
+    var body: some View {
+        HStack {
+            Image(uiImage: logo)
+            Text(rating)
+                .font(.custom("Manrope-Bold", size: 20))
+                .foregroundStyle(.textDefault)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(.dark)
