@@ -13,13 +13,16 @@ class MovieDetailsViewModel: ObservableObject {
     @Published var movieDetails: MovieDetails?
     @Published var favoritesMovieData = [FavoritesMovieData]()
     @Published var isFavorite: Bool = false
+    @Published var kinopoiskData = KinopoiskDetails()
     
     private let getMovieDetailsUseCase: GetMovieDetailsUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
     private let addMovieToFavoritesUseCase: AddMovieToFavoritesUseCase
     private let deleteMovieFromFavoritesUseCase: DeleteMovieFromFavoritesUseCase
+    private let getKinopoiskDetailsUseCase: GetKinopoiskDetailsUseCase
     
     var onDidLoadMovieDetails: ((MovieDetails) -> Void)?
+    var onDidLoadKinopoiskDetails: ((KinopoiskDetails) -> Void)?
     var onDidStartLoad: (() -> Void)?
     var onDidFinishLoad: (() -> Void)?
     
@@ -32,6 +35,7 @@ class MovieDetailsViewModel: ObservableObject {
         self.getFavoriteMoviesUseCase = GetFavoriteMoviesUseCaseImpl.create()
         self.addMovieToFavoritesUseCase = AddMovieToFavoritesUseCaseImpl.create()
         self.deleteMovieFromFavoritesUseCase = DeleteMovieFromFavoritesUseCaseImpl.create()
+        self.getKinopoiskDetailsUseCase = GetKinopoiskDetailsUseCaseImpl.create()
         
         onDidLoad()
     }
@@ -47,11 +51,19 @@ class MovieDetailsViewModel: ObservableObject {
                 let details = try await movieDetailsResult
                 let favorites = try await favoritesMovieDataResult
                 
+                let kinopoiskDetails = try await fetchKinopoiskDetails(yearFrom: details.year, yearTo: details.year, keyword: details.name)
+                
                 await MainActor.run {
                     self.favoritesMovieData = favorites
                     self.isFavorite = favorites.contains { $0.id == movieID }
                     self.movieDetails = details
+                    self.kinopoiskData = kinopoiskDetails
                     notifyMovieDetailsLoaded(details)
+                    
+                    Task { @MainActor in
+                        onDidLoadKinopoiskDetails?(kinopoiskData)
+                    }
+                    
                     notifyLoadingSuccess()
                 }
             } catch {
@@ -61,6 +73,8 @@ class MovieDetailsViewModel: ObservableObject {
             }
         }
     }
+
+
     
     func addMovieToFavorites() {
         Task {
@@ -113,6 +127,11 @@ class MovieDetailsViewModel: ObservableObject {
         return mapToMovieDetails(movie)
     }
     
+    private func fetchKinopoiskDetails(yearFrom: Int, yearTo: Int, keyword: String) async throws -> KinopoiskDetails {
+        let movie = try await getKinopoiskDetailsUseCase.execute(yearFrom: yearFrom, yearTo: yearTo, keyword: keyword)
+        return mapToKinopoiskDetails(movie)
+    }
+    
     private func mapToFavoritesMovieData(_ movies: [MovieElementModel]) -> [FavoritesMovieData] {
         return movies.map { movie in
             FavoritesMovieData(
@@ -149,6 +168,14 @@ class MovieDetailsViewModel: ObservableObject {
             budget: movie.budget ?? 0,
             fees: movie.fees ?? 0,
             ageLimit: movie.ageLimit
+        )
+    }
+    
+    private func mapToKinopoiskDetails(_ movie: FilmSearchByFiltersResponse) -> KinopoiskDetails {
+        return KinopoiskDetails(
+            kinopoiskId: movie.items.first?.kinopoiskId ?? 0,
+            ratingKinoposik: movie.items.first?.ratingKinopoisk ?? 0,
+            ratingImdb: movie.items.first?.ratingImdb ?? 0
         )
     }
 }

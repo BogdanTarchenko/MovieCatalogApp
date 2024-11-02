@@ -25,6 +25,10 @@ struct MovieDetailsView: View {
     @State private var isTitleVisible: Bool = false
     @State private var budget: String = SC.empty
     @State private var earnings: String = SC.empty
+    @State private var averageRating: String = SC.empty
+    @State private var ratingKinopoisk: String = SC.empty
+    @State private var ratingImdb: String = SC.empty
+    @State private var kinopoiskId: Int = 0
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -55,7 +59,7 @@ struct MovieDetailsView: View {
                                 .preference(key: MovieContainerVisibilityKey.self, value: geo.frame(in: .global).maxY)
                         })
                     GrayBoxView(title: description)
-                    RatingContainerView(rating: ["9.9","7.1","7.3"])
+                    RatingContainerView(rating: [averageRating, ratingKinopoisk , ratingImdb])
                     InformationContainerView(itemInformations: [country, age, time, year])
                     DirectorContainerView(name: directorName, avatar: UIImage())
                     GenresContainerView(genres: genres)
@@ -146,6 +150,13 @@ extension MovieDetailsView {
             genres = movieDetails.genres.map { $0.name }
             budget = formatBudget(budget: movieDetails.budget)
             earnings = formatBudget(budget: movieDetails.fees)
+            averageRating = calculateAverageRating(from: movieDetails.reviews)
+        }
+        
+        viewModel.onDidLoadKinopoiskDetails = { kinopoiskDetails in
+            kinopoiskId = kinopoiskDetails.kinopoiskId
+            ratingKinopoisk = "\(kinopoiskDetails.ratingKinoposik)"
+            ratingImdb = "\(kinopoiskDetails.ratingImdb)"
         }
         
         viewModel.onDidStartLoad = {
@@ -175,5 +186,12 @@ extension MovieDetailsView {
 
         let formattedNumber = formatter.string(from: NSNumber(value: budget)) ?? "0"
         return "$ \(formattedNumber)"
+    }
+    
+    func calculateAverageRating(from reviews: [ReviewDetails]) -> String {
+        guard !reviews.isEmpty else { return "0.0" }
+        let totalRating = reviews.reduce(0) { $0 + $1.rating }
+        let average = Double(totalRating) / Double(reviews.count)
+        return String(format: "%.1f", average)
     }
 }

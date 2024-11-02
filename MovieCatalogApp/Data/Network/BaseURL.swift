@@ -14,7 +14,7 @@ enum BaseURL {
         case .kreosoft:
             return "https://react-midterm.kreosoft.space"
         case .kinopoisk:
-            return "https://react-midterm.kreosoft.space"
+            return "https://kinopoiskapiunofficial.tech"
         }
     }
 }

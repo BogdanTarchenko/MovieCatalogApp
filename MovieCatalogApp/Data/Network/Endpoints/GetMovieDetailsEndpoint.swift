@@ -6,7 +6,6 @@
 //
 
 import Alamofire
-import KeychainAccess
 
 struct GetMovieDetailsEndpoint: APIEndpoint {
     

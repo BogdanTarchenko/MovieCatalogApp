@@ -51,6 +51,12 @@
 		FC399CF62CCC00CF00AAE6DD /* LogoutRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */; };
 		FC399CF82CCC015E00AAE6DD /* LogoutRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */; };
 		FC399CFA2CCC018D00AAE6DD /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */; };
+		FC639D342CD649A3007F4FB8 /* GetKinopoiskDetailsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D332CD649A2007F4FB8 /* GetKinopoiskDetailsEndpoint.swift */; };
+		FC639D362CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D352CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift */; };
+		FC639D382CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D372CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift */; };
+		FC639D3A2CD64C13007F4FB8 /* KinopoiskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D392CD64C13007F4FB8 /* KinopoiskRepository.swift */; };
+		FC639D3C2CD64CDF007F4FB8 /* GetKinopoiskDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D3B2CD64CDF007F4FB8 /* GetKinopoiskDetailsUseCase.swift */; };
+		FC639D3E2CD64D70007F4FB8 /* KinopoiskDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D3D2CD64D70007F4FB8 /* KinopoiskDetails.swift */; };
 		FC7715752CCE86830095284E /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715742CCE86820095284E /* MoviesViewModel.swift */; };
 		FC7715772CCE87E50095284E /* StoriesMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715762CCE87E50095284E /* StoriesMovieData.swift */; };
 		FC7715792CCE89B70095284E /* GetMoviesForStoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */; };
@@ -176,6 +182,12 @@
 		FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepository.swift; sourceTree = "<group>"; };
 		FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepositoryImpl.swift; sourceTree = "<group>"; };
 		FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpoint.swift; sourceTree = "<group>"; };
+		FC639D332CD649A2007F4FB8 /* GetKinopoiskDetailsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKinopoiskDetailsEndpoint.swift; sourceTree = "<group>"; };
+		FC639D352CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinopoiskDetailsModel.swift; sourceTree = "<group>"; };
+		FC639D372CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinopoiskRepositoryImpl.swift; sourceTree = "<group>"; };
+		FC639D392CD64C13007F4FB8 /* KinopoiskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinopoiskRepository.swift; sourceTree = "<group>"; };
+		FC639D3B2CD64CDF007F4FB8 /* GetKinopoiskDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKinopoiskDetailsUseCase.swift; sourceTree = "<group>"; };
+		FC639D3D2CD64D70007F4FB8 /* KinopoiskDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinopoiskDetails.swift; sourceTree = "<group>"; };
 		FC7715742CCE86820095284E /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		FC7715762CCE87E50095284E /* StoriesMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMovieData.swift; sourceTree = "<group>"; };
 		FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesForStoriesUseCase.swift; sourceTree = "<group>"; };
@@ -378,6 +390,7 @@
 				FCED51682CCFE10E007BB8CA /* GetFavoriteMoviesEndpoint.swift */,
 				FCFCD3ED2CD3A4F30062E472 /* DeleteMovieFromFavoritesEndpoint.swift */,
 				FCFCD3FE2CD3F5EE0062E472 /* GetMovieDetailsEndpoint.swift */,
+				FC639D332CD649A2007F4FB8 /* GetKinopoiskDetailsEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -477,6 +490,7 @@
 				FCED516C2CCFE2F4007BB8CA /* FavoritesMovieData.swift */,
 				FCF832EA2CD10E8500814992 /* AllMovieData.swift */,
 				FCFCD3FA2CD3ED7A0062E472 /* MovieDetails.swift */,
+				FC639D3D2CD64D70007F4FB8 /* KinopoiskDetails.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -496,6 +510,7 @@
 				FCF832E72CD1035300814992 /* GetAllMoviesUseCase.swift */,
 				FCFCD3EF2CD3A7210062E472 /* DeleteMovieFromFavoritesUseCase.swift */,
 				FCFCD3FC2CD3F5D30062E472 /* GetMovieDetailsUseCase.swift */,
+				FC639D3B2CD64CDF007F4FB8 /* GetKinopoiskDetailsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -510,6 +525,7 @@
 				FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */,
 				FCAEA5342CCD1CA200A3D97E /* ChangeUserDataRepository.swift */,
 				FCED51642CCFD952007BB8CA /* FavoriteMovieRepository.swift */,
+				FC639D392CD64C13007F4FB8 /* KinopoiskRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -534,6 +550,7 @@
 				FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */,
 				FCAEA5362CCD1CD400A3D97E /* ChangeUserDataRepositoryImpl.swift */,
 				FCED51662CCFD9FA007BB8CA /* FavoriteMoviesRepositoryImpl.swift */,
+				FC639D372CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -549,6 +566,7 @@
 				FC399CE72CCB871800AAE6DD /* UserDataModel.swift */,
 				FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */,
 				FCFCD3F82CD3EC4A0062E472 /* MovieDetailsModel.swift */,
+				FC639D352CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -767,7 +785,9 @@
 				FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */,
 				FCED516B2CCFE209007BB8CA /* GetFavoriteMoviesUseCase.swift in Sources */,
 				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
+				FC639D3E2CD64D70007F4FB8 /* KinopoiskDetails.swift in Sources */,
 				FCED51652CCFD952007BB8CA /* FavoriteMovieRepository.swift in Sources */,
+				FC639D382CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift in Sources */,
 				FC08D8112CBBE76F00252D21 /* RegistrationCredentials.swift in Sources */,
 				FCF7D8EE2CBAAF3100A4F82C /* SignUpViewModel.swift in Sources */,
 				FC3896172CC68D5F00BA2784 /* LocalizedString.swift in Sources */,
@@ -792,6 +812,7 @@
 				FCFCD3EE2CD3A4F30062E472 /* DeleteMovieFromFavoritesEndpoint.swift in Sources */,
 				FC08D80F2CBBE72B00252D21 /* LoginCredentials.swift in Sources */,
 				FC2876332CBEAB1600255264 /* UserRegisterEndpoint.swift in Sources */,
+				FC639D342CD649A3007F4FB8 /* GetKinopoiskDetailsEndpoint.swift in Sources */,
 				FCF7D8D82CB9707400A4F82C /* WelcomeViewController.swift in Sources */,
 				FC399CE62CCB86D300AAE6DD /* GetUserDataUseCase.swift in Sources */,
 				FCF832EB2CD10E8500814992 /* AllMovieData.swift in Sources */,
@@ -814,15 +835,18 @@
 				FCAEA5372CCD1CD400A3D97E /* ChangeUserDataRepositoryImpl.swift in Sources */,
 				FCED51712CD01285007BB8CA /* MovieListResponseModel.swift in Sources */,
 				FCAEA53F2CCD556500A3D97E /* GradientLabel.swift in Sources */,
+				FC639D3A2CD64C13007F4FB8 /* KinopoiskRepository.swift in Sources */,
 				FCAEA5312CCCDE5A00A3D97E /* DayTime.swift in Sources */,
 				FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */,
 				FCF832E62CD101BE00814992 /* UIColor+Extensions.swift in Sources */,
 				FCED516D2CCFE2F4007BB8CA /* FavoritesMovieData.swift in Sources */,
+				FC639D362CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift in Sources */,
 				FC399CF02CCBB05500AAE6DD /* Gender.swift in Sources */,
 				FCEADE282CBD7FD900B28E7F /* UserRegisterResponseModel.swift in Sources */,
 				FC399CEA2CCB882900AAE6DD /* GetUserDataRepository.swift in Sources */,
 				FCF7D8EA2CB99F4100A4F82C /* SignInViewModel.swift in Sources */,
 				FC399CE82CCB871800AAE6DD /* UserDataModel.swift in Sources */,
+				FC639D3C2CD64CDF007F4FB8 /* GetKinopoiskDetailsUseCase.swift in Sources */,
 				FC399CF82CCC015E00AAE6DD /* LogoutRepositoryImpl.swift in Sources */,
 				FCF832E82CD1035300814992 /* GetAllMoviesUseCase.swift in Sources */,
 				FC1DC3A42CC3C43F00FF55F4 /* MoviesViewController.swift in Sources */,
