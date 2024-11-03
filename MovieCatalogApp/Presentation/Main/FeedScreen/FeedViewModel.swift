@@ -13,6 +13,7 @@ final class FeedViewModel {
     
     private let getMoviesUseCase: GetMoviesUseCase
     private let addMovieToFavoritesUseCase: AddMovieToFavoritesUseCase
+    private let getUserDataUseCase: GetUserDataUseCase
     
     var currentMovieData = FeedMovieData()
     var nextMovieData = FeedMovieData()
@@ -21,6 +22,10 @@ final class FeedViewModel {
     init() {
         self.getMoviesUseCase = GetMoviesUseCaseImpl.create()
         self.addMovieToFavoritesUseCase = AddMovieToFavoritesUseCaseImpl.create()
+        self.getUserDataUseCase = GetUserDataUseCaseImpl.create()
+        Task {
+            currentUserId = try await getUserDataUseCase.execute().id
+        }
     }
     
     func loadInitialMovies() async {

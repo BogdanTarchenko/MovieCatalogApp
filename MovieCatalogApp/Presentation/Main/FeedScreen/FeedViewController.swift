@@ -12,6 +12,8 @@ import SwiftUI
 
 final class FeedViewController: UIViewController {
     
+    private let dataController = DataController.shared
+    
     private var viewModel: FeedViewModel
     
     private let logoImageView = UIImageView()
@@ -43,6 +45,10 @@ final class FeedViewController: UIViewController {
         setup()
         setupSwipeGestures()
         setupTapGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureButtons()
     }
     
     // MARK: - Setup Swipe&Tap
@@ -153,12 +159,12 @@ final class FeedViewController: UIViewController {
         movieDetailsViewModel.onDismiss = { [weak self] in
             self?.dismiss(animated: true)
         }
-
+        
         let movieDetailsView = MovieDetailsView(viewModel: movieDetailsViewModel)
         let hostingController = UIHostingController(rootView: movieDetailsView)
         let navigationController = UINavigationController(rootViewController: hostingController)
         navigationController.modalPresentationStyle = .fullScreen
-
+        
         self.present(navigationController, animated: true)
     }
     
@@ -280,8 +286,9 @@ final class FeedViewController: UIViewController {
             let horizontalPadding = Constants.GenreButton.horizontalPadding
             let verticalPadding = Constants.GenreButton.verticalPadding
             
-            let stackViewWidth = self.stackView.frame.width
+            let favoriteGenres = self.dataController.getFavoriteGenres(for: self.viewModel.currentUserId).map { $0.name }
             
+            let stackViewWidth = self.stackView.frame.width
             var totalWidth: CGFloat = 0
             
             for genre in genres {
@@ -296,6 +303,12 @@ final class FeedViewController: UIViewController {
                 genreButton.addTarget(self, action: #selector(self.buttonTapped(sender:)), for: .touchUpInside)
                 
                 genreButton.configuration = config
+                
+                if favoriteGenres.contains(genre) {
+                    genreButton.toggleStyle(.gradient)
+                } else {
+                    genreButton.toggleStyle(.plain)
+                }
                 
                 genreButton.sizeToFit()
                 
@@ -312,6 +325,7 @@ final class FeedViewController: UIViewController {
             self.stackView.layoutIfNeeded()
         }
     }
+    
     
     private func configureCountryYearLabel() {
         DispatchQueue.main.async { [weak self] in
@@ -373,10 +387,15 @@ final class FeedViewController: UIViewController {
     
     // MARK: - Button Action
     @objc private func buttonTapped(sender: CustomButton) {
-        if (sender.getCurrentStyle() == .plain) {
-            sender.toggleStyle(.gradient)
-        } else {
+        guard let genre = sender.title(for: .normal) else { return }
+        let favoriteGenres = dataController.getFavoriteGenres(for: viewModel.currentUserId).map { $0.name }
+        
+        if favoriteGenres.contains(genre) {
+            dataController.removeFavoriteGenre(for: viewModel.currentUserId, genreName: genre)
             sender.toggleStyle(.plain)
+        } else {
+            dataController.addFavoriteGenre(for: viewModel.currentUserId, genreName: genre)
+            sender.toggleStyle(.gradient)
         }
     }
 }

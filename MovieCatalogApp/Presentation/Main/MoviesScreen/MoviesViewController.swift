@@ -327,7 +327,6 @@ class MoviesViewController: UIViewController {
     
     // MARK: Button Actions
     private func randomMovieButtonTapped() {
-        print("2")
         var combinedMovies: [String] = []
         
         viewModel.allMovieData.forEach { movie in
@@ -408,6 +407,25 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
             let movie = viewModel.storiesMovieData[indexPath.row]
+            
+            cell.currentUserId = viewModel.currentUserId
+            
+            cell.action = { [weak self] in
+                guard let self = self else { return }
+                
+                let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
+                movieDetailsViewModel.onDismiss = { [weak self] in
+                    self?.dismiss(animated: true)
+                }
+                
+                let movieDetailsView = MovieDetailsView(viewModel: movieDetailsViewModel)
+                let hostingController = UIHostingController(rootView: movieDetailsView)
+                let navigationController = UINavigationController(rootViewController: hostingController)
+                navigationController.modalPresentationStyle = .fullScreen
+                
+                self.present(navigationController, animated: true)
+            }
+            
             cell.configure(with: movie)
             
             cell.onTap = { [weak self] isNext in
@@ -430,22 +448,6 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
                 
                 self.stopTimer()
                 self.startTimer()
-            }
-            
-            cell.action = { [weak self] in
-                guard let self = self else { return }
-                
-                let movieDetailsViewModel = MovieDetailsViewModel(movieID: movie.id)
-                movieDetailsViewModel.onDismiss = { [weak self] in
-                    self?.dismiss(animated: true)
-                }
-                
-                let movieDetailsView = MovieDetailsView(viewModel: movieDetailsViewModel)
-                let hostingController = UIHostingController(rootView: movieDetailsView)
-                let navigationController = UINavigationController(rootViewController: hostingController)
-                navigationController.modalPresentationStyle = .fullScreen
-                
-                self.present(navigationController, animated: true)
             }
             
             return cell

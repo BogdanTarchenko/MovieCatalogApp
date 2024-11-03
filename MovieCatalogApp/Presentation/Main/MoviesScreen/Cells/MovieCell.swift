@@ -9,6 +9,8 @@ import UIKit
 
 class MovieCell: UICollectionViewCell {
     
+    let dataController = DataController.shared
+    
     private let imageView = UIImageView()
     private let vignetteView = UIView()
     private let progressBar = UIProgressView()
@@ -16,6 +18,7 @@ class MovieCell: UICollectionViewCell {
     private let genreButtonsStackView = UIStackView()
     private let watchButton = CustomButton(style: .gradient)
     var action: () -> Void = {}
+    var currentUserId: String = SC.empty
     
     var onTap: ((Bool) -> Void)?
     
@@ -24,8 +27,9 @@ class MovieCell: UICollectionViewCell {
         setupViews()
     }
     
-    init(frame: CGRect, action: @escaping () -> Void) {
+    init(frame: CGRect, action: @escaping () -> Void, currentUserId: String) {
         self.action = action
+        self.currentUserId = currentUserId
         super.init(frame: frame)
         setupViews()
     }
@@ -78,6 +82,8 @@ class MovieCell: UICollectionViewCell {
         stackView.spacing = 4
         stackView.distribution = .fillEqually
         
+        let favoriteGenres = dataController.getFavoriteGenres(for: currentUserId).map { $0.name }
+        
         for genre in genres {
             let button = CustomButton(style: .plain)
             button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 12, bottom: 4, right: 12)
@@ -85,6 +91,9 @@ class MovieCell: UICollectionViewCell {
                 make.height.equalTo(28)
             }
             button.setTitle(genre, for: .normal)
+            
+            button.toggleStyle(favoriteGenres.contains(genre) ? .gradient : .plain)
+            
             button.addTarget(self, action: #selector(genreButtonTapped(_:)), for: .touchUpInside)
             stackView.addArrangedSubview(button)
         }
@@ -173,7 +182,16 @@ class MovieCell: UICollectionViewCell {
     
     // MARK: - Button Actions
     @objc private func genreButtonTapped(_ sender: CustomButton) {
-        sender.toggleStyle(sender.getCurrentStyle() == .plain ? .gradient : .plain)
+        guard let genre = sender.title(for: .normal) else { return }
+        let favoriteGenres = dataController.getFavoriteGenres(for: currentUserId).map { $0.name }
+        
+        if favoriteGenres.contains(genre) {
+            dataController.removeFavoriteGenre(for: currentUserId, genreName: genre)
+            sender.toggleStyle(.plain)
+        } else {
+            dataController.addFavoriteGenre(for: currentUserId, genreName: genre)
+            sender.toggleStyle(.gradient)
+        }
     }
     
     @objc private func watchButtonTapped() {

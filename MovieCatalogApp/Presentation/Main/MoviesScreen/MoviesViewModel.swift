@@ -12,10 +12,12 @@ final class MoviesViewModel {
     private let getMoviesUseCase: GetMoviesForStoriesUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
     private let getAllMoviesUseCase: GetAllMoviesUseCase
+    private let getUserDataUseCase: GetUserDataUseCase
     
     var storiesMovieData = [StoriesMovieData]()
     var favoritesMovieData = [FavoritesMovieData]()
     var allMovieData = [AllMovieData]()
+    var currentUserId: String = SC.empty
     
     var onDidLoadStoriesMovieData: (([StoriesMovieData]) -> Void)?
     var onDidLoadFavoritesMovieData: (([FavoritesMovieData]) -> Void)?
@@ -29,6 +31,7 @@ final class MoviesViewModel {
         self.getMoviesUseCase = GetMoviesForStoriesUseCaseImpl.create()
         self.getFavoriteMoviesUseCase = GetFavoriteMoviesUseCaseImpl.create()
         self.getAllMoviesUseCase = GetAllMoviesUseCaseImpl.create()
+        self.getUserDataUseCase = GetUserDataUseCaseImpl.create()
     }
     
     // MARK: - Public Methods
@@ -42,6 +45,8 @@ final class MoviesViewModel {
                 async let allMoviesDataResult = try await fetchInitialMovieData()
                 
                 (storiesMovieData, favoritesMovieData, allMovieData) = await (try storiesMovieDataResult, try favoritesMovieDataResult, try allMoviesDataResult)
+                
+                currentUserId = try await getUserDataUseCase.execute().id
                 
                 notifyLoadingSuccess()
             } catch {
