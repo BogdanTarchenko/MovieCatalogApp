@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct GenresContainerView: View {
+    
     var title: String = LocalizedString.MovieDetails.genresTitle
     var genres: [String]
+    var currentUserId: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -27,7 +29,7 @@ struct GenresContainerView: View {
                 ForEach(groupedGenres.indices, id: \.self) { index in
                     HStack(spacing: 8) {
                         ForEach(groupedGenres[index], id: \.self) { genre in
-                            GenresItemView(genre: genre)
+                            GenresItemView(genre: genre, currentUserId: currentUserId)
                         }
                     }
                 }
@@ -43,9 +45,17 @@ struct GenresItemView: View {
     var genre: String
     @State private var isSelected: Bool = false
     
+    let dataController = DataController.shared
+    var currentUserId: String
+    
     var body: some View {
         Button(action: {
             isSelected.toggle()
+            if isSelected {
+                dataController.addFavoriteGenre(for: currentUserId, genreName: genre)
+            } else {
+                dataController.removeFavoriteGenre(for: currentUserId, genreName: genre)
+            }
         }) {
             Text(genre)
                 .font(.custom("Manrope-Medium", size: 16))
@@ -70,7 +80,10 @@ struct GenresItemView: View {
                 )
                 .cornerRadius(8)
         }
+        .onAppear {
+            dataController.createUserIfNeeded(userId: currentUserId)
+            let favoriteGenres = dataController.getFavoriteGenres(for: currentUserId).map { $0.name }
+            isSelected = favoriteGenres.contains(genre)
+        }
     }
 }
-
-

@@ -51,6 +51,8 @@
 		FC399CF62CCC00CF00AAE6DD /* LogoutRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */; };
 		FC399CF82CCC015E00AAE6DD /* LogoutRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */; };
 		FC399CFA2CCC018D00AAE6DD /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */; };
+		FC3B1A8B2CD7928D004029B3 /* UserDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC3B1A892CD7928D004029B3 /* UserDB.xcdatamodeld */; };
+		FC3B1A8D2CD79554004029B3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3B1A8C2CD79554004029B3 /* DataController.swift */; };
 		FC639D342CD649A3007F4FB8 /* GetKinopoiskDetailsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D332CD649A2007F4FB8 /* GetKinopoiskDetailsEndpoint.swift */; };
 		FC639D362CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D352CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift */; };
 		FC639D382CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC639D372CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift */; };
@@ -199,6 +201,8 @@
 		FC399CF52CCC00CF00AAE6DD /* LogoutRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepository.swift; sourceTree = "<group>"; };
 		FC399CF72CCC015E00AAE6DD /* LogoutRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRepositoryImpl.swift; sourceTree = "<group>"; };
 		FC399CF92CCC018D00AAE6DD /* LogoutEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpoint.swift; sourceTree = "<group>"; };
+		FC3B1A8A2CD7928D004029B3 /* UserDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDB.xcdatamodel; sourceTree = "<group>"; };
+		FC3B1A8C2CD79554004029B3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		FC639D332CD649A2007F4FB8 /* GetKinopoiskDetailsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKinopoiskDetailsEndpoint.swift; sourceTree = "<group>"; };
 		FC639D352CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinopoiskDetailsModel.swift; sourceTree = "<group>"; };
 		FC639D372CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinopoiskRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -433,6 +437,15 @@
 			path = Endpoints;
 			sourceTree = "<group>";
 		};
+		FC3B1A822CD78464004029B3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FC3B1A892CD7928D004029B3 /* UserDB.xcdatamodeld */,
+				FC3B1A8C2CD79554004029B3 /* DataController.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		FCF7D8942CB96D7100A4F82C = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +590,7 @@
 		FCF7D8CC2CB96F8B00A4F82C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FC3B1A822CD78464004029B3 /* CoreData */,
 				FCF7D8CF2CB96FA400A4F82C /* Network */,
 				FCF7D8CE2CB96F9B00A4F82C /* Models */,
 				FCF7D8CD2CB96F9500A4F82C /* Repositories */,
@@ -857,6 +871,7 @@
 				FC639D5A2CD6AAEC007F4FB8 /* DeleteReviewEndpoint.swift in Sources */,
 				FCED51632CCFD91B007BB8CA /* AddMovieToFavoritesUseCase.swift in Sources */,
 				FCF7D8E32CB98DF100A4F82C /* SignUpViewController.swift in Sources */,
+				FC3B1A8B2CD7928D004029B3 /* UserDB.xcdatamodeld in Sources */,
 				FCAEA5332CCD1C6E00A3D97E /* UserDataChangeEndpoint.swift in Sources */,
 				FCF7D8DF2CB98BB200A4F82C /* WelcomeViewModel.swift in Sources */,
 				FCF832E42CD0FFF500814992 /* PaddingLabel.swift in Sources */,
@@ -888,6 +903,7 @@
 				FC639D5C2CD6AC51007F4FB8 /* ReviewRequest.swift in Sources */,
 				FCE4493F2CD58DDB0023A257 /* FinanceBoxSUI.swift in Sources */,
 				FC639D402CD65843007F4FB8 /* PersonByNameResponse.swift in Sources */,
+				FC3B1A8D2CD79554004029B3 /* DataController.swift in Sources */,
 				FC1DC38B2CC3B8AE00FF55F4 /* SignUpRepositoryImpl.swift in Sources */,
 				FC2876312CBEA8E100255264 /* BaseURL.swift in Sources */,
 				FCD6ACEA2CD5623200DF87E9 /* GradientBoxSUI.swift in Sources */,
@@ -1225,6 +1241,20 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		FC3B1A892CD7928D004029B3 /* UserDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FC3B1A8A2CD7928D004029B3 /* UserDB.xcdatamodel */,
+			);
+			currentVersion = FC3B1A8A2CD7928D004029B3 /* UserDB.xcdatamodel */;
+			name = UserDB.xcdatamodeld;
+			path = /Users/bogdantarcenko/Documents/Swift/MovieCatalogApp/MovieCatalogApp/Data/CoreData/UserDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FCF7D8952CB96D7100A4F82C /* Project object */;
 }

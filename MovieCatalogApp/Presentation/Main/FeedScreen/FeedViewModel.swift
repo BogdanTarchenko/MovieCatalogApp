@@ -16,6 +16,7 @@ final class FeedViewModel {
     
     var currentMovieData = FeedMovieData()
     var nextMovieData = FeedMovieData()
+    var currentUserId: String = SC.empty
     
     init() {
         self.getMoviesUseCase = GetMoviesUseCaseImpl.create()

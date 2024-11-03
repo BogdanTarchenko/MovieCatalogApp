@@ -71,7 +71,7 @@ struct MovieDetailsView: View {
                     RatingContainerView(rating: [averageRating, ratingKinopoisk , ratingImdb])
                     InformationContainerView(itemInformations: [country, age, time, year])
                     DirectorContainerView(name: directorName, avatar: directorURL)
-                    GenresContainerView(genres: genres)
+                    GenresContainerView(genres: genres, currentUserId: viewModel.currentUserId)
                     FinanceContainerView(itemInformations: [budget, earnings])
                     
                     if !(viewModel.movieDetails?.reviews.isEmpty ?? true) {

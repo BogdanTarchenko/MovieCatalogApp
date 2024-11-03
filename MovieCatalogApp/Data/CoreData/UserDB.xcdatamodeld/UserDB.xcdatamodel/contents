@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="FavoriteGenre" representedClassName="FavoriteGenre" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="favoriteGenres" inverseEntity="User"/>
+    </entity>
+    <entity name="Friend" representedClassName="Friend" syncable="YES" codeGenerationType="class">
+        <attribute name="avatarLink" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="userId" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="friends" inverseEntity="User"/>
+    </entity>
+    <entity name="HiddenFilm" representedClassName="HiddenFilm" syncable="YES" codeGenerationType="class">
+        <attribute name="movieId" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hiddenFilms" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="userId" attributeType="String"/>
+        <relationship name="favoriteGenres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FavoriteGenre" inverseName="user" inverseEntity="FavoriteGenre"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" inverseName="user" inverseEntity="Friend"/>
+        <relationship name="hiddenFilms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HiddenFilm" inverseName="user" inverseEntity="HiddenFilm"/>
+    </entity>
+</model>
