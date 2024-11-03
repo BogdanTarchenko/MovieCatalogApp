@@ -19,12 +19,16 @@ final class FeedViewModel {
     var nextMovieData = FeedMovieData()
     var currentUserId: String = SC.empty
     
+    private let dataController = DataController.shared
+    
     init() {
         self.getMoviesUseCase = GetMoviesUseCaseImpl.create()
         self.addMovieToFavoritesUseCase = AddMovieToFavoritesUseCaseImpl.create()
         self.getUserDataUseCase = GetUserDataUseCaseImpl.create()
         Task {
-            currentUserId = try await getUserDataUseCase.execute().id
+            let currentId = try await getUserDataUseCase.execute().id
+            currentUserId = currentId
+            dataController.createUserIfNeeded(userId: currentUserId)
         }
     }
     

@@ -81,7 +81,6 @@ struct GenresItemView: View {
                 .cornerRadius(8)
         }
         .onAppear {
-            dataController.createUserIfNeeded(userId: currentUserId)
             let favoriteGenres = dataController.getFavoriteGenres(for: currentUserId).map { $0.name }
             isSelected = favoriteGenres.contains(genre)
         }
