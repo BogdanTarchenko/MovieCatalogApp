@@ -151,9 +151,7 @@ final class FeedViewController: UIViewController {
     }
     
     private func showSwipeIndicator(isLike: Bool) {
-        if moviePoster.subviews.contains(where: { $0.tag == Constants.Overlay.tag }) {
-            return
-        }
+        hideSwipeIndicators()
         
         let overlayView = UIView()
         overlayView.backgroundColor = isLike ? .like : .dislike
@@ -176,6 +174,7 @@ final class FeedViewController: UIViewController {
             make.width.height.equalTo(moviePoster.snp.height).dividedBy(4)
         }
     }
+
     
     private func hideSwipeIndicators() {
         moviePoster.subviews.forEach { subview in
