@@ -22,11 +22,14 @@ final class ProfileViewModel {
     private let logoutUseCase: LogoutUseCase
     
     var userData = UserData()
+    var friendsData: [Friend] = []
     
     var onDidLoadUserData: ((UserData) -> Void)?
     var onDidStartLoad: (() -> Void)?
     var onDidFinishLoad: (() -> Void)?
     var onPresentAlert: ((String, String) -> Void)?
+    
+    private let dataController = DataController.shared
     
     init() {
         self.getUserDataUseCase = GetUserDataUseCaseImpl.create()
@@ -41,6 +44,7 @@ final class ProfileViewModel {
         Task {
             do {
                 userData = try await fetchUserData()
+                updateFriends()
                 onDidLoadUserData?(userData)
                 notifyLoadingFinish()
             } catch {
@@ -65,6 +69,10 @@ final class ProfileViewModel {
     
     func friendsButtonTapped() {
         delegate?.navigateToFriends()
+    }
+    
+    func updateFriends() {
+        friendsData = dataController.getFriends(for: userData.id)
     }
     
     func showInputAlert(title: String, message: String) {

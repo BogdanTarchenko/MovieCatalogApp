@@ -51,6 +51,11 @@ final class ProfileViewController: UIViewController {
         bindToViewModel()
         viewModel.onDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureFriendAvatars()
+    }
 }
 
 private extension ProfileViewController {
@@ -61,6 +66,7 @@ private extension ProfileViewController {
             DispatchQueue.main.async {
                 self?.configureProfileInformationContainer()
                 self?.configureInformationStackView()
+                self?.configureFriendAvatars()
             }
         }
         
@@ -236,6 +242,40 @@ private extension ProfileViewController {
             make.top.equalTo(profileInformationContainer.snp.bottom).offset(Constants.defaultOffset)
         }
         
+        print(viewModel.friendsData)
+        configureFriendAvatars()
+    }
+    
+    func configureFriendAvatars() {
+        viewModel.updateFriends()
+        
+        friendsButton.subviews.forEach { if $0 is UIImageView { $0.removeFromSuperview() } }
+        
+        let avatarSize: CGFloat = 32
+        let avatarCornerRadius: CGFloat = avatarSize / 2
+        let avatarOffset: CGFloat = -8
+
+        let maxAvatars = min(viewModel.friendsData.count, 3)
+        for index in 0..<maxAvatars {
+            let friend = viewModel.friendsData[index]
+            
+            let avatarImageView = UIImageView()
+            avatarImageView.layer.cornerRadius = avatarCornerRadius
+            avatarImageView.clipsToBounds = true
+            avatarImageView.contentMode = .scaleAspectFill
+            
+            if let avatarURL = URL(string: friend.avatarLink ?? Constants.defaultAvatarLink) {
+                avatarImageView.kf.setImage(with: avatarURL)
+            }
+            
+            friendsButton.addSubview(avatarImageView)
+            
+            avatarImageView.snp.makeConstraints { make in
+                make.size.equalTo(CGSize(width: avatarSize, height: avatarSize))
+                make.centerY.equalToSuperview()
+                make.leading.equalToSuperview().offset(CGFloat(index + 1) * (avatarSize + avatarOffset))
+            }
+        }
     }
     
     func configureInformationStackView() {
@@ -334,5 +374,6 @@ private extension ProfileViewController {
         static let defaultOffset: CGFloat = 36
         static let friendsButtonCornerRadius: CGFloat = 16
         static let informationStackViewSpacing: CGFloat = 16
+        static let defaultAvatarLink: String = "https://s3-alpha-sig.figma.com/img/a92b/ba97/a13937d71ea4ab29b068a92fd325aa74?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NChlGzcfGZDhcEKxSkCuF2s07eic2KBzFrFDqDNR-cLTSRdLnoGdp3lgKFZJ70jgBCxUWz6J7LE~nBKRbeBagiPAx6PEpRfiaTPv5B5YMnrjkP3m9OshStQuDb7LJyufIqH1swKkFOywX7Wo3uEwUtueMagv6J~UzRAPWoxqvgJaRbi2uET-TmmLY4bCcB8tqfvPaCrjKm0ajPGWlpP7TzTfEuZbulvT2MgKpg5taY4z-iXg6Mrww8Xge05ioMU5V4raAnRNpOgFyRGbq3ZZkT1LsKjQ4HLyLWxycmaukA1zWwLcm7OfsDlOx~OB3Uwkl04nTnIxe8NfaOEwQSb1FQ__"
     }
 }
