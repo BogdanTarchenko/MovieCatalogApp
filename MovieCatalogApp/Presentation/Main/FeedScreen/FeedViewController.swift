@@ -147,6 +147,7 @@ final class FeedViewController: UIViewController {
     private func handleSwipeLeft() {
         showSwipeIndicator(isLike: false)
         animateCardSwipe(to: Constants.Swipe.offScreenLeft)
+        dataController.hideFilm(for: viewModel.currentUserId, movieId: viewModel.currentMovieData.id)
     }
     
     private func showSwipeIndicator(isLike: Bool) {

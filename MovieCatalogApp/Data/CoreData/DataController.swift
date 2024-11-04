@@ -119,26 +119,27 @@ extension DataController {
     }
     
     // MARK: - Hidden Films
-    func hideFilm(for userId: String, film: HiddenFilm) {
+    func hideFilm(for userId: String, movieId: String) {
         let request = NSFetchRequest<User>(entityName: "User")
         request.predicate = NSPredicate(format: "userId == %@", userId)
         
         if let user = (try? context.fetch(request))?.first {
-            if !(user.hiddenFilms?.contains(where: { ($0 as? HiddenFilm)?.movieId == film.movieId }) ?? false) {
-                user.addToHiddenFilms(film)
+            if !(user.hiddenFilms?.contains(where: { ($0 as? HiddenFilm)?.movieId == movieId }) ?? false) {
+                let hiddenFilm = HiddenFilm(context: context)
+                hiddenFilm.movieId = movieId
+                user.addToHiddenFilms(hiddenFilm)
                 saveContext()
             }
         }
     }
 
-    
-    func unhideFilm(for userId: String, film: HiddenFilm) {
+    func unhideFilm(for userId: String, movieId: String) {
         let request = NSFetchRequest<User>(entityName: "User")
         request.predicate = NSPredicate(format: "userId == %@", userId)
         
         if let user = (try? context.fetch(request))?.first,
            let hiddenFilms = user.hiddenFilms as? Set<HiddenFilm> {
-            if let filmToUnhide = hiddenFilms.first(where: { $0.movieId == film.movieId }) {
+            if let filmToUnhide = hiddenFilms.first(where: { $0.movieId == movieId }) {
                 user.removeFromHiddenFilms(filmToUnhide)
                 saveContext()
             }
