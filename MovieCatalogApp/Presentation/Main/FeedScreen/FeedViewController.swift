@@ -55,7 +55,7 @@ final class FeedViewController: UIViewController {
         configureButtons()
     }
     
-    // MARK: - Bindings
+    // MARK: - Binding
     private func bindToViewModel() {
         viewModel.onDidLoadMovieData = { [weak self] movieData in
             DispatchQueue.main.async {
@@ -77,6 +77,7 @@ final class FeedViewController: UIViewController {
             
             self.loaderView.isHidden = false
             self.loaderView.startAnimating()
+            self.view.isUserInteractionEnabled = false
         }
         
         viewModel.onDidFinishLoad = { [weak self] in

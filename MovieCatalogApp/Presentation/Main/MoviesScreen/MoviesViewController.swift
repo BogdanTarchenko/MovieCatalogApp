@@ -375,13 +375,36 @@ extension MoviesViewController {
         }
         
         viewModel.onDidStartLoad = { [weak self] in
-            self?.loaderView.isHidden = false
-            self?.loaderView.startAnimating()
+            guard let self = self else { return }
+            
+            let dimmingView = UIView(frame: self.view.bounds)
+            dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            dimmingView.tag = 999
+            self.view.addSubview(dimmingView)
+            
+            UIView.animate(withDuration: 0.3) {
+                dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            }
+            
+            self.loaderView.isHidden = false
+            self.loaderView.startAnimating()
+            self.view.isUserInteractionEnabled = false
         }
         
         viewModel.onDidFinishLoad = { [weak self] in
-            self?.loaderView.isHidden = true
-            self?.loaderView.finishAnimating()
+            guard let self = self else { return }
+            
+            if let dimmingView = self.view.viewWithTag(999) {
+                UIView.animate(withDuration: 0.3, animations: {
+                    dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+                }) { _ in
+                    dimmingView.removeFromSuperview()
+                }
+            }
+            
+            self.loaderView.isHidden = true
+            self.loaderView.finishAnimating()
+            self.view.isUserInteractionEnabled = true
         }
     }
 }
