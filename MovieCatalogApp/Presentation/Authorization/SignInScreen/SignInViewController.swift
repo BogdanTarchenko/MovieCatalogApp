@@ -36,6 +36,7 @@ final class SignInViewController: UIViewController, UITextFieldDelegate {
         bindToViewModel()
     }
 }
+
 // MARK: - Setup
 private extension SignInViewController {
     func setup() {
@@ -91,7 +92,7 @@ private extension SignInViewController {
         
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(Constants.horizontalEdgesConstraintsValue)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Constants.bottomEdgeConstraintValue)
+            make.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(-Constants.bottomEdgeConstraintValue)
         }
     }
     

@@ -7,9 +7,14 @@
 
 import UIKit
 
-final class SignUpViewController: UIViewController, UITextFieldDelegate {
+final class SignUpViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
     private var viewModel: SignUpViewModel
+    
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
+    
     private let backgroundImageView = UIImageView()
     private let stackView = UIStackView()
     
@@ -44,13 +49,35 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate {
 // MARK: - Setup
 private extension SignUpViewController {
     func setup() {
+        setupScrollView()
+        setupContentView()
         setupView()
-        configureUI()
         addTapGestureToDismissKeyboard()
+    }
+    
+    private func setupScrollView() {
+        self.scrollView.delegate = self
+        view.addSubview(scrollView)
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.backgroundColor = .clear
+        scrollView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(-24)
+        }
+    }
+    
+    private func setupContentView() {
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        configureUI()
     }
     
     func setupView() {
         view.backgroundColor = .background
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
     
     func configureUI() {
@@ -97,11 +124,11 @@ private extension SignUpViewController {
         configureTextFields()
         configureButton()
         
-        view.addSubview(stackView)
+        contentView.addSubview(stackView)
         
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(Constants.stackViewInset)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Constants.stackViewBottomInset)
+            make.bottom.equalToSuperview().inset(Constants.stackViewBottomInset)
         }
         
         genderButton.onGenderSelected = { [weak self] gender in
@@ -138,7 +165,7 @@ private extension SignUpViewController {
         backgroundImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         backgroundImageView.layer.masksToBounds = true
         
-        view.addSubview(backgroundImageView)
+        contentView.addSubview(backgroundImageView)
         
         backgroundImageView.snp.makeConstraints { make in
             make.bottom.equalTo(stackView.snp.top).offset(Constants.backgroundImageBottomOffset)
