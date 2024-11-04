@@ -10,7 +10,7 @@ import SnapKit
 import SwiftUI
 
 final class MainTabBarController: UITabBarController {
-        
+    
     weak var appRouterDelegate: AppRouterDelegate?
     
     private lazy var feedViewController: FeedViewController = {
@@ -93,13 +93,31 @@ final class MainTabBarController: UITabBarController {
             buttons.enumerated().forEach { index, button in
                 if index == selectedIndex {
                     button.button.tintColor = .accent
-                    button.titleLabel.textColor = .accent
+                    self.applyGradientTo(button: button.titleLabel)
                 } else {
                     button.button.tintColor = .grayFaded
                     button.titleLabel.textColor = .grayFaded
                 }
             }
         }
+    }
+    
+    private func applyGradientTo(button label: UILabel?) {
+        guard let label = label else { return }
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = label.bounds
+        gradientLayer.colors = [UIColor(red: 223/255, green: 40/255, blue: 0/255, alpha: 1).cgColor,
+                                UIColor(red: 255/255, green: 102/255, blue: 51/255, alpha: 1).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        
+        UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        label.textColor = UIColor(patternImage: image!)
     }
 }
 
