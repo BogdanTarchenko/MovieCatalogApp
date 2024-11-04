@@ -14,10 +14,10 @@ protocol AppRouterDelegate: AnyObject {
     func navigateToSignIn()
     func navigateToSignUp()
     func navigateToMain()
+    func navigateToFriends()
 }
 
 final class AppRouter: AppRouterDelegate {
-    
     
     private var window: UIWindow?
     
@@ -63,6 +63,15 @@ extension AppRouter {
             self.transition(to: mainTabBarController)
         }
     }
+    
+    func navigateToFriends() {
+        let friendsViewController = createFriendsViewController()
+        let navigationController = UINavigationController(rootViewController: friendsViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        setupNavigationBar(for: friendsViewController, title: LocalizedString.Friends.friendsTitle, isPresent: true)
+        guard let viewController = window?.rootViewController else { return }
+        viewController.present(navigationController, animated: true)
+    }
 }
 
 // MARK: - ViewController Creation
@@ -97,6 +106,11 @@ extension AppRouter {
         let movieDetailsViewModel = MovieDetailsViewModel(movieID: movieID)
         return MovieDetailsView(viewModel: movieDetailsViewModel)
     }
+    
+    private func createFriendsViewController() -> FriendViewController {
+        let friendsViewModel = FriendsViewModel()
+        return FriendViewController(viewModel: friendsViewModel)
+    }
 }
 
 // MARK: - Navigation Bar Setup
@@ -108,7 +122,8 @@ extension AppRouter {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    private func setupNavigationBar(for viewController: UIViewController, title: String) {
+    private func setupNavigationBar(for viewController: UIViewController, title: String, isPresent: Bool = false) {
+        
         viewController.navigationItem.hidesBackButton = true
         
         let titleLabel = UILabel()
@@ -118,8 +133,12 @@ extension AppRouter {
         
         let backButton = UIButton(type: .custom)
         backButton.setImage(UIImage(named: "back_button"), for: .normal)
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
+        if isPresent {
+            backButton.addTarget(self, action: #selector(backButtonTappedPresented), for: .touchUpInside)
+        } else {
+            backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        }
         let backBarButtonItem = UIBarButtonItem(customView: backButton)
         viewController.navigationItem.leftBarButtonItems = [
             backBarButtonItem,
@@ -130,6 +149,11 @@ extension AppRouter {
     @objc private func backButtonTapped() {
         guard let navigationController = window?.rootViewController as? UINavigationController else { return }
         navigationController.popViewController(animated: true)
+    }
+    
+    @objc private func backButtonTappedPresented() {
+        guard let viewController = window?.rootViewController else { return }
+        viewController.dismiss(animated: true)
     }
     
     private func transition(to viewController: UIViewController) {

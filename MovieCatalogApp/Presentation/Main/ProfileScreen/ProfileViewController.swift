@@ -224,6 +224,7 @@ private extension ProfileViewController {
         friendsButton.titleLabel?.textColor = .textDefault
         friendsButton.titleLabel?.textAlignment = .center
         friendsButton.backgroundColor = .darkFaded
+        friendsButton.addTarget(self, action: #selector(friendsButtonTapped), for: .touchUpInside)
         
         friendsButton.layer.cornerRadius = Constants.friendsButtonCornerRadius
         
@@ -316,6 +317,10 @@ private extension ProfileViewController {
     
     @objc func logoutButtonTapped() {
         viewModel.onLogoutButtonTapped()
+    }
+    
+    @objc func friendsButtonTapped() {
+        viewModel.friendsButtonTapped()
     }
 }
 

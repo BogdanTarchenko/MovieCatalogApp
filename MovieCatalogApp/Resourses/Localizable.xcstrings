@@ -307,6 +307,16 @@
         }
       }
     },
+    "friendsTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мои друзья"
+          }
+        }
+      }
+    },
     "genresTitle" : {
       "localizations" : {
         "ru" : {

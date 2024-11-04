@@ -190,25 +190,35 @@ class MovieDetailsViewModel: ObservableObject {
     }
     
     private func mapToMovieDetails(_ movie: MovieDetailsModel) -> MovieDetails {
+        let genres: [GenreDetails] = movie.genres?.compactMap { genre in
+            guard let genre = genre else { return nil }
+            return GenreDetails(id: genre.id, name: genre.name ?? SC.empty)
+        } ?? []
+        
+        let reviews: [ReviewDetails] = movie.reviews?.compactMap { review in
+            guard let review = review else { return nil }
+            return ReviewDetails(
+                id: review.id,
+                rating: review.rating,
+                reviewText: review.reviewText ?? SC.empty,
+                isAnonymous: review.isAnonymous,
+                createDateTime: review.createDateTime,
+                author: AuthorDetails(
+                    userId: review.author?.userId ?? SC.empty,
+                    nickName: review.author?.nickName ?? Constants.anonymusUser,
+                    avatar: review.author?.avatar ?? Constants.avatarLink
+                )
+            )
+        } ?? []
+        
         return MovieDetails(
             id: movie.id,
             name: movie.name ?? SC.empty,
             poster: movie.poster ?? SC.empty,
             year: movie.year,
             country: movie.country ?? SC.empty,
-            genres: movie.genres?.compactMap { $0 }.map { GenreDetails(id: $0.id, name: $0.name ?? SC.empty) } ?? [],
-            reviews: movie.reviews?.compactMap { $0 }.map { ReviewDetails(
-                id: $0.id,
-                rating: $0.rating,
-                reviewText: $0.reviewText ?? SC.empty,
-                isAnonymous: $0.isAnonymous,
-                createDateTime: $0.createDateTime,
-                author: AuthorDetails(
-                    userId: $0.author.userId,
-                    nickName: $0.author.nickName ?? Constants.anonymusUser,
-                    avatar: $0.author.avatar ?? Constants.avatarLink
-                )
-            ) } ?? [],
+            genres: genres,
+            reviews: reviews,
             time: movie.time,
             tagline: movie.tagline ?? SC.empty,
             description: movie.description ?? SC.empty,
@@ -218,7 +228,7 @@ class MovieDetailsViewModel: ObservableObject {
             ageLimit: movie.ageLimit
         )
     }
-    
+
     private func mapToKinopoiskDetails(_ movie: FilmSearchByFiltersResponse) -> KinopoiskDetails {
         return KinopoiskDetails(
             kinopoiskId: movie.items.first?.kinopoiskId ?? 0,

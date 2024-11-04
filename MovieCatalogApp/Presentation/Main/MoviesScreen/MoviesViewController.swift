@@ -10,7 +10,7 @@ import Kingfisher
 import SnapKit
 import SwiftUI
 
-class MoviesViewController: UIViewController {
+final class MoviesViewController: UIViewController {
     
     private var viewModel: MoviesViewModel
     private let loaderView = LoaderView()

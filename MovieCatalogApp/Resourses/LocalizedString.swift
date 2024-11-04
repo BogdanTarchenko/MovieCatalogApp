@@ -265,4 +265,10 @@ enum LocalizedString {
             return NSLocalizedString("favoriteMovies", comment: SC.empty)
         }
     }
+    
+    enum Friends {
+        static var friendsTitle: String {
+            return NSLocalizedString("friendsTitle", comment: SC.empty)
+        }
+    }
 }

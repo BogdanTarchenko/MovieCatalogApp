@@ -10,6 +10,7 @@ import Kingfisher
 
 protocol ProfileViewModelDelegate: AnyObject {
     func navigateToWelcome()
+    func navigateToFriends()
 }
 
 final class ProfileViewModel {
@@ -60,6 +61,10 @@ final class ProfileViewModel {
                 notifyLoadingFinish()
             }
         }
+    }
+    
+    func friendsButtonTapped() {
+        delegate?.navigateToFriends()
     }
     
     func showInputAlert(title: String, message: String) {

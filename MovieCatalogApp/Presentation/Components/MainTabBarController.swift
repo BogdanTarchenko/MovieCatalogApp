@@ -108,6 +108,10 @@ extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRout
         appRouterDelegate?.navigateToWelcome()
     }
     
+    func navigateToFriends() {
+        appRouterDelegate?.navigateToFriends()
+    }
+    
     func navigateToMain() {
         selectedIndex = 0
         setColor(selectedIndex: 0)

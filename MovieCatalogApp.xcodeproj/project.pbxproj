@@ -30,6 +30,8 @@
 		FC1DC3BB2CC57C7D00FF55F4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FC1DC3BA2CC57C7D00FF55F4 /* Kingfisher */; };
 		FC1DC3BD2CC57D3B00FF55F4 /* FeedMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */; };
 		FC206A5B2CD90178006BECEE /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5A2CD90178006BECEE /* FriendsViewController.swift */; };
+		FC206A5E2CD90246006BECEE /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5D2CD90246006BECEE /* FriendsViewModel.swift */; };
+		FC206A602CD92A6F006BECEE /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5F2CD92A6F006BECEE /* FriendCell.swift */; };
 		FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876272CBE5EC300255264 /* String+Extensions.swift */; };
 		FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876292CBEA7E600255264 /* HTTPClient.swift */; };
 		FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */; };
@@ -188,6 +190,8 @@
 		FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequestModel.swift; sourceTree = "<group>"; };
 		FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMovieData.swift; sourceTree = "<group>"; };
 		FC206A5A2CD90178006BECEE /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		FC206A5D2CD90246006BECEE /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
+		FC206A5F2CD92A6F006BECEE /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		FC2876272CBE5EC300255264 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		FC2876292CBEA7E600255264 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -437,6 +441,8 @@
 			isa = PBXGroup;
 			children = (
 				FC206A5A2CD90178006BECEE /* FriendsViewController.swift */,
+				FC206A5D2CD90246006BECEE /* FriendsViewModel.swift */,
+				FC206A5F2CD92A6F006BECEE /* FriendCell.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -881,6 +887,7 @@
 				FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */,
 				FCED516B2CCFE209007BB8CA /* GetFavoriteMoviesUseCase.swift in Sources */,
 				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
+				FC206A5E2CD90246006BECEE /* FriendsViewModel.swift in Sources */,
 				FC639D3E2CD64D70007F4FB8 /* KinopoiskDetails.swift in Sources */,
 				FCED51652CCFD952007BB8CA /* FavoriteMovieRepository.swift in Sources */,
 				FC639D382CD64BB9007F4FB8 /* KinopoiskRepositoryImpl.swift in Sources */,
@@ -949,6 +956,7 @@
 				FC639D542CD6A9EA007F4FB8 /* ReviewsRepositoryImpl.swift in Sources */,
 				FC639D3A2CD64C13007F4FB8 /* KinopoiskRepository.swift in Sources */,
 				FCAEA5312CCCDE5A00A3D97E /* DayTime.swift in Sources */,
+				FC206A602CD92A6F006BECEE /* FriendCell.swift in Sources */,
 				FCF7D8D62CB9705300A4F82C /* AppRouter.swift in Sources */,
 				FCF832E62CD101BE00814992 /* UIColor+Extensions.swift in Sources */,
 				FCED516D2CCFE2F4007BB8CA /* FavoritesMovieData.swift in Sources */,
