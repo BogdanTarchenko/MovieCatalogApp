@@ -69,6 +69,7 @@ struct MovieDetailsView: View {
                             Color.clear
                                 .preference(key: MovieContainerVisibilityKey.self, value: geo.frame(in: .global).maxY)
                         })
+                    FriendLikesView(friends: viewModel.friendsData, reviews: viewModel.movieDetails?.reviews ?? [])
                     GrayBoxView(title: description)
                     RatingContainerView(rating: [averageRating, ratingKinopoisk , ratingImdb])
                     InformationContainerView(itemInformations: [country, age, time, year])
@@ -107,6 +108,10 @@ struct MovieDetailsView: View {
                                     friend.name = currentReview?.author.nickName
                                     friend.avatarLink = currentReview?.author.avatar
                                     dataController.addFriend(for: viewModel.currentUserId, friend: friend)
+                                    
+                                    if !viewModel.friendsData.contains(where: { $0.userId == friend.userId }) {
+                                        viewModel.friendsData.append(friend)
+                                    }
                                 }
                             },
                             deleteAction: {

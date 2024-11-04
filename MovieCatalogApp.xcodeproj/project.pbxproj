@@ -32,6 +32,7 @@
 		FC206A5B2CD90178006BECEE /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5A2CD90178006BECEE /* FriendsViewController.swift */; };
 		FC206A5E2CD90246006BECEE /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5D2CD90246006BECEE /* FriendsViewModel.swift */; };
 		FC206A602CD92A6F006BECEE /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5F2CD92A6F006BECEE /* FriendCell.swift */; };
+		FC206A622CD95B39006BECEE /* FriendLikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A612CD95B39006BECEE /* FriendLikesView.swift */; };
 		FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876272CBE5EC300255264 /* String+Extensions.swift */; };
 		FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876292CBEA7E600255264 /* HTTPClient.swift */; };
 		FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */; };
@@ -192,6 +193,7 @@
 		FC206A5A2CD90178006BECEE /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		FC206A5D2CD90246006BECEE /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		FC206A5F2CD92A6F006BECEE /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		FC206A612CD95B39006BECEE /* FriendLikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendLikesView.swift; sourceTree = "<group>"; };
 		FC2876272CBE5EC300255264 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		FC2876292CBEA7E600255264 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				FC3B1A962CD82168004029B3 /* GradientTextSUI.swift */,
 				FC3B1A982CD82459004029B3 /* FavoriteGenreBoxSUI.swift */,
 				FC3B1A9A2CD82D60004029B3 /* MoviePosterSUI.swift */,
+				FC206A612CD95B39006BECEE /* FriendLikesView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -929,6 +932,7 @@
 				FCAEA5412CCD763400A3D97E /* ProfileSplitButton.swift in Sources */,
 				FCED51762CD025D8007BB8CA /* CarouselCell.swift in Sources */,
 				FCF832E22CD0FD8100814992 /* MoviePosterCell.swift in Sources */,
+				FC206A622CD95B39006BECEE /* FriendLikesView.swift in Sources */,
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
 				FCD6ACEC2CD56E7600DF87E9 /* GrayBoxSUI.swift in Sources */,
 				FC77157E2CCEC26F0095284E /* SegmentedProgressBar.swift in Sources */,

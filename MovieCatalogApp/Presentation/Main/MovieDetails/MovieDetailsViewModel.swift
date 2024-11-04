@@ -16,6 +16,7 @@ class MovieDetailsViewModel: ObservableObject {
     @Published var kinopoiskData = KinopoiskDetails()
     @Published var personData = PersonDetails()
     @Published var currentUserId: String = SC.empty
+    @Published var friendsData: [Friend] = []
     
     private let getMovieDetailsUseCase: GetMovieDetailsUseCase
     private let getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
@@ -27,6 +28,8 @@ class MovieDetailsViewModel: ObservableObject {
     private let editReviewUseCase: EditReviewUseCase
     private let deleteReviewUseCase: DeleteReviewUseCase
     private let getUserProfileUseCase: GetUserDataUseCase
+    
+    private let dataController = DataController.shared
     
     var onDidLoadMovieDetails: ((MovieDetails) -> Void)?
     var onDidLoadKinopoiskDetails: ((KinopoiskDetails) -> Void)?
@@ -83,6 +86,7 @@ class MovieDetailsViewModel: ObservableObject {
                     self.kinopoiskData = kinopoiskDetails
                     self.personData = personDetails
                     self.currentUserId = profile.id
+                    self.friendsData = dataController.getFriends(for: currentUserId)
                     
                     Task { @MainActor in
                         onDidLoadKinopoiskDetails?(kinopoiskData)

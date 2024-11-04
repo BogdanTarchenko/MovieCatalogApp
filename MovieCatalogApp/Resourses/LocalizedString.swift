@@ -157,6 +157,14 @@ enum LocalizedString {
             return NSLocalizedString("ratingTitle", comment: SC.empty)
         }
         
+        static var like: String {
+            return NSLocalizedString("movie_details_like", comment: SC.empty)
+        }
+        
+        static var yourFriends: String {
+            return NSLocalizedString("movie_details_your_friends", comment: SC.empty)
+        }
+        
         enum Information {
             static var informationTitle: String {
                 return NSLocalizedString("informationTitle", comment: SC.empty)
