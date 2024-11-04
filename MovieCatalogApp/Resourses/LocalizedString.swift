@@ -239,4 +239,30 @@ enum LocalizedString {
             }
         }
     }
+    
+    enum Favorites {
+        static var favoritesTitle: String {
+            return NSLocalizedString("favoritesTitle", comment: SC.empty)
+        }
+        
+        static var emptyTitle: String {
+            return NSLocalizedString("emptyTitle", comment: SC.empty)
+        }
+        
+        static var emptyDescription: String {
+            return NSLocalizedString("emptyDescription", comment: SC.empty)
+        }
+        
+        static var buttonTitle: String {
+            return NSLocalizedString("buttonTitle", comment: SC.empty)
+        }
+        
+        static var favoriteGenres: String {
+            return NSLocalizedString("favoriteGenres", comment: SC.empty)
+        }
+        
+        static var favoriteMovies: String {
+            return NSLocalizedString("favoriteMovies", comment: SC.empty)
+        }
+    }
 }

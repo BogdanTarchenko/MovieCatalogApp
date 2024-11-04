@@ -7,17 +7,28 @@
 
 import UIKit
 import SnapKit
+import SwiftUI
 
 final class MainTabBarController: UITabBarController {
-    
+        
     weak var appRouterDelegate: AppRouterDelegate?
     
-    private let feedViewController = FeedViewController(viewModel: FeedViewModel())
+    private lazy var feedViewController: FeedViewController = {
+        let viewModel = FeedViewModel()
+        return FeedViewController(viewModel: viewModel)
+    }()
+    
     private lazy var moviesViewController: MoviesViewController = {
         let viewModel = MoviesViewModel()
         return MoviesViewController(viewModel: viewModel)
     }()
-    private let favouritesViewController = FavouritesViewController()
+    
+    private lazy var favoritesView: FavoritesView = {
+        let viewModel = FavoritesViewModel()
+        viewModel.delegate = self
+        return FavoritesView(viewModel: viewModel)
+    }()
+    
     private lazy var profileViewController: ProfileViewController = {
         let viewModel = ProfileViewModel()
         viewModel.delegate = self
@@ -53,8 +64,11 @@ final class MainTabBarController: UITabBarController {
         
         view.addSubview(customBar)
         
+        self.tabBar.backgroundImage = UIImage()
+        
+        let hostingController = UIHostingController(rootView: favoritesView)
         DispatchQueue.main.async { [weak self] in
-            self?.setViewControllers([self?.feedViewController, self?.moviesViewController, self?.favouritesViewController, self?.profileViewController].compactMap { $0 }, animated: true)
+            self?.setViewControllers([self?.feedViewController, self?.moviesViewController, hostingController, self?.profileViewController].compactMap { $0 }, animated: true)
             self?.setColor(selectedIndex: 0)
         }
     }
@@ -67,26 +81,8 @@ final class MainTabBarController: UITabBarController {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
             
-            switch index {
-            case 0:
-                selectedIndex = index
-                setColor(selectedIndex: index)
-                
-            case 1:
-                selectedIndex = index
-                setColor(selectedIndex: index)
-                
-            case 2:
-                selectedIndex = index
-                setColor(selectedIndex: index)
-                
-            case 3:
-                selectedIndex = index
-                setColor(selectedIndex: index)
-                
-            default:
-                break
-            }
+            selectedIndex = index
+            setColor(selectedIndex: index)
         }
     }
     
@@ -107,8 +103,27 @@ final class MainTabBarController: UITabBarController {
     }
 }
 
-extension MainTabBarController: ProfileViewModelDelegate {
+extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRouterDelegate {
     func navigateToWelcome() {
         appRouterDelegate?.navigateToWelcome()
+    }
+    
+    func navigateToMain() {
+        selectedIndex = 0
+        setColor(selectedIndex: 0)
+    }
+    
+    func navigateToMovieDetails(movieID: String) {
+        let movieDetailsViewModel = MovieDetailsViewModel(movieID: movieID)
+        movieDetailsViewModel.onDismiss = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
+        let movieDetailsView = MovieDetailsView(viewModel: movieDetailsViewModel)
+        let hostingController = UIHostingController(rootView: movieDetailsView)
+        let navigationController = UINavigationController(rootViewController: hostingController)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        self.present(navigationController, animated: true)
     }
 }

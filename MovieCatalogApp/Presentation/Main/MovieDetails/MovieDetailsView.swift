@@ -34,11 +34,13 @@ struct MovieDetailsView: View {
     @State private var currentReviewIndex: Int = 0
     @State private var showCustomAlert = false
     @State private var isEditingReview = false
-
+    
+    private let dataController = DataController.shared
+    
     var hasSubmittedReview: Bool {
         viewModel.movieDetails?.reviews.contains { $0.author.userId == viewModel.currentUserId } ?? false
     }
-
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color(.background)
@@ -97,6 +99,15 @@ struct MovieDetailsView: View {
                             action: {
                                 showCustomAlert = true
                                 isEditingReview = false
+                            },
+                            avatarAction: {
+                                if currentReview?.isAnonymous == false {
+                                    let friend = Friend(context: dataController.context)
+                                    friend.userId = currentReview?.author.userId
+                                    friend.name = currentReview?.author.nickName
+                                    friend.avatarLink = currentReview?.author.avatar
+                                    dataController.addFriend(for: viewModel.currentUserId, friend: friend)
+                                }
                             },
                             deleteAction: {
                                 Task {

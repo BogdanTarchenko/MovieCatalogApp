@@ -20,6 +20,7 @@ struct ReviewContainerView: View {
     var isOwnReview: Bool
     var hasSubmittedReview: Bool
     var action: () -> Void
+    var avatarAction: () -> Void
     var deleteAction: () -> Void
     var editAction: () -> Void
     var backAction: () -> Void
@@ -39,7 +40,7 @@ struct ReviewContainerView: View {
                 Spacer()
             }
             
-            ReviewsItemView(avatarURL: avatarURL, authorName: authorName, date: date, mark: mark, review: review)
+            ReviewsItemView(avatarURL: avatarURL, avatarAction: avatarAction, authorName: authorName, date: date, mark: mark, review: review)
             
             HStack(spacing: 24) {
                 AddReviewButtonView(isOwnReview: isOwnReview, hasSubmittedReview: hasSubmittedReview, action: action, deleteAction: deleteAction, editAction: editAction)
@@ -55,6 +56,7 @@ struct ReviewContainerView: View {
 
 struct ReviewsItemView: View {
     var avatarURL: String
+    var avatarAction: () -> Void
     var authorName: String
     var date: String
     var mark: String
@@ -63,11 +65,15 @@ struct ReviewsItemView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 8) {
-                KFImage(URL(string: avatarURL))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 32, height: 32)
-                    .clipShape(Circle())
+                Button(action: {
+                    avatarAction()
+                }) {
+                    KFImage(URL(string: avatarURL))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 32, height: 32)
+                        .clipShape(Circle())
+                }
                 VStack(alignment: .leading) {
                     Text(authorName)
                         .font(.custom("Manrope-Medium", size: 12))
@@ -111,7 +117,7 @@ struct MarkItemView: View {
     
     private func calculateBackgroundColor(for mark: Int) -> Color {
         let clampedMark = min(max(mark, 1), 10)
-
+        
         switch clampedMark {
         case 1...2:
             return blend(color1: .darkRed, color2: .red, ratio: CGFloat(clampedMark - 1) / 1.0)
@@ -125,16 +131,16 @@ struct MarkItemView: View {
             return Color(UIColor.darkRed)
         }
     }
-
+    
     private func blend(color1: UIColor, color2: UIColor, ratio: CGFloat) -> Color {
         let ratio = max(0, min(0.75, ratio))
         let red = (1 - ratio) * CGFloat(color1.cgColor.components![0]) + ratio * CGFloat(color2.cgColor.components![0])
         let green = (1 - ratio) * CGFloat(color1.cgColor.components![1]) + ratio * CGFloat(color2.cgColor.components![1])
         let blue = (1 - ratio) * CGFloat(color1.cgColor.components![2]) + ratio * CGFloat(color2.cgColor.components![2])
-
+        
         return Color(red: red, green: green, blue: blue)
     }
-
+    
 }
 
 struct AddReviewButtonView: View {
@@ -144,7 +150,7 @@ struct AddReviewButtonView: View {
     var action: () -> Void
     var deleteAction: () -> Void
     var editAction: () -> Void
-
+    
     var body: some View {
         HStack(spacing: 4) {
             if (!hasSubmittedReview) {

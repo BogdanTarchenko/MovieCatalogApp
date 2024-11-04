@@ -8,7 +8,7 @@
 import Foundation
 
 class MovieDetailsViewModel: ObservableObject {
-    
+
     @Published var movieID: String
     @Published var movieDetails: MovieDetails?
     @Published var favoritesMovieData = [FavoritesMovieData]()

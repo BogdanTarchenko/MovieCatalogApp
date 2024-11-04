@@ -91,6 +91,16 @@
         }
       }
     },
+    "buttonTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти фильм для себя"
+          }
+        }
+      }
+    },
     "countryTitle" : {
       "localizations" : {
         "ru" : {
@@ -185,12 +195,32 @@
         }
       }
     },
+    "emptyDescription" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавьте любимые жанры и фильмы, чтобы вернуться к ним позже"
+          }
+        }
+      }
+    },
     "emptyReviews" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет отзывов"
+          }
+        }
+      }
+    },
+    "emptyTitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Здесь пока пусто"
           }
         }
       }
@@ -205,8 +235,37 @@
         }
       }
     },
+    "favoriteGenres" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Любимые жанры"
+          }
+        }
+      }
+    },
+    "favoriteMovies" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Любимые фильмы"
+          }
+        }
+      }
+    },
     "favorites" : {
-      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранное"
+          }
+        }
+      }
+    },
+    "favoritesTitle" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {

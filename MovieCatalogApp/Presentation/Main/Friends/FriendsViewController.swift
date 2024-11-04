@@ -1,18 +1,18 @@
 //
-//  FavouritesViewController.swift
+//  FriendViewController.swift
 //  MovieCatalogApp
 //
-//  Created by Богдан Тарченко on 19.10.2024.
+//  Created by Богдан Тарченко on 04.11.2024.
 //
 
 import UIKit
 
-class FavouritesViewController: UIViewController {
+class FriendViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .blue
+        // Do any additional setup after loading the view.
     }
     
 
