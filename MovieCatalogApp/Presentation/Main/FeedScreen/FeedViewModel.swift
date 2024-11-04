@@ -19,6 +19,10 @@ final class FeedViewModel {
     var nextMovieData = FeedMovieData()
     var currentUserId: String = SC.empty
     
+    var onDidStartLoad: (() -> Void)?
+    var onDidFinishLoad: (() -> Void)?
+    var onDidLoadMovieData: ((FeedMovieData) -> Void)?
+    
     private let dataController = DataController.shared
     
     init() {
@@ -32,14 +36,13 @@ final class FeedViewModel {
         }
     }
     
-    func loadInitialMovies() async {
-        if let movieData = await fetchNextMovie() {
-            currentMovieData = movieData
-            NotificationCenter.default.post(name: .didLoadMovies, object: nil)
-        }
+    func onDidLoad() {
+        notifyLoadingStart()
         
-        if let movieData = await fetchNextMovie() {
-            nextMovieData = movieData
+        Task {
+            await loadInitialMovies()
+            onDidLoadMovieData?(currentMovieData)
+            notifyLoadingFinish()
         }
     }
     
@@ -71,6 +74,31 @@ final class FeedViewModel {
             genres: movie.genres?.compactMap { $0.name } ?? [],
             id: movie.id
         )
+    }
+    
+    // MARK: - Private Methods
+    private func loadInitialMovies() async {
+        if let movieData = await fetchNextMovie() {
+            currentMovieData = movieData
+            NotificationCenter.default.post(name: .didLoadMovies, object: nil)
+        }
+        
+        if let movieData = await fetchNextMovie() {
+            nextMovieData = movieData
+        }
+    }
+    
+    
+    private func notifyLoadingStart() {
+        Task { @MainActor in
+            onDidStartLoad?()
+        }
+    }
+    
+    private func notifyLoadingFinish() {
+        Task { @MainActor in
+            onDidFinishLoad?()
+        }
     }
 }
 

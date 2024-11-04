@@ -13,7 +13,10 @@ final class SignUpViewModel {
     weak var appRouterDelegate: AppRouterDelegate?
     
     private let signUpUseCase: SignUpUseCase
+    
     var isSignUpButtonActive: ((Bool) -> Void)?
+    var isLoading: ((Bool) -> Void)?
+    
     var credentials = RegistrationCredentials()
     
     init() {
@@ -66,13 +69,18 @@ final class SignUpViewModel {
             gender: credentials.gender.rawValue
         )
         
+        isLoading?(true)
+        
+        defer {
+            isLoading?(false)
+        }
+        
         Task {
             do {
                 try await signUpUseCase.execute(request: requestBody)
                 self.appRouterDelegate?.navigateToMain()
             } catch {
                 print(error)
-                // TODO: - добавить обработку ошибки
             }
         }
     }

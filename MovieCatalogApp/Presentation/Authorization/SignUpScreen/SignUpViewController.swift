@@ -23,6 +23,8 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     private let signUpButton = CustomButton(style: .inactive)
     
+    private let loaderView = LoaderView()
+    
     init(viewModel: SignUpViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -35,10 +37,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        
-        viewModel.isSignUpButtonActive = { [weak self] isActive in
-            self?.signUpButton.toggleStyle(isActive ? .gradient : .inactive)
-        }
+        bindToViewModel()
     }
 }
 
@@ -47,6 +46,7 @@ private extension SignUpViewController {
     func setup() {
         setupView()
         configureUI()
+        addTapGestureToDismissKeyboard()
     }
     
     func setupView() {
@@ -56,6 +56,28 @@ private extension SignUpViewController {
     func configureUI() {
         configureStackView()
         configureBackgroundImageView()
+        setupLoaderView()
+    }
+    
+    func addTapGestureToDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func setupLoaderView() {
+        loaderView.isHidden = true
+        
+        view.addSubview(loaderView)
+        view.bringSubviewToFront(loaderView)
+        
+        loaderView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(100)
+        }
     }
     
     func configureStackView() {
@@ -161,6 +183,51 @@ private extension SignUpViewController {
             let selectedDate = datePicker.date
             dateOfBirthTextField.toggleIcons()
             viewModel.updateDateOfBirth(selectedDate)
+        }
+    }
+    
+    // MARK: - Bindings
+    private func bindToViewModel() {
+        viewModel.isSignUpButtonActive = { [weak self] isActive in
+            self?.signUpButton.toggleStyle(isActive ? .gradient : .inactive)
+        }
+        
+        viewModel.isLoading = { [weak self] isLoading in
+            isLoading ? self?.showLoader() : self?.hideLoader()
+        }
+    }
+    
+    // MARK: - Loader
+    private func showLoader() {
+        DispatchQueue.main.async {
+            let dimmingView = UIView(frame: self.view.bounds)
+            dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            dimmingView.tag = 999
+            self.view.addSubview(dimmingView)
+            
+            UIView.animate(withDuration: 0.3) {
+                dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            }
+            
+            self.loaderView.isHidden = false
+            self.loaderView.startAnimating()
+            self.view.isUserInteractionEnabled = false
+        }
+    }
+    
+    private func hideLoader() {
+        DispatchQueue.main.async {
+            if let dimmingView = self.view.viewWithTag(999) {
+                UIView.animate(withDuration: 0.3, animations: {
+                    dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+                }) { _ in
+                    dimmingView.removeFromSuperview()
+                }
+            }
+            
+            self.loaderView.isHidden = true
+            self.loaderView.finishAnimating()
+            self.view.isUserInteractionEnabled = true
         }
     }
 }

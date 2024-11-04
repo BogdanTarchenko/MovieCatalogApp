@@ -15,6 +15,8 @@ final class SignInViewModel {
     private let signInUseCase: SignInUseCase
     
     var isSignInButtonActive: ((Bool) -> Void)?
+    var isLoading: ((Bool) -> Void)?
+    
     var credentials = LoginCredentials()
     
     init() {
@@ -38,15 +40,19 @@ final class SignInViewModel {
             password: credentials.password
         )
         
-        Task {
-            do {
-                try await signInUseCase.execute(request: requestBody)
-                self.appRouterDelegate?.navigateToMain()
-            } catch {
-                print(error)
-            }
+        isLoading?(true)
+        
+        defer {
+            isLoading?(false)
+        }
+        do {
+            try await signInUseCase.execute(request: requestBody)
+            self.appRouterDelegate?.navigateToMain()
+        } catch {
+            print(error)
         }
     }
+    
     
     // MARK: - Private Methods
     private func validateFields() {

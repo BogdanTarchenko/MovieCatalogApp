@@ -10,14 +10,16 @@ import UIKit
 final class SignInViewController: UIViewController, UITextFieldDelegate {
     
     private var viewModel: SignInViewModel
-    private var loadingViewController: LoadingViewController?
     
     private let backgroundImageView = UIImageView()
     private let stackView = UIStackView()
     
-    private let signInButton = CustomButton(style: .inactive)
     private let loginTextField = CustomTextField(style: .information(.username))
     private let passwordTextField = CustomTextField(style: .password(.password))
+    
+    private let signInButton = CustomButton(style: .inactive)
+    
+    private let loaderView = LoaderView()
     
     init(viewModel: SignInViewModel) {
         self.viewModel = viewModel
@@ -31,9 +33,7 @@ final class SignInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        viewModel.isSignInButtonActive = { [weak self] isActive in
-            self?.signInButton.toggleStyle(isActive ? .gradient : .inactive)
-        }
+        bindToViewModel()
     }
 }
 // MARK: - Setup
@@ -51,6 +51,7 @@ private extension SignInViewController {
     func configureUI() {
         configureStackView()
         configureBackgroundImageView()
+        setupLoaderView()
     }
     
     func addTapGestureToDismissKeyboard() {
@@ -60,6 +61,18 @@ private extension SignInViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func setupLoaderView() {
+        loaderView.isHidden = true
+        
+        view.addSubview(loaderView)
+        view.bringSubviewToFront(loaderView)
+        
+        loaderView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(100)
+        }
     }
     
     func configureStackView() {
@@ -113,10 +126,8 @@ private extension SignInViewController {
     
     // MARK: - Actions
     @objc func signInButtonTapped() {
-        showLoadingScreen()
         Task {
             await viewModel.signInButtonTapped()
-            hideLoadingScreen()
         }
     }
     
@@ -128,6 +139,51 @@ private extension SignInViewController {
     @objc func passwordTextFieldChanged() {
         passwordTextField.toggleIcons()
         viewModel.updatePassword(passwordTextField.text ?? SC.empty)
+    }
+    
+    // MARK: - Bindings
+    private func bindToViewModel() {
+        viewModel.isSignInButtonActive = { [weak self] isActive in
+            self?.signInButton.toggleStyle(isActive ? .gradient : .inactive)
+        }
+        
+        viewModel.isLoading = { [weak self] isLoading in
+            isLoading ? self?.showLoader() : self?.hideLoader()
+        }
+    }
+    
+    // MARK: - Loader
+    private func showLoader() {
+        DispatchQueue.main.async {
+            let dimmingView = UIView(frame: self.view.bounds)
+            dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            dimmingView.tag = 999
+            self.view.addSubview(dimmingView)
+            
+            UIView.animate(withDuration: 0.3) {
+                dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            }
+            
+            self.loaderView.isHidden = false
+            self.loaderView.startAnimating()
+            self.view.isUserInteractionEnabled = false
+        }
+    }
+    
+    private func hideLoader() {
+        DispatchQueue.main.async {
+            if let dimmingView = self.view.viewWithTag(999) {
+                UIView.animate(withDuration: 0.3, animations: {
+                    dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+                }) { _ in
+                    dimmingView.removeFromSuperview()
+                }
+            }
+            
+            self.loaderView.isHidden = true
+            self.loaderView.finishAnimating()
+            self.view.isUserInteractionEnabled = true
+        }
     }
 }
 

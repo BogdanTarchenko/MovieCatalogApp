@@ -16,6 +16,8 @@ final class FeedViewController: UIViewController {
     
     private var viewModel: FeedViewModel
     
+    private let loaderView = LoaderView()
+    
     private let logoImageView = UIImageView()
     private let movieDataContainer = UIView()
     private let stackView = UIStackView()
@@ -41,14 +43,57 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadInitialMovies()
         setup()
         setupSwipeGestures()
         setupTapGesture()
+        bindToViewModel()
+        viewModel.onDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureButtons()
+    }
+    
+    // MARK: - Bindings
+    private func bindToViewModel() {
+        viewModel.onDidLoadMovieData = { [weak self] movieData in
+            DispatchQueue.main.async {
+                self?.updateUI()
+            }
+        }
+        
+        viewModel.onDidStartLoad = { [weak self] in
+            guard let self = self else { return }
+            
+            let dimmingView = UIView(frame: self.view.bounds)
+            dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            dimmingView.tag = 999
+            self.view.addSubview(dimmingView)
+            
+            UIView.animate(withDuration: 0.3) {
+                dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            }
+            
+            self.loaderView.isHidden = false
+            self.loaderView.startAnimating()
+        }
+        
+        viewModel.onDidFinishLoad = { [weak self] in
+            guard let self = self else { return }
+            
+            if let dimmingView = self.view.viewWithTag(999) {
+                UIView.animate(withDuration: 0.3, animations: {
+                    dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+                }) { _ in
+                    dimmingView.removeFromSuperview()
+                }
+            }
+            
+            self.loaderView.isHidden = true
+            self.loaderView.finishAnimating()
+            self.view.isUserInteractionEnabled = true
+        }
     }
     
     // MARK: - Setup Swipe&Tap
@@ -166,12 +211,6 @@ final class FeedViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         
         self.present(navigationController, animated: true)
-    }
-    
-    private func loadInitialMovies() {
-        Task {
-            await viewModel.loadInitialMovies()
-        }
     }
     
     private func loadNextMovie() async {

@@ -92,8 +92,6 @@
 		FC77157E2CCEC26F0095284E /* SegmentedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */; };
 		FC8BCEF22CC96CB900D54004 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */; };
 		FCA4F62B2CC929CA009DAB74 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FCA4F62A2CC929CA009DAB74 /* Lottie */; };
-		FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */; };
-		FCA4F6312CC931A7009DAB74 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */; };
 		FCAEA5312CCCDE5A00A3D97E /* DayTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */; };
 		FCAEA5332CCD1C6E00A3D97E /* UserDataChangeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEA5322CCD1C6E00A3D97E /* UserDataChangeEndpoint.swift */; };
 		FCAEA5352CCD1CA200A3D97E /* ChangeUserDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEA5342CCD1CA200A3D97E /* ChangeUserDataRepository.swift */; };
@@ -251,8 +249,6 @@
 		FC7715782CCE89B70095284E /* GetMoviesForStoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesForStoriesUseCase.swift; sourceTree = "<group>"; };
 		FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressBar.swift; sourceTree = "<group>"; };
 		FC8BCEF12CC96CB900D54004 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTime.swift; sourceTree = "<group>"; };
 		FCAEA5322CCD1C6E00A3D97E /* UserDataChangeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataChangeEndpoint.swift; sourceTree = "<group>"; };
 		FCAEA5342CCD1CA200A3D97E /* ChangeUserDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserDataRepository.swift; sourceTree = "<group>"; };
@@ -706,7 +702,6 @@
 				FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */,
 				FC1DC3982CC3C37600FF55F4 /* MainTabBarController.swift */,
 				FC1DC3A92CC51D2100FF55F4 /* CustomTabBarItem.swift */,
-				FCA4F62C2CC929D9009DAB74 /* LoadingViewController.swift */,
 				FC399CF12CCBC66000AAE6DD /* Loader.swift */,
 				FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */,
 				FCAEA53C2CCD50C000A3D97E /* ProfileTextField.swift */,
@@ -743,7 +738,6 @@
 				FCF7D8E72CB99EEB00A4F82C /* UIView+Extensions.swift */,
 				FCF7D8EB2CBA829F00A4F82C /* UITextField+Extensions.swift */,
 				FC2876272CBE5EC300255264 /* String+Extensions.swift */,
-				FCA4F6302CC931A7009DAB74 /* UIViewController+Extensions.swift */,
 				FCF832E52CD101BE00814992 /* UIColor+Extensions.swift */,
 				FCE4493C2CD58B1E0023A257 /* Array+Extensions.swift */,
 			);
@@ -980,7 +974,6 @@
 				FCFCD3F02CD3A7210062E472 /* DeleteMovieFromFavoritesUseCase.swift in Sources */,
 				FC399CFA2CCC018D00AAE6DD /* LogoutEndpoint.swift in Sources */,
 				FC1DC3A22CC3C43500FF55F4 /* FeedViewController.swift in Sources */,
-				FCA4F62D2CC929D9009DAB74 /* LoadingViewController.swift in Sources */,
 				FCF7D8EC2CBA829F00A4F82C /* UITextField+Extensions.swift in Sources */,
 				FC1DC3B82CC5403F00FF55F4 /* EmptyRequestModel.swift in Sources */,
 				FC1DC3B42CC5398700FF55F4 /* GetMoviesRepository.swift in Sources */,
@@ -995,7 +988,6 @@
 				FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */,
 				FCD6ACE42CD523CA00DF87E9 /* LoaderSUI.swift in Sources */,
 				FCED51672CCFD9FA007BB8CA /* FavoriteMoviesRepositoryImpl.swift in Sources */,
-				FCA4F6312CC931A7009DAB74 /* UIViewController+Extensions.swift in Sources */,
 				FC1DC3932CC3BB5800FF55F4 /* SignInUseCase.swift in Sources */,
 				FC1DC3AC2CC52DC200FF55F4 /* FeedViewModel.swift in Sources */,
 				FCD6ACEE2CD5703100DF87E9 /* RatingBoxSUI.swift in Sources */,
