@@ -13,7 +13,7 @@ struct LoaderSwiftUI: View {
 
     var body: some View {
         LottieView(isAnimating: $isAnimating)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(width: 100, height: 100)
             .background(Color.clear)
     }
 }

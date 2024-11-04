@@ -192,11 +192,6 @@ struct MovieDetailsView: View {
                 }
             }
             
-            if isLoading {
-                LoaderSwiftUI()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            
             if showCustomAlert {
                 ZStack {
                     Color.black.opacity(0.5)
@@ -230,7 +225,22 @@ struct MovieDetailsView: View {
                     .frame(maxWidth: .infinity)
                 }
             }
+            if isLoading {
+                ZStack {
+                    Color.background
+                        .ignoresSafeArea()
+                        .onTapGesture {}
+
+                    GeometryReader { geometry in
+                        LoaderSwiftUI()
+                            .scaledToFit()
+                            .frame(maxWidth: 100, maxHeight: 100)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                    }
+                }
+            }
         }
+        .disabled(isLoading)
         .onAppear {
             bindToViewModel()
             viewModel.onDidLoad()
