@@ -24,7 +24,7 @@ class AddReviewUseCaseImpl: AddReviewUseCase {
     
     func execute(movieID: String, request: ReviewRequest) async throws {
         do {
-            try await repository.addReview(movieID: movieID, request: request)
+            try await repository.add(movieID: movieID, request: request)
         } catch {
             print(error.localizedDescription)
             throw error

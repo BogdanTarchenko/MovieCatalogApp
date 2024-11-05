@@ -25,6 +25,7 @@ class GetMoviesUseCaseImpl: GetMoviesUseCase {
         return GetMoviesUseCaseImpl(repository: repository)
     }
     
+    // пересмотреть логику
     func execute() async throws -> MovieElementModel? {
         if moviesBuffer.isEmpty {
             let pagedResponse = try await loadNextPage()

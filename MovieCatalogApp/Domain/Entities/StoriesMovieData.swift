@@ -11,6 +11,7 @@ struct StoriesMovieData {
     var genres: [String]
     var id: String
 
+    // переделать
     init(posterURL: String = SC.empty, name: String = SC.empty, genres: [String] = [], id: String = SC.empty) {
         self.posterURL = posterURL
         self.name = name

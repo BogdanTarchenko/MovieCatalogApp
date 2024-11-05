@@ -24,7 +24,7 @@ class DeleteReviewUseCaseImpl: DeleteReviewUseCase {
     
     func execute(movieID: String, reviewID: String) async throws {
         do {
-            try await repository.deleteReview(movieID: movieID, reviewID: reviewID)
+            try await repository.delete(movieID: movieID, reviewID: reviewID)
         } catch {
             throw error
         }

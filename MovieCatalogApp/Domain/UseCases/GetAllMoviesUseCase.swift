@@ -7,12 +7,13 @@
 
 protocol GetAllMoviesUseCase {
     func execute() async throws -> [MovieElementModel]?
-    func loadInitialMovies() async throws -> [MovieElementModel]
+    func load() async throws -> [MovieElementModel]
 }
 
 class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
     private let repository: GetMoviesRepository
     
+    // начать с 4
     private var currentPage = 4
     
     init(repository: GetMoviesRepository) {
@@ -36,7 +37,7 @@ class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
         return pagedResponse.movies
     }
     
-    func loadInitialMovies() async throws -> [MovieElementModel] {
+    func load() async throws -> [MovieElementModel] {
         var initialMoviesBuffer: [MovieElementModel] = []
         
         let firstPageResponse = try await repository.getMovies(page: 1)

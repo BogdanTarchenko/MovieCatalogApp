@@ -109,22 +109,22 @@ final class ProfileViewModel {
     func getCurrentDayTime() -> DayTime {
         let hour = getCurrentTime()
         switch hour {
-        case 6..<12: return .morning
-        case 12..<18: return .day
-        case 18..<24: return .evening
-        default: return .night
+        case 6..<12: return .m
+        case 12..<18: return .d
+        case 18..<24: return .e
+        default: return .n
         }
     }
     
     func getCurrentGreeting() -> String {
         switch getCurrentDayTime() {
-        case .morning:
+        case .m:
             return LocalizedString.Greeting.morning
-        case .day:
+        case .d:
             return LocalizedString.Greeting.day
-        case .evening:
+        case .e:
             return LocalizedString.Greeting.evening
-        case .night:
+        case .n:
             return LocalizedString.Greeting.night
         }
     }

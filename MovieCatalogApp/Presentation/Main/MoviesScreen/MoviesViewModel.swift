@@ -132,7 +132,7 @@ final class MoviesViewModel {
     }
     
     private func fetchInitialMovieData() async throws -> [AllMovieData] {
-        let movie = try await getAllMoviesUseCase.loadInitialMovies()
+        let movie = try await getAllMoviesUseCase.load()
         return mapToAllMovieData(movie)
     }
     

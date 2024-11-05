@@ -24,7 +24,7 @@ class EditReviewUseCaseImpl: EditReviewUseCase {
     
     func execute(movieID: String, reviewID: String, request: ReviewRequest) async throws {
         do {
-            try await repository.editReview(movieID: movieID, reviewID: reviewID, request: request)
+            try await repository.edit(movieID: movieID, reviewID: reviewID, request: request)
         } catch {
             throw error
         }

@@ -7,14 +7,14 @@
 
 final class WelcomeViewModel {
     
-    weak var appRouterDelegate: AppRouterDelegate?
+    weak var delegate: AppRouterDelegate?
     
     // MARK: - Public Methods
     func signInButtonTapped() {
-        appRouterDelegate?.navigateToSignIn()
+        delegate?.navigateToSignIn()
     }
     
     func signUpButtonTapped() {
-        appRouterDelegate?.navigateToSignUp()
+        delegate?.navigateToSignUp()
     }
 }

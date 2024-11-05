@@ -85,20 +85,20 @@ extension AppRouter {
     
     private func createWelcomeViewController() -> UINavigationController {
         let welcomeViewModel = WelcomeViewModel()
-        welcomeViewModel.appRouterDelegate = self
+        welcomeViewModel.delegate = self
         let welcomeViewController = WelcomeViewController(viewModel: welcomeViewModel)
         return UINavigationController(rootViewController: welcomeViewController)
     }
     
     private func createSignInViewController() -> SignInViewController {
         let signInViewModel = SignInViewModel()
-        signInViewModel.appRouterDelegate = self
+        signInViewModel.delegate = self
         return SignInViewController(viewModel: signInViewModel)
     }
     
     private func createSignUpViewController() -> SignUpViewController {
         let signUpViewModel = SignUpViewModel()
-        signUpViewModel.appRouterDelegate = self
+        signUpViewModel.delegate = self
         return SignUpViewController(viewModel: signUpViewModel)
     }
     

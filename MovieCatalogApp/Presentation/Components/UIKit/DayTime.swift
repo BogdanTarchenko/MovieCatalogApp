@@ -6,8 +6,8 @@
 //
 
 enum DayTime {
-    case morning
-    case day
-    case evening
-    case night
+    case m
+    case d
+    case e
+    case n
 }
