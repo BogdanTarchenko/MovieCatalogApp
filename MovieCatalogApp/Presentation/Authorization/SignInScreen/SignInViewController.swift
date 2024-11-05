@@ -125,6 +125,14 @@ private extension SignInViewController {
         }
     }
     
+    func updateTextFieldValidation() {
+        loginTextField.layer.borderColor = viewModel.isUsernameValid ? UIColor.clear.cgColor : UIColor.accent.cgColor
+        loginTextField.layer.borderWidth = viewModel.isUsernameValid ? 0 : 1
+        
+        passwordTextField.layer.borderColor = viewModel.isPasswordValid ? UIColor.clear.cgColor : UIColor.accent.cgColor
+        passwordTextField.layer.borderWidth = viewModel.isPasswordValid ? 0 : 1
+    }
+    
     // MARK: - Actions
     @objc func signInButtonTapped() {
         Task {
@@ -135,11 +143,13 @@ private extension SignInViewController {
     @objc func loginTextFieldChanged() {
         loginTextField.toggleIcons()
         viewModel.updateUsername(loginTextField.text ?? SC.empty)
+        updateTextFieldValidation()
     }
     
     @objc func passwordTextFieldChanged() {
         passwordTextField.toggleIcons()
         viewModel.updatePassword(passwordTextField.text ?? SC.empty)
+        updateTextFieldValidation()
     }
     
     // MARK: - Bindings

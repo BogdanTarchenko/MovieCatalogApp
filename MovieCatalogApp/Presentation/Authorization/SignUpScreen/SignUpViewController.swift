@@ -152,6 +152,23 @@ private extension SignUpViewController {
         dateOfBirthTextField.addTarget(self, action: #selector(dateOfBirthTextFieldChanged), for: .editingDidEnd)
     }
     
+    func updateTextFieldValidation() {
+        loginTextField.layer.borderColor = viewModel.isUsernameValid ? UIColor.clear.cgColor : UIColor.accent.cgColor
+        loginTextField.layer.borderWidth = viewModel.isUsernameValid ? 0 : 1
+        
+        emailTextField.layer.borderColor = viewModel.isEmailValid ? UIColor.clear.cgColor : UIColor.accent.cgColor
+        emailTextField.layer.borderWidth = viewModel.isEmailValid ? 0 : 1
+        
+        passwordTextField.layer.borderColor = viewModel.isPasswordValid ? UIColor.clear.cgColor : UIColor.accent.cgColor
+        passwordTextField.layer.borderWidth = viewModel.isPasswordValid ? 0 : 1
+        
+        repeatPasswordTextField.layer.borderColor = viewModel.isRepeatedPasswordValid ? UIColor.clear.cgColor : UIColor.accent.cgColor
+        repeatPasswordTextField.layer.borderWidth = viewModel.isRepeatedPasswordValid ? 0 : 1
+        
+        nameTextField.layer.borderColor = viewModel.isNameValid ? UIColor.clear.cgColor : UIColor.accent.cgColor
+        nameTextField.layer.borderWidth = viewModel.isNameValid ? 0 : 1
+    }
+    
     func configureButton() {
         signUpButton.setTitle(LocalizedString.SignUp.signUpButtonTitle, for: .normal)
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
@@ -183,26 +200,31 @@ private extension SignUpViewController {
     @objc func loginTextFieldChanged() {
         loginTextField.toggleIcons()
         viewModel.updateUsername(loginTextField.text ?? SC.empty)
+        updateTextFieldValidation()
     }
     
     @objc func emailTextFieldChanged() {
         emailTextField.toggleIcons()
         viewModel.updateEmail(emailTextField.text ?? SC.empty)
+        updateTextFieldValidation()
     }
     
     @objc func nameTextFieldChanged() {
         nameTextField.toggleIcons()
         viewModel.updateName(nameTextField.text ?? SC.empty)
+        updateTextFieldValidation()
     }
     
     @objc func passwordTextFieldChanged() {
         passwordTextField.toggleIcons()
         viewModel.updatePassword(passwordTextField.text ?? SC.empty)
+        updateTextFieldValidation()
     }
     
     @objc func repeatPasswordTextFieldChanged() {
         repeatPasswordTextField.toggleIcons()
         viewModel.updateRepeatedPassword(repeatPasswordTextField.text ?? SC.empty)
+        updateTextFieldValidation()
     }
     
     @objc func dateOfBirthTextFieldChanged() {

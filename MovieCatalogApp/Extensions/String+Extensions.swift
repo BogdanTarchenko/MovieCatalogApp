@@ -13,12 +13,6 @@ extension String {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
         return predicate.evaluate(with: self)
     }
-    
-    var isValidPassword: Bool {
-        let regularExpression = "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
-        return predicate.evaluate(with: self)
-    }
 }
 
 extension String {

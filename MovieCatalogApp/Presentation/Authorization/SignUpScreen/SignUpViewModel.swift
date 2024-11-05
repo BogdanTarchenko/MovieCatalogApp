@@ -19,6 +19,32 @@ final class SignUpViewModel {
     
     var credentials = RegistrationCredentials()
     
+    var isUsernameValid: Bool = true {
+        didSet {
+            validateFields()
+        }
+    }
+    var isEmailValid: Bool = true {
+        didSet {
+            validateFields()
+        }
+    }
+    var isNameValid: Bool = true {
+        didSet {
+            validateFields()
+        }
+    }
+    var isPasswordValid: Bool = true {
+        didSet {
+            validateFields()
+        }
+    }
+    var isRepeatedPasswordValid: Bool = true {
+        didSet {
+            validateFields()
+        }
+    }
+
     init() {
         self.signUpUseCase = SignUpUseCaseImpl.create()
     }
@@ -26,26 +52,32 @@ final class SignUpViewModel {
     // MARK: - Public Methods
     func updateUsername(_ username: String) {
         self.credentials.username = username
+        isUsernameValid = isValidLatinCharacters(username) && !username.isEmpty
         validateFields()
     }
     
     func updateEmail(_ email: String) {
         self.credentials.email = email
+        isEmailValid = !email.isEmpty && email.isValidEmail
         validateFields()
     }
     
     func updateName(_ name: String) {
         self.credentials.name = name
+        isNameValid = !name.isEmpty
         validateFields()
     }
     
     func updatePassword(_ password: String) {
         self.credentials.password = password
+        isPasswordValid = isValidLatinCharacters(password) && password.count >= 6 && (password == credentials.repeatedPassword)
         validateFields()
     }
+
     
     func updateRepeatedPassword(_ repeatedPassword: String) {
         self.credentials.repeatedPassword = repeatedPassword
+        isRepeatedPasswordValid = (repeatedPassword == credentials.password)
         validateFields()
     }
     
@@ -86,12 +118,19 @@ final class SignUpViewModel {
     }
     
     // MARK: - Private Methods
+    private func isValidLatinCharacters(_ input: String) -> Bool {
+        let regularExpression = "^[A-Za-z0-9#?!@$%^&*-]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
+        return predicate.evaluate(with: input)
+    }
+
+    
     private func validateFields() {
-        let isUsernameValid = !credentials.username.isEmpty
+        let isUsernameValid = self.isUsernameValid
         let isEmailValid = !credentials.email.isEmpty
-        let isNameValid = !credentials.name.isEmpty
-        let isPasswordValid = !credentials.password.isEmpty
-        let isRepeatedPasswordValid = !credentials.repeatedPassword.isEmpty && (credentials.repeatedPassword == credentials.password)
+        let isNameValid = self.isNameValid
+        let isPasswordValid = self.isPasswordValid
+        let isRepeatedPasswordValid = self.isRepeatedPasswordValid
         let isDateOfBirthValid = credentials.dateOfBirth != nil
         
         let isValid = isUsernameValid && isEmailValid && isNameValid && isPasswordValid && isRepeatedPasswordValid && isDateOfBirthValid

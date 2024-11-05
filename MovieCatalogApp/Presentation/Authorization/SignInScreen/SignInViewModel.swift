@@ -19,6 +19,17 @@ final class SignInViewModel {
     
     var credentials = LoginCredentials()
     
+    var isUsernameValid: Bool = true {
+        didSet {
+            validateFields()
+        }
+    }
+    var isPasswordValid: Bool = true {
+        didSet {
+            validateFields()
+        }
+    }
+
     init() {
         self.signInUseCase = SignInUseCaseImpl.create()
     }
@@ -26,11 +37,13 @@ final class SignInViewModel {
     // MARK: - Public Methods
     func updateUsername(_ username: String) {
         self.credentials.username = username
+        isUsernameValid = isValidLatinCharacters(username) && !username.isEmpty
         validateFields()
     }
-    
+
     func updatePassword(_ password: String) {
         self.credentials.password = password
+        isPasswordValid = isValidLatinCharacters(password) && !password.isEmpty
         validateFields()
     }
     
@@ -53,10 +66,15 @@ final class SignInViewModel {
         }
     }
     
-    
     // MARK: - Private Methods
+    private func isValidLatinCharacters(_ input: String) -> Bool {
+        let regularExpression = "^[A-Za-z0-9#?!@$%^&*-]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
+        return predicate.evaluate(with: input)
+    }
+    
     private func validateFields() {
-        let isValid = !self.credentials.username.isEmpty && !self.credentials.password.isEmpty
+        let isValid = isUsernameValid && isPasswordValid
         isSignInButtonActive?(isValid)
     }
 }
