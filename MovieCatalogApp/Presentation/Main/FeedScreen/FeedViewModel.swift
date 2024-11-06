@@ -54,7 +54,6 @@ final class FeedViewModel {
                 return nil
             }
         } catch {
-            print("Ошибка загрузки филмьа: \(error)")
             return nil
         }
     }
@@ -87,7 +86,6 @@ final class FeedViewModel {
             nextMovieData = movieData
         }
     }
-    
     
     private func notifyLoadingStart() {
         Task { @MainActor in

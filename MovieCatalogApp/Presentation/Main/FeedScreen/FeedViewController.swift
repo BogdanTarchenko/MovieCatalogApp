@@ -115,10 +115,13 @@ final class FeedViewController: UIViewController {
         let translation = gesture.translation(in: view)
         let velocity = gesture.velocity(in: view)
         
+        let rotationAngle = translation.x / 800
+
         switch gesture.state {
         case .changed:
             moviePoster.transform = CGAffineTransform(translationX: translation.x, y: .zero)
-            
+                .rotated(by: rotationAngle)
+
             showSwipeIndicator(isLike: translation.x > .zero)
             
         case .ended:
@@ -137,7 +140,7 @@ final class FeedViewController: UIViewController {
             break
         }
     }
-    
+
     private func handleSwipeRight() {
         showSwipeIndicator(isLike: true)
         animateCardSwipe(to: Constants.Swipe.offScreenRight)
@@ -185,8 +188,13 @@ final class FeedViewController: UIViewController {
     }
     
     private func animateCardSwipe(to x: CGFloat) {
+        let maxRotationAngle: CGFloat = .pi / 12
+        let rotationAngle: CGFloat = x / 800
+        let angle = min(max(rotationAngle, -maxRotationAngle), maxRotationAngle)
+
         UIView.animate(withDuration: Constants.Animation.duration, animations: {
             self.moviePoster.transform = CGAffineTransform(translationX: x, y: .zero)
+                .rotated(by: angle)
         }) { [weak self] _ in
             Task {
                 await self?.loadNextMovie()
@@ -227,7 +235,6 @@ final class FeedViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.showEmptyMovieImage()
             }
-            print("Не удалось загрузить следующий фильм")
         }
     }
     
@@ -270,6 +277,7 @@ final class FeedViewController: UIViewController {
         configureLogoImageView()
         configureMovieDataContainerView()
         configureStackView()
+        
     }
     
     // MARK: - UI Update
