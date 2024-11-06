@@ -598,7 +598,7 @@
         }
       }
     },
-    "repeat_password" : {
+    "repeated_password" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {

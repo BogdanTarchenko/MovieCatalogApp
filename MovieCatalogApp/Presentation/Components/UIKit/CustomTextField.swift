@@ -163,27 +163,27 @@ private extension CustomTextField {
     func placeholderString(for information: PlaceholderText.Information) -> String {
         switch information {
         case .username:
-            return NSLocalizedString("username", comment: "")
+            return LocalizedString.TextField.username
         case .email:
-            return NSLocalizedString("email", comment: "")
+            return LocalizedString.TextField.email
         case .name:
-            return NSLocalizedString("name", comment: "")
+            return LocalizedString.TextField.name
         }
     }
     
     func placeholderString(for password: PlaceholderText.Password) -> String {
         switch password {
         case .password:
-            return NSLocalizedString("password", comment: "")
+            return LocalizedString.TextField.password
         case .repeatedPassword:
-            return NSLocalizedString("repeat_password", comment: "")
+            return LocalizedString.TextField.repeatedPassword
         }
     }
     
     func placeholderString(for date: PlaceholderText.Date) -> String {
         switch date {
         case .dateOfBirth:
-            return NSLocalizedString("date_of_birth", comment: "")
+            return LocalizedString.TextField.dateOfBirth
         }
     }
 }

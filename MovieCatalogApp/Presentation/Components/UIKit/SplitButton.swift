@@ -55,8 +55,8 @@ class SplitButton: UIView {
     private func configureButtons() {
         switch style {
         case .genderPicker:
-            leftButton.setTitle(NSLocalizedString("male", comment: ""), for: .normal)
-            rightButton.setTitle(NSLocalizedString("female", comment: ""), for: .normal)
+            leftButton.setTitle(LocalizedString.SplitButton.male, for: .normal)
+            rightButton.setTitle(LocalizedString.SplitButton.female, for: .normal)
         }
         
         leftButton.toggleStyle(.plain)

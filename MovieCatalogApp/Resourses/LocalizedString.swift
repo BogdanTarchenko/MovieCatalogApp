@@ -26,11 +26,19 @@ enum LocalizedString {
         static var signInButtonTitle: String {
             return NSLocalizedString("sign_in_button_title", comment: SC.empty)
         }
+        
+        static var title: String {
+            return NSLocalizedString("sign_in_title", comment: SC.empty)
+        }
     }
     
     enum SignUp {
         static var signUpButtonTitle: String {
             return NSLocalizedString("sign_up_button_title", comment: SC.empty)
+        }
+        
+        static var title: String {
+            return NSLocalizedString("sign_up_title", comment: SC.empty)
         }
     }
     
@@ -43,6 +51,40 @@ enum LocalizedString {
     enum TextField {
         static var done: String {
             return NSLocalizedString("done", comment: SC.empty)
+        }
+        
+        static var username: String {
+            return NSLocalizedString("username", comment: SC.empty)
+        }
+        
+        static var email: String {
+            return NSLocalizedString("email", comment: SC.empty)
+        }
+        
+        static var name: String {
+            return NSLocalizedString("name", comment: SC.empty)
+        }
+        
+        static var password: String {
+            return NSLocalizedString("password", comment: SC.empty)
+        }
+        
+        static var repeatedPassword: String {
+            return NSLocalizedString("repeated_password", comment: SC.empty)
+        }
+        
+        static var dateOfBirth: String {
+            return NSLocalizedString("date_of_birth", comment: SC.empty)
+        }
+    }
+    
+    enum SplitButton {
+        static var male: String {
+            return NSLocalizedString("male", comment: SC.empty)
+        }
+        
+        static var female: String {
+            return NSLocalizedString("female", comment: SC.empty)
         }
     }
     

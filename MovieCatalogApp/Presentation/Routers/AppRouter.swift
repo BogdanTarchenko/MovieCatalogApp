@@ -48,12 +48,12 @@ extension AppRouter {
     
     func navigateToSignIn() {
         let signInViewController = createSignInViewController()
-        navigateToViewController(signInViewController, title: NSLocalizedString("sign_in_title", comment: ""))
+        navigateToViewController(signInViewController, title: LocalizedString.SignIn.title)
     }
     
     func navigateToSignUp() {
         let signUpViewController = createSignUpViewController()
-        navigateToViewController(signUpViewController, title: NSLocalizedString("sign_up_title", comment: ""))
+        navigateToViewController(signUpViewController, title: LocalizedString.SignUp.title)
     }
     
     func navigateToMain() {

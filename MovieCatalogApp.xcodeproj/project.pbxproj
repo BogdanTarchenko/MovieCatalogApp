@@ -387,6 +387,7 @@
 		FC1DC39C2CC3C3B600FF55F4 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FCD83A6F2CDB89750078E0C3 /* MainTabBar */,
 				FCFCD3F12CD3DEC60062E472 /* MovieDetails */,
 				FC1DC39A2CC3C39000FF55F4 /* FeedScreen */,
 				FC1DC39E2CC3C3E600FF55F4 /* MoviesScreen */,
@@ -474,6 +475,58 @@
 				FC3B1A8C2CD79554004029B3 /* DataController.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FCD83A6F2CDB89750078E0C3 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FC1DC3982CC3C37600FF55F4 /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		FCD83A702CDB89820078E0C3 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				FC206A612CD95B39006BECEE /* FriendLikesView.swift */,
+				FCED51752CD025D8007BB8CA /* CarouselCell.swift */,
+				FCED51772CD025F5007BB8CA /* CarouselView.swift */,
+				FCF7D8D92CB9733400A4F82C /* CustomButton.swift */,
+				FCF7D8E42CB9931200A4F82C /* CustomTextField.swift */,
+				FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */,
+				FC1DC3A92CC51D2100FF55F4 /* CustomTabBarItem.swift */,
+				FC399CF12CCBC66000AAE6DD /* Loader.swift */,
+				FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */,
+				FCAEA53C2CCD50C000A3D97E /* ProfileTextField.swift */,
+				FCAEA53E2CCD556500A3D97E /* GradientLabel.swift */,
+				FCAEA5402CCD763300A3D97E /* ProfileSplitButton.swift */,
+				FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */,
+				FCED515E2CCFC645007BB8CA /* RandomMovieButton.swift */,
+				FCF832E32CD0FFF500814992 /* PaddingLabel.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		FCD83A712CDB89BE0078E0C3 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				FCD6ACE32CD523CA00DF87E9 /* LoaderSUI.swift */,
+				FCD6ACE92CD5623200DF87E9 /* GradientBoxSUI.swift */,
+				FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */,
+				FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */,
+				FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */,
+				FCE449382CD57FB20023A257 /* DirectorBoxSUI.swift */,
+				FCE4493A2CD5838D0023A257 /* GenresBoxSUI.swift */,
+				FCE4493E2CD58DDB0023A257 /* FinanceBoxSUI.swift */,
+				FC639D472CD6702E007F4FB8 /* ReviewsBoxSUI.swift */,
+				FC639D492CD68AA8007F4FB8 /* CustomAlertSUI.swift */,
+				FC639D4B2CD6920A007F4FB8 /* GradientToggleStyleSUI.swift */,
+				FC639D4D2CD6966A007F4FB8 /* CustomTextFieldSUI.swift */,
+				FC3B1A962CD82168004029B3 /* GradientTextSUI.swift */,
+				FC3B1A982CD82459004029B3 /* FavoriteGenreBoxSUI.swift */,
+				FC3B1A9A2CD82D60004029B3 /* MoviePosterSUI.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		FCF7D8942CB96D7100A4F82C = {
@@ -697,37 +750,8 @@
 		FCF7D8D42CB96FDE00A4F82C /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				FCF7D8D92CB9733400A4F82C /* CustomButton.swift */,
-				FCF7D8E42CB9931200A4F82C /* CustomTextField.swift */,
-				FCF7D8EF2CBAB99100A4F82C /* SplitButton.swift */,
-				FC1DC3982CC3C37600FF55F4 /* MainTabBarController.swift */,
-				FC1DC3A92CC51D2100FF55F4 /* CustomTabBarItem.swift */,
-				FC399CF12CCBC66000AAE6DD /* Loader.swift */,
-				FCAEA5302CCCDE5A00A3D97E /* DayTime.swift */,
-				FCAEA53C2CCD50C000A3D97E /* ProfileTextField.swift */,
-				FCAEA53E2CCD556500A3D97E /* GradientLabel.swift */,
-				FCAEA5402CCD763300A3D97E /* ProfileSplitButton.swift */,
-				FC77157D2CCEC26F0095284E /* SegmentedProgressBar.swift */,
-				FCED515E2CCFC645007BB8CA /* RandomMovieButton.swift */,
-				FCED51752CD025D8007BB8CA /* CarouselCell.swift */,
-				FCED51772CD025F5007BB8CA /* CarouselView.swift */,
-				FCF832E32CD0FFF500814992 /* PaddingLabel.swift */,
-				FCD6ACE32CD523CA00DF87E9 /* LoaderSUI.swift */,
-				FCD6ACE92CD5623200DF87E9 /* GradientBoxSUI.swift */,
-				FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */,
-				FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */,
-				FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */,
-				FCE449382CD57FB20023A257 /* DirectorBoxSUI.swift */,
-				FCE4493A2CD5838D0023A257 /* GenresBoxSUI.swift */,
-				FCE4493E2CD58DDB0023A257 /* FinanceBoxSUI.swift */,
-				FC639D472CD6702E007F4FB8 /* ReviewsBoxSUI.swift */,
-				FC639D492CD68AA8007F4FB8 /* CustomAlertSUI.swift */,
-				FC639D4B2CD6920A007F4FB8 /* GradientToggleStyleSUI.swift */,
-				FC639D4D2CD6966A007F4FB8 /* CustomTextFieldSUI.swift */,
-				FC3B1A962CD82168004029B3 /* GradientTextSUI.swift */,
-				FC3B1A982CD82459004029B3 /* FavoriteGenreBoxSUI.swift */,
-				FC3B1A9A2CD82D60004029B3 /* MoviePosterSUI.swift */,
-				FC206A612CD95B39006BECEE /* FriendLikesView.swift */,
+				FCD83A702CDB89820078E0C3 /* UIKit */,
+				FCD83A712CDB89BE0078E0C3 /* SwiftUI */,
 			);
 			path = Components;
 			sourceTree = "<group>";
