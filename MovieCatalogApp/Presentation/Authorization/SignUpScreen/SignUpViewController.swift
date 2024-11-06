@@ -218,12 +218,14 @@ private extension SignUpViewController {
     @objc func passwordTextFieldChanged() {
         passwordTextField.toggleIcons()
         viewModel.updatePassword(passwordTextField.text ?? SC.empty)
+        viewModel.updateRepeatedPassword(repeatPasswordTextField.text ?? SC.empty)
         updateTextFieldValidation()
     }
     
     @objc func repeatPasswordTextFieldChanged() {
         repeatPasswordTextField.toggleIcons()
         viewModel.updateRepeatedPassword(repeatPasswordTextField.text ?? SC.empty)
+        viewModel.updatePassword(passwordTextField.text ?? SC.empty)
         updateTextFieldValidation()
     }
     

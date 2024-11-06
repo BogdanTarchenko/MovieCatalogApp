@@ -70,7 +70,7 @@ final class SignUpViewModel {
     
     func updatePassword(_ password: String) {
         self.credentials.password = password
-        isPasswordValid = isValidLatinCharacters(password) && password.count >= 6 && (password == credentials.repeatedPassword)
+        isPasswordValid = isValidLatinCharacters(password) && password.count >= 6
         validateFields()
     }
 
