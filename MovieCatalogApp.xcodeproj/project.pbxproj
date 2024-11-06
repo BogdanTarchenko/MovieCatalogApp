@@ -27,12 +27,11 @@
 		FC1DC3B42CC5398700FF55F4 /* GetMoviesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3B32CC5398700FF55F4 /* GetMoviesRepository.swift */; };
 		FC1DC3B62CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3B52CC53C7600FF55F4 /* GetMoviesRepositoryImpl.swift */; };
 		FC1DC3B82CC5403F00FF55F4 /* EmptyRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */; };
-		FC1DC3BB2CC57C7D00FF55F4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FC1DC3BA2CC57C7D00FF55F4 /* Kingfisher */; };
 		FC1DC3BD2CC57D3B00FF55F4 /* FeedMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1DC3BC2CC57D3B00FF55F4 /* FeedMovieData.swift */; };
 		FC206A5B2CD90178006BECEE /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5A2CD90178006BECEE /* FriendsViewController.swift */; };
 		FC206A5E2CD90246006BECEE /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5D2CD90246006BECEE /* FriendsViewModel.swift */; };
 		FC206A602CD92A6F006BECEE /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A5F2CD92A6F006BECEE /* FriendCell.swift */; };
-		FC206A622CD95B39006BECEE /* FriendLikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A612CD95B39006BECEE /* FriendLikesView.swift */; };
+		FC206A622CD95B39006BECEE /* FriendLikesViewSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC206A612CD95B39006BECEE /* FriendLikesViewSUI.swift */; };
 		FC2876282CBE5EC300255264 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876272CBE5EC300255264 /* String+Extensions.swift */; };
 		FC28762A2CBEA7E600255264 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2876292CBEA7E600255264 /* HTTPClient.swift */; };
 		FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */; };
@@ -105,6 +104,7 @@
 		FCD6ACEC2CD56E7600DF87E9 /* GrayBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */; };
 		FCD6ACEE2CD5703100DF87E9 /* RatingBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */; };
 		FCD6ACF02CD5767F00DF87E9 /* InformationBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */; };
+		FCD83A742CDB9BB10078E0C3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FCD83A732CDB9BB10078E0C3 /* Kingfisher */; };
 		FCE449392CD57FB20023A257 /* DirectorBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE449382CD57FB20023A257 /* DirectorBoxSUI.swift */; };
 		FCE4493B2CD5838D0023A257 /* GenresBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE4493A2CD5838D0023A257 /* GenresBoxSUI.swift */; };
 		FCE4493D2CD58B1E0023A257 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE4493C2CD58B1E0023A257 /* Array+Extensions.swift */; };
@@ -191,7 +191,7 @@
 		FC206A5A2CD90178006BECEE /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		FC206A5D2CD90246006BECEE /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		FC206A5F2CD92A6F006BECEE /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
-		FC206A612CD95B39006BECEE /* FriendLikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendLikesView.swift; sourceTree = "<group>"; };
+		FC206A612CD95B39006BECEE /* FriendLikesViewSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendLikesViewSUI.swift; sourceTree = "<group>"; };
 		FC2876272CBE5EC300255264 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		FC2876292CBEA7E600255264 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		FC28762B2CBEA7FE00255264 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -329,10 +329,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCA4F62B2CC929CA009DAB74 /* Lottie in Frameworks */,
-				FC1DC3BB2CC57C7D00FF55F4 /* Kingfisher in Frameworks */,
 				FCF7D8DD2CB9749400A4F82C /* SnapKit in Frameworks */,
 				FCEADE112CBD699400B28E7F /* Alamofire in Frameworks */,
 				FC2876382CBEBD1000255264 /* KeychainAccess in Frameworks */,
+				FCD83A742CDB9BB10078E0C3 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +488,6 @@
 		FCD83A702CDB89820078E0C3 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				FC206A612CD95B39006BECEE /* FriendLikesView.swift */,
 				FCED51752CD025D8007BB8CA /* CarouselCell.swift */,
 				FCED51772CD025F5007BB8CA /* CarouselView.swift */,
 				FCF7D8D92CB9733400A4F82C /* CustomButton.swift */,
@@ -510,6 +509,7 @@
 		FCD83A712CDB89BE0078E0C3 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				FC206A612CD95B39006BECEE /* FriendLikesViewSUI.swift */,
 				FCD6ACE32CD523CA00DF87E9 /* LoaderSUI.swift */,
 				FCD6ACE92CD5623200DF87E9 /* GradientBoxSUI.swift */,
 				FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */,
@@ -807,8 +807,8 @@
 				FCF7D8DC2CB9749400A4F82C /* SnapKit */,
 				FCEADE102CBD699400B28E7F /* Alamofire */,
 				FC2876372CBEBD1000255264 /* KeychainAccess */,
-				FC1DC3BA2CC57C7D00FF55F4 /* Kingfisher */,
 				FCA4F62A2CC929CA009DAB74 /* Lottie */,
+				FCD83A732CDB9BB10078E0C3 /* Kingfisher */,
 			);
 			productName = MovieCatalogApp;
 			productReference = FCF7D89D2CB96D7100A4F82C /* MovieCatalogApp.app */;
@@ -843,8 +843,8 @@
 				FCF7D8DB2CB9749400A4F82C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				FCEADE0F2CBD699400B28E7F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				FC1DC3B92CC57C7D00FF55F4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				FCA4F6292CC929CA009DAB74 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				FCD83A722CDB9BB10078E0C3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FCF7D89E2CB96D7100A4F82C /* Products */;
 			projectDirPath = "";
@@ -950,7 +950,7 @@
 				FCAEA5412CCD763400A3D97E /* ProfileSplitButton.swift in Sources */,
 				FCED51762CD025D8007BB8CA /* CarouselCell.swift in Sources */,
 				FCF832E22CD0FD8100814992 /* MoviePosterCell.swift in Sources */,
-				FC206A622CD95B39006BECEE /* FriendLikesView.swift in Sources */,
+				FC206A622CD95B39006BECEE /* FriendLikesViewSUI.swift in Sources */,
 				FC1DC3912CC3BB5100FF55F4 /* SignInRepository.swift in Sources */,
 				FCD6ACEC2CD56E7600DF87E9 /* GrayBoxSUI.swift in Sources */,
 				FC77157E2CCEC26F0095284E /* SegmentedProgressBar.swift in Sources */,
@@ -1244,14 +1244,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FC1DC3B92CC57C7D00FF55F4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.1.0;
-			};
-		};
 		FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
@@ -1266,6 +1258,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.5.0;
+			};
+		};
+		FCD83A722CDB9BB10078E0C3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
 			};
 		};
 		FCEADE0F2CBD699400B28E7F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -1287,11 +1287,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FC1DC3BA2CC57C7D00FF55F4 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FC1DC3B92CC57C7D00FF55F4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		FC2876372CBEBD1000255264 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FC2876362CBEBD1000255264 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
@@ -1301,6 +1296,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FCA4F6292CC929CA009DAB74 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		FCD83A732CDB9BB10078E0C3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCD83A722CDB9BB10078E0C3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		FCEADE102CBD699400B28E7F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

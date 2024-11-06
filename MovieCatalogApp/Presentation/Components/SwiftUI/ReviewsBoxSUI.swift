@@ -69,11 +69,19 @@ struct ReviewsItemView: View {
                     avatarAction()
                 }) {
                     KFImage(URL(string: avatarURL))
+                        .placeholder {
+                            KFImage(URL(string: Constants.defaultAvatarLink))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 32, height: 32)
+                                .clipShape(Circle())
+                        }
                         .resizable()
                         .scaledToFill()
                         .frame(width: 32, height: 32)
                         .clipShape(Circle())
                 }
+                
                 VStack(alignment: .leading) {
                     Text(authorName)
                         .font(.custom("Manrope-Medium", size: 12))
@@ -255,4 +263,8 @@ struct ReviewPickerView: View {
     }
 }
 
-
+extension ReviewsItemView {
+    enum Constants {
+        static var defaultAvatarLink: String = "https://s3-alpha-sig.figma.com/img/a92b/ba97/a13937d71ea4ab29b068a92fd325aa74?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NChlGzcfGZDhcEKxSkCuF2s07eic2KBzFrFDqDNR-cLTSRdLnoGdp3lgKFZJ70jgBCxUWz6J7LE~nBKRbeBagiPAx6PEpRfiaTPv5B5YMnrjkP3m9OshStQuDb7LJyufIqH1swKkFOywX7Wo3uEwUtueMagv6J~UzRAPWoxqvgJaRbi2uET-TmmLY4bCcB8tqfvPaCrjKm0ajPGWlpP7TzTfEuZbulvT2MgKpg5taY4z-iXg6Mrww8Xge05ioMU5V4raAnRNpOgFyRGbq3ZZkT1LsKjQ4HLyLWxycmaukA1zWwLcm7OfsDlOx~OB3Uwkl04nTnIxe8NfaOEwQSb1FQ__"
+    }
+}

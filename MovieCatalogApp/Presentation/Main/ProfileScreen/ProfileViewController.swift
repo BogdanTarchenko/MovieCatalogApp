@@ -193,8 +193,22 @@ private extension ProfileViewController {
     
     func configureProfileImageView() {
         if let profileImageURL = URL(string: self.viewModel.userData.profileImageURL) {
-            self.profileImageView.kf.setImage(with: profileImageURL)
+            self.profileImageView.kf.setImage(
+                with: profileImageURL,
+                placeholder: UIImage(named: Constants.defaultAvatarLink),
+                completionHandler: { result in
+                    switch result {
+                    case .failure:
+                        self.profileImageView.kf.setImage(with: URL(string: Constants.defaultAvatarLink))
+                    case .success:
+                        break
+                    }
+                }
+            )
+        } else {
+            self.profileImageView.image = UIImage(named: Constants.defaultAvatarLink)
         }
+        
         
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = Constants.imageViewSize / 2
@@ -277,7 +291,7 @@ private extension ProfileViewController {
         let avatarSize: CGFloat = 32
         let avatarCornerRadius: CGFloat = avatarSize / 2
         let avatarOffset: CGFloat = -8
-
+        
         let maxAvatars = min(viewModel.friendsData.count, 3)
         for index in 0..<maxAvatars {
             let friend = viewModel.friendsData[index]
@@ -288,7 +302,20 @@ private extension ProfileViewController {
             avatarImageView.contentMode = .scaleAspectFill
             
             if let avatarURL = URL(string: friend.avatarLink ?? Constants.defaultAvatarLink) {
-                avatarImageView.kf.setImage(with: avatarURL)
+                avatarImageView.kf.setImage(
+                    with: avatarURL,
+                    placeholder: UIImage(named: Constants.defaultAvatarLink),
+                    completionHandler: { result in
+                        switch result {
+                        case .failure:
+                            avatarImageView.kf.setImage(with: URL(string: Constants.defaultAvatarLink))
+                        case .success:
+                            break
+                        }
+                    }
+                )
+            } else {
+                avatarImageView.image = UIImage(named: Constants.defaultAvatarLink)
             }
             
             friendsButton.addSubview(avatarImageView)
@@ -333,7 +360,7 @@ private extension ProfileViewController {
             let outputDateFormatter = DateFormatter()
             outputDateFormatter.locale = Locale(identifier: "ru_RU")
             outputDateFormatter.dateFormat = "dd MMMM yyyy"
-
+            
             let formattedDateString = outputDateFormatter.string(from: date)
             birthDateTextField.textField.text = formattedDateString
         }

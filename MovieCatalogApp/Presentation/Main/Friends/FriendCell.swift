@@ -20,13 +20,24 @@ class FriendCell: UICollectionViewCell {
     var avatarLink: String? {
         didSet {
             if let avatarLink = avatarLink, let url = URL(string: avatarLink) {
-                avatarImageView.kf.setImage(with: url)
+                avatarImageView.kf.setImage(
+                    with: url,
+                    placeholder: UIImage(named: Constants.defaultAvatarLink),
+                    completionHandler: { result in
+                        switch result {
+                        case .failure:
+                            self.avatarImageView.kf.setImage(with: URL(string: Constants.defaultAvatarLink))
+                        case .success:
+                            break
+                        }
+                    }
+                )
             } else {
-                avatarImageView.image = nil
+                avatarImageView.image = UIImage(named: Constants.defaultAvatarLink)
             }
         }
     }
-    
+
     var name: String? {
         didSet {
             nameLabel.text = name
