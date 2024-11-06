@@ -57,6 +57,27 @@
         }
       }
     },
+    "alert_empty_review" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отзыв не может быть пустым"
+          }
+        }
+      }
+    },
+    "alert_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка"
+          }
+        }
+      }
+    },
     "alert_ok" : {
       "localizations" : {
         "ru" : {

@@ -140,6 +140,14 @@ enum LocalizedString {
         static var changeProfileImageTitle: String {
             return NSLocalizedString("profile_image_title", comment: SC.empty)
         }
+        
+        static var error: String {
+            return NSLocalizedString("alert_error", comment: SC.empty)
+        }
+        
+        static var emptyReview: String {
+            return NSLocalizedString("alert_empty_review", comment: SC.empty)
+        }
     }
     
     enum Profile {

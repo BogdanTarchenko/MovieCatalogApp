@@ -18,6 +18,8 @@ struct ReviewAlertView: View {
     var existingReviewText: String?
     var existingIsAnonymous: Bool?
     
+    @State private var showAlert: Bool = false
+    
     private let gradient = LinearGradient(
         gradient: Gradient(colors: [
             Color(red: 223/255, green: 40/255, blue: 0/255),
@@ -64,7 +66,6 @@ struct ReviewAlertView: View {
                 }
             }
             
-            
             Slider(value: Binding(get: {
                 Double(self.rating)
             }, set: { newValue in
@@ -83,8 +84,12 @@ struct ReviewAlertView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    action(rating, reviewText, isAnonymous)
-                    isPresented = false
+                    if reviewText.isEmpty {
+                        showAlert = true
+                    } else {
+                        action(rating, reviewText, isAnonymous)
+                        isPresented = false
+                    }
                 }) {
                     Text(LocalizedString.MovieDetails.Reviews.sendButtonTitle)
                         .font(.custom("Manrope-Bold", size: 14))
@@ -99,5 +104,13 @@ struct ReviewAlertView: View {
         .padding(24)
         .background(Color.dark)
         .cornerRadius(28)
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(LocalizedString.Alert.error),
+                message: Text(LocalizedString.Alert.emptyReview),
+                dismissButton: .default(Text(LocalizedString.Alert.OK))
+            )
+        }
     }
 }
+
