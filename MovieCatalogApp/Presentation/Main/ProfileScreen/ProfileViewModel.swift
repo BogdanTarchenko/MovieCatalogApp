@@ -55,6 +55,7 @@ final class ProfileViewModel {
     
     func onLogoutButtonTapped() {
         notifyLoadingStart()
+        dataController.deleteUserData(for: userData.id)
         
         Task {
             do {

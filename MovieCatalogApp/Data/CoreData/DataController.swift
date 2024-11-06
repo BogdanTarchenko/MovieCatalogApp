@@ -35,6 +35,30 @@ extension DataController {
         }
     }
     
+    func deleteUserData(for userId: String) {
+        let userRequest = NSFetchRequest<User>(entityName: "User")
+        userRequest.predicate = NSPredicate(format: "userId == %@", userId)
+        
+        if let user = (try? context.fetch(userRequest))?.first {
+            
+            if let favoriteGenres = user.favoriteGenres as? Set<FavoriteGenre> {
+                favoriteGenres.forEach { user.removeFromFavoriteGenres($0) }
+            }
+            
+            if let friends = user.friends as? Set<Friend> {
+                friends.forEach { user.removeFromFriends($0) }
+            }
+            
+            if let hiddenFilms = user.hiddenFilms as? Set<HiddenFilm> {
+                hiddenFilms.forEach { user.removeFromHiddenFilms($0) }
+            }
+            
+            context.delete(user)
+            saveContext()
+        }
+    }
+
+    
     // MARK: - Favorite Genres
     func addFavoriteGenre(for userId: String, genreName: String) {
         let request = NSFetchRequest<User>(entityName: "User")
