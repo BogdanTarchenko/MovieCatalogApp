@@ -99,7 +99,3 @@ final class FeedViewModel {
         }
     }
 }
-
-extension Notification.Name {
-    static let didLoadMovies = Notification.Name("didLoadMovies")
-}

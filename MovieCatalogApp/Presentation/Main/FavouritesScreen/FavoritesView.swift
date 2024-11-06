@@ -13,6 +13,8 @@ struct FavoritesView: View {
     @State private var selectedMovieID: String = SC.empty
     @State private var showMovieDetails = false
     
+    @State private var unauthorizedErrorReceived = false
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
@@ -29,6 +31,14 @@ struct FavoritesView: View {
             .onAppear {
                 Task {
                     await viewModel.updateFavoritesStatus()
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .unauthorizedErrorOccurred)) { _ in
+                unauthorizedErrorReceived = true
+            }
+            .onChange(of: unauthorizedErrorReceived) {
+                if unauthorizedErrorReceived {
+                    viewModel.delegate?.navigateToWelcome()
                 }
             }
         }

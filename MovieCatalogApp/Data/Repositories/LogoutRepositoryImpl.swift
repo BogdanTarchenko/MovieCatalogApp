@@ -22,6 +22,6 @@ class LogoutRepositoryImpl: LogoutRepository {
     }
     
     func removeToken() throws {
-        try keychain.remove("authToken2")
+        try keychain.remove("authToken")
     }
 }

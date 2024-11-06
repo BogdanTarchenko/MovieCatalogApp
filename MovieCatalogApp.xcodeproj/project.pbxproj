@@ -105,6 +105,7 @@
 		FCD6ACEE2CD5703100DF87E9 /* RatingBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */; };
 		FCD6ACF02CD5767F00DF87E9 /* InformationBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */; };
 		FCD83A742CDB9BB10078E0C3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FCD83A732CDB9BB10078E0C3 /* Kingfisher */; };
+		FCD83A782CDBBE320078E0C3 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD83A772CDBBE320078E0C3 /* Notification+Extensions.swift */; };
 		FCE449392CD57FB20023A257 /* DirectorBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE449382CD57FB20023A257 /* DirectorBoxSUI.swift */; };
 		FCE4493B2CD5838D0023A257 /* GenresBoxSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE4493A2CD5838D0023A257 /* GenresBoxSUI.swift */; };
 		FCE4493D2CD58B1E0023A257 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE4493C2CD58B1E0023A257 /* Array+Extensions.swift */; };
@@ -262,6 +263,7 @@
 		FCD6ACEB2CD56E7600DF87E9 /* GrayBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayBoxSUI.swift; sourceTree = "<group>"; };
 		FCD6ACED2CD5703100DF87E9 /* RatingBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBoxSUI.swift; sourceTree = "<group>"; };
 		FCD6ACEF2CD5767F00DF87E9 /* InformationBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationBoxSUI.swift; sourceTree = "<group>"; };
+		FCD83A772CDBBE320078E0C3 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		FCE449382CD57FB20023A257 /* DirectorBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectorBoxSUI.swift; sourceTree = "<group>"; };
 		FCE4493A2CD5838D0023A257 /* GenresBoxSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresBoxSUI.swift; sourceTree = "<group>"; };
 		FCE4493C2CD58B1E0023A257 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 				FC2876272CBE5EC300255264 /* String+Extensions.swift */,
 				FCF832E52CD101BE00814992 /* UIColor+Extensions.swift */,
 				FCE4493C2CD58B1E0023A257 /* Array+Extensions.swift */,
+				FCD83A772CDBBE320078E0C3 /* Notification+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				FC28762C2CBEA7FE00255264 /* APIEndpoint.swift in Sources */,
 				FCED516B2CCFE209007BB8CA /* GetFavoriteMoviesUseCase.swift in Sources */,
 				FCF7D8E12CB98DE800A4F82C /* SignInViewController.swift in Sources */,
+				FCD83A782CDBBE320078E0C3 /* Notification+Extensions.swift in Sources */,
 				FC206A5E2CD90246006BECEE /* FriendsViewModel.swift in Sources */,
 				FC639D3E2CD64D70007F4FB8 /* KinopoiskDetails.swift in Sources */,
 				FCED51652CCFD952007BB8CA /* FavoriteMovieRepository.swift in Sources */,

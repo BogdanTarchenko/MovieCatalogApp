@@ -167,7 +167,7 @@ final class MainTabBarController: UITabBarController {
     }
 }
 
-extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRouterDelegate, MoviesViewModelRouterDelegate {
+extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRouterDelegate, MoviesViewModelRouterDelegate, MovieDetailsViewModelRouterDelegate {
     func navigateToWelcome() {
         appRouterDelegate?.navigateToWelcome()
     }
@@ -188,6 +188,7 @@ extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRout
     
     func navigateToMovieDetails(movieID: String) {
         let movieDetailsViewModel = MovieDetailsViewModel(movieID: movieID)
+        movieDetailsViewModel.delegate = self
         movieDetailsViewModel.onDismiss = { [weak self] in
             self?.dismiss(animated: true)
         }

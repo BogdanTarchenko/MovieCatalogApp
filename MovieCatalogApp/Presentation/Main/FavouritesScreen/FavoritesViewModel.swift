@@ -10,6 +10,7 @@ import Foundation
 protocol FavoritesViewModelRouterDelegate: AnyObject {
     func navigateToMain()
     func navigateToMovieDetails(movieID: String)
+    func navigateToWelcome()
 }
 
 class FavoritesViewModel: ObservableObject {

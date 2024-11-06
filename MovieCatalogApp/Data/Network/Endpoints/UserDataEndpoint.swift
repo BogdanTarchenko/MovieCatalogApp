@@ -12,7 +12,7 @@ struct UserDataEndpoint: APIEndpoint {
     
     private var authToken: String? {
         let keychain = Keychain()
-        return try? keychain.get("authToken2")
+        return try? keychain.get("authToken")
     }
     
     var path: String {

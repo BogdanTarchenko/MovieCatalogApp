@@ -114,6 +114,15 @@ private extension ProfileViewController {
         setupContentView()
         setupLoaderView()
         setupView()
+        setupNotification()
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUnauthorizedError), name: .unauthorizedErrorOccurred, object: nil)
+    }
+    
+    @objc private func handleUnauthorizedError() {
+        viewModel.delegate?.navigateToWelcome()
     }
     
     func setupLoaderView() {

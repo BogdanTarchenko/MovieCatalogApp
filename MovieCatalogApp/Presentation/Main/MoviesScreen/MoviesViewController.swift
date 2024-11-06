@@ -94,6 +94,15 @@ final class MoviesViewController: UIViewController {
         setupContentView()
         setupLoaderView()
         setupView()
+        setupNotification()
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUnauthorizedError), name: .unauthorizedErrorOccurred, object: nil)
+    }
+    
+    @objc private func handleUnauthorizedError() {
+        viewModel.delegate?.navigateToWelcome()
     }
     
     private func setupScrollView() {
@@ -337,12 +346,12 @@ final class MoviesViewController: UIViewController {
         movieDetailsViewModel.onDismiss = { [weak self] in
             self?.dismiss(animated: true)
         }
-
+        
         let movieDetailsView = MovieDetailsView(viewModel: movieDetailsViewModel)
         let hostingController = UIHostingController(rootView: movieDetailsView)
         let navigationController = UINavigationController(rootViewController: hostingController)
         navigationController.modalPresentationStyle = .fullScreen
-
+        
         self.present(navigationController, animated: true)
     }
     @objc private func allButtonTapped() {
@@ -351,6 +360,7 @@ final class MoviesViewController: UIViewController {
     
     deinit {
         timer?.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

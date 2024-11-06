@@ -9,6 +9,7 @@ import Foundation
 
 protocol MoviesViewModelRouterDelegate: AnyObject {
     func navigateToFavorites()
+    func navigateToWelcome()
 }
 
 final class MoviesViewModel {

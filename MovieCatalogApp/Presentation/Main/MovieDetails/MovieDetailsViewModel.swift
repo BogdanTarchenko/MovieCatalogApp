@@ -7,7 +7,13 @@
 
 import Foundation
 
+protocol MovieDetailsViewModelRouterDelegate: AnyObject {
+    func navigateToWelcome()
+}
+
 class MovieDetailsViewModel: ObservableObject {
+    
+    weak var delegate: MovieDetailsViewModelRouterDelegate?
 
     @Published var movieID: String
     @Published var movieDetails: MovieDetails?

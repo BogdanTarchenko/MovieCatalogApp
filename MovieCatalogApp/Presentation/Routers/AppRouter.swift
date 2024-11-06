@@ -27,7 +27,7 @@ final class AppRouter: AppRouterDelegate {
     
     func start() {
         let keychain = Keychain()
-        let authTokenExists = (try? keychain.get("authToken2")) != nil
+        let authTokenExists = (try? keychain.get("authToken")) != nil
         
         let initialViewController: UIViewController = authTokenExists ? createMainTabBarController() : createWelcomeViewController()
         

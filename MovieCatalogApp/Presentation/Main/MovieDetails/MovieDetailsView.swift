@@ -11,6 +11,7 @@ import Kingfisher
 struct MovieDetailsView: View {
     
     @StateObject var viewModel: MovieDetailsViewModel
+    
     @State private var isLoading = false
     @State private var title: String = SC.empty
     @State private var posterURL: String = SC.empty
@@ -34,6 +35,8 @@ struct MovieDetailsView: View {
     @State private var currentReviewIndex: Int = 0
     @State private var showCustomAlert = false
     @State private var isEditingReview = false
+    
+    @State private var unauthorizedErrorReceived = false
     
     private let dataController = DataController.shared
     
@@ -230,7 +233,7 @@ struct MovieDetailsView: View {
                     Color.background
                         .ignoresSafeArea()
                         .onTapGesture {}
-
+                    
                     GeometryReader { geometry in
                         LoaderSwiftUI()
                             .scaledToFit()
@@ -244,6 +247,14 @@ struct MovieDetailsView: View {
         .onAppear {
             bindToViewModel()
             viewModel.onDidLoad()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .unauthorizedErrorOccurred)) { _ in
+            unauthorizedErrorReceived = true
+        }
+        .onChange(of: unauthorizedErrorReceived) {
+            if unauthorizedErrorReceived {
+                viewModel.delegate?.navigateToWelcome()
+            }
         }
     }
 }

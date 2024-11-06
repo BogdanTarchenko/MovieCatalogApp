@@ -35,12 +35,7 @@ final class AlamofireHTTPClient: HTTPClient {
                         continuation.resume(returning: decodedData)
                     case .failure(let error):
                         if let statusCode = response.response?.statusCode, statusCode == 401 {
-                            do {
-                                let keychain = Keychain()
-                                try keychain.remove("authToken2")
-                            } catch {
-                                print("Ошибка удаления токена: \(error)")
-                            }
+                            self.handleUnauthorizedError()
                         }
                         continuation.resume(throwing: error)
                     }
@@ -62,16 +57,22 @@ final class AlamofireHTTPClient: HTTPClient {
                         continuation.resume()
                     case .failure(let error):
                         if let statusCode = response.response?.statusCode, statusCode == 401 {
-                            do {
-                                try self.keychain.remove("authToken2")
-                            } catch {
-                                print("Ошибка удаления токена: \(error)")
-                            }
+                            self.handleUnauthorizedError()
                         }
                         continuation.resume(throwing: error)
                     }
                 }
         }
+    }
+    
+    private func handleUnauthorizedError() {
+        do {
+            try keychain.remove("authToken")
+        } catch {
+            print("Ошибка удаления токена: \(error)")
+        }
+        
+        NotificationCenter.default.post(name: .unauthorizedErrorOccurred, object: nil)
     }
 }
 

@@ -12,7 +12,7 @@ struct EditReviewEndpoint: APIEndpoint {
     
     private var authToken: String? {
         let keychain = Keychain()
-        return try? keychain.get("authToken2")
+        return try? keychain.get("authToken")
     }
     let movieID: String
     let reviewID: String
