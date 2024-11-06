@@ -63,6 +63,7 @@ final class MainTabBarController: UITabBarController {
     
     private lazy var moviesViewController: MoviesViewController = {
         let viewModel = MoviesViewModel()
+        viewModel.delegate = self
         return MoviesViewController(viewModel: viewModel)
     }()
     
@@ -166,7 +167,7 @@ final class MainTabBarController: UITabBarController {
     }
 }
 
-extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRouterDelegate {
+extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRouterDelegate, MoviesViewModelRouterDelegate {
     func navigateToWelcome() {
         appRouterDelegate?.navigateToWelcome()
     }
@@ -178,6 +179,11 @@ extension MainTabBarController: ProfileViewModelDelegate, FavoritesViewModelRout
     func navigateToMain() {
         selectedIndex = 0
         setColor(selectedIndex: 0)
+    }
+    
+    func navigateToFavorites() {
+        selectedIndex = 2
+        setColor(selectedIndex: 2)
     }
     
     func navigateToMovieDetails(movieID: String) {

@@ -127,9 +127,6 @@ final class MoviesViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .background
-        if let tabBar = tabBarController?.tabBar {
-            tabBar.backgroundImage = UIImage()
-        }
     }
     
     private func setupContent() {
@@ -349,6 +346,7 @@ final class MoviesViewController: UIViewController {
         self.present(navigationController, animated: true)
     }
     @objc private func allButtonTapped() {
+        viewModel.onDidAllButtonTapped()
     }
     
     deinit {

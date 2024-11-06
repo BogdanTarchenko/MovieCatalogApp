@@ -149,10 +149,6 @@ private extension ProfileViewController {
     
     func setupView() {
         view.backgroundColor = .background
-        
-        if let tabBar = tabBarController?.tabBar {
-            tabBar.backgroundImage = UIImage()
-        }
     }
     
     func setupContent() {
