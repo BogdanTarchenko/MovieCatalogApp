@@ -9,6 +9,49 @@ import UIKit
 import SnapKit
 import SwiftUI
 
+enum TabBarItem: CaseIterable {
+    case feed, movies, favourites, profile
+    
+    var activeIcon: String {
+        switch self {
+        case .feed:
+            return "feed_gradient"
+        case .movies:
+            return "movies_gradient"
+        case .favourites:
+            return "favorites_gradient"
+        case .profile:
+            return "profile_gradient"
+        }
+    }
+    
+    var inactiveIcon: String {
+        switch self {
+        case .feed:
+            return "feed"
+        case .movies:
+            return "movies"
+        case .favourites:
+            return "favourites"
+        case .profile:
+            return "profile"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .feed:
+            return LocalizedString.TabBar.feed
+        case .movies:
+            return LocalizedString.TabBar.movies
+        case .favourites:
+            return LocalizedString.TabBar.favorites
+        case .profile:
+            return LocalizedString.TabBar.profile
+        }
+    }
+}
+
 final class MainTabBarController: UITabBarController {
     
     weak var appRouterDelegate: AppRouterDelegate?
@@ -35,10 +78,10 @@ final class MainTabBarController: UITabBarController {
         return ProfileViewController(viewModel: viewModel)
     }()
     
-    private lazy var feedButton = getButton(icon: "feed", title: LocalizedString.TabBar.feed, action: action(for: 0))
-    private lazy var moviesButton = getButton(icon: "movies", title: LocalizedString.TabBar.movies, action: action(for: 1))
-    private lazy var favouritesButton = getButton(icon: "favourites", title: LocalizedString.TabBar.favorites, action: action(for: 2))
-    private lazy var profileButton = getButton(icon: "profile", title: LocalizedString.TabBar.profile, action: action(for: 3))
+    private lazy var feedButton = getButton(for: .feed, action: action(for: 0))
+    private lazy var moviesButton = getButton(for: .movies, action: action(for: 1))
+    private lazy var favouritesButton = getButton(for: .favourites, action: action(for: 2))
+    private lazy var profileButton = getButton(for: .profile, action: action(for: 3))
     
     private lazy var customBar: UIStackView = {
         let stackView = UIStackView()
@@ -73,8 +116,8 @@ final class MainTabBarController: UITabBarController {
         }
     }
     
-    private func getButton(icon: String, title: String, action: UIAction) -> CustomTabBarItem {
-        return CustomTabBarItem(icon: icon, title: title, action: action)
+    private func getButton(for item: TabBarItem, action: UIAction) -> CustomTabBarItem {
+        return CustomTabBarItem(icon: item.inactiveIcon, title: item.title, action: action)
     }
     
     private func action(for index: Int) -> UIAction {
@@ -88,23 +131,25 @@ final class MainTabBarController: UITabBarController {
     
     private func setColor(selectedIndex: Int) {
         DispatchQueue.main.async {
+            let items = TabBarItem.allCases
             let buttons = [self.feedButton, self.moviesButton, self.favouritesButton, self.profileButton]
             
             buttons.enumerated().forEach { index, button in
                 if index == selectedIndex {
-                    button.button.tintColor = .accent
+                    button.button.setImage(UIImage(named: items[index].activeIcon)?.withRenderingMode(.alwaysOriginal), for: .normal)
                     self.applyGradientTo(button: button.titleLabel)
                 } else {
-                    button.button.tintColor = .grayFaded
+                    button.button.setImage(UIImage(named: items[index].inactiveIcon), for: .normal)
                     button.titleLabel.textColor = .grayFaded
                 }
             }
         }
     }
     
+    
     private func applyGradientTo(button label: UILabel?) {
         guard let label = label else { return }
-
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = label.bounds
         gradientLayer.colors = [UIColor(red: 223/255, green: 40/255, blue: 0/255, alpha: 1).cgColor,
