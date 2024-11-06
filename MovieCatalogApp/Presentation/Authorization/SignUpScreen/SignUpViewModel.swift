@@ -19,27 +19,27 @@ final class SignUpViewModel {
     
     var credentials = RegistrationCredentials()
     
-    var isUsernameValid: Bool = true {
+    var isUsernameValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isEmailValid: Bool = true {
+    var isEmailValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isNameValid: Bool = true {
+    var isNameValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isPasswordValid: Bool = true {
+    var isPasswordValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isRepeatedPasswordValid: Bool = true {
+    var isRepeatedPasswordValid: Bool = false {
         didSet {
             validateFields()
         }

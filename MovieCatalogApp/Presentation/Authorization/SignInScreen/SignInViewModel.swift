@@ -19,12 +19,12 @@ final class SignInViewModel {
     
     var credentials = LoginCredentials()
     
-    var isUsernameValid: Bool = true {
+    var isUsernameValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isPasswordValid: Bool = true {
+    var isPasswordValid: Bool = false {
         didSet {
             validateFields()
         }
