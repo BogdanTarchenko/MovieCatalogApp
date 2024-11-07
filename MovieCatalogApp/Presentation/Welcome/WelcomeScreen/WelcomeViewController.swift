@@ -59,7 +59,7 @@ private extension WelcomeViewController {
     func configureTitleLabel() {
         titleLabel.text = LocalizedString.Welcome.welcomeMessage
         titleLabel.font = UIFont(name: Constants.titleFontName, size: Constants.titleFontSize)
-        titleLabel.numberOfLines = 2
+        titleLabel.numberOfLines = 3
         titleLabel.textColor = .textDefault
         
         view.addSubview(titleLabel)
