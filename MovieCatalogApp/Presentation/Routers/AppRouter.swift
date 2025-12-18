@@ -92,13 +92,13 @@ extension AppRouter {
     
     private func createSignInViewController() -> SignInViewController {
         let signInViewModel = SignInViewModel()
-        signInViewModel.delegate = self
+        signInViewModel.appRouterDelegate = self
         return SignInViewController(viewModel: signInViewModel)
     }
     
     private func createSignUpViewController() -> SignUpViewController {
         let signUpViewModel = SignUpViewModel()
-        signUpViewModel.delegate = self
+        signUpViewModel.appRouterDelegate = self
         return SignUpViewController(viewModel: signUpViewModel)
     }
     

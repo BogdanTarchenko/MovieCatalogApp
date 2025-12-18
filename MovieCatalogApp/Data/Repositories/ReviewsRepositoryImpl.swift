@@ -12,17 +12,17 @@ class ReviewsRepositoryImpl: ReviewsRepository {
         self.httpClient = httpClient
     }
     
-    func add(movieID: String, request: ReviewRequest) async throws {
+    func addReview(movieID: String, request: ReviewRequest) async throws {
         let endpoint = AddReviewEndpoint(movieID: movieID)
         try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: request)
     }
     
-    func edit(movieID: String, reviewID: String, request: ReviewRequest) async throws {
+    func editReview(movieID: String, reviewID: String, request: ReviewRequest) async throws {
         let endpoint = EditReviewEndpoint(movieID: movieID, reviewID: reviewID)
         try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: request)
     }
     
-    func delete(movieID: String, reviewID: String) async throws {
+    func deleteReview(movieID: String, reviewID: String) async throws {
         let endpoint = DeleteReviewEndpoint(movieID: movieID, reviewID: reviewID)
         try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
     }

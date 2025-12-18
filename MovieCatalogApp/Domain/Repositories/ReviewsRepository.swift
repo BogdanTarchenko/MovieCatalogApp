@@ -6,7 +6,7 @@
 //
 
 protocol ReviewsRepository {
-    func add(movieID: String, request: ReviewRequest) async throws
-    func edit(movieID: String, reviewID: String, request: ReviewRequest) async throws
-    func delete(movieID: String, reviewID: String) async throws
+    func addReview(movieID: String, request: ReviewRequest) async throws
+    func editReview(movieID: String, reviewID: String, request: ReviewRequest) async throws
+    func deleteReview(movieID: String, reviewID: String) async throws
 }

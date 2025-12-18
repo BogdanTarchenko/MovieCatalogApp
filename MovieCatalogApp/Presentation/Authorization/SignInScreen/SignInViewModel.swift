@@ -10,7 +10,7 @@ import KeychainAccess
 
 final class SignInViewModel {
     
-    weak var delegate: AppRouterDelegate?
+    weak var appRouterDelegate: AppRouterDelegate?
     
     private let signInUseCase: SignInUseCase
     
@@ -61,7 +61,7 @@ final class SignInViewModel {
         }
         do {
             try await signInUseCase.execute(request: requestBody)
-            self.delegate?.navigateToMain()
+            self.appRouterDelegate?.navigateToMain()
         } catch {
             print(error)
         }
