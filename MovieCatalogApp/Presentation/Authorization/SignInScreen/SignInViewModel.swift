@@ -55,7 +55,7 @@ final class SignInViewModel {
         
         isLoading?(true)
         
-        // пока что дефер но лучше заменить
+        // TODO: - заменить defer на async await
         defer {
             isLoading?(false)
         }

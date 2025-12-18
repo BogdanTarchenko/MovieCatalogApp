@@ -103,7 +103,7 @@ private extension SignUpViewController {
         
         loaderView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            // разобраться почему 100 но слишком большой лоадер
+            // TODO: - изменить размеры лоадера
             make.size.equalTo(100)
         }
     }

@@ -11,7 +11,7 @@ struct StoriesMovieData {
     var genres: [String]
     var id: String
 
-    // переделать
+    // TODO: - убрать стандартную инициализацию
     init(posterURL: String = SC.empty, name: String = SC.empty, genres: [String] = [], id: String = SC.empty) {
         self.posterURL = posterURL
         self.name = name

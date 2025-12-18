@@ -13,7 +13,7 @@ protocol GetAllMoviesUseCase {
 class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
     private let repository: GetMoviesRepository
     
-    // начать с 4
+    // отсчет начинается с 4 страницы, так как первые 3 страницы прогружаются через loadInitialMovies()
     private var currentPage = 4
     
     init(repository: GetMoviesRepository) {

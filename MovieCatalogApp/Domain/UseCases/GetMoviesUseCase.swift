@@ -25,7 +25,7 @@ class GetMoviesUseCaseImpl: GetMoviesUseCase {
         return GetMoviesUseCaseImpl(repository: repository)
     }
     
-    // пересмотреть логику
+    // TODO: - реализовать буффер случайных фильмов для показа
     func execute() async throws -> MovieElementModel? {
         if moviesBuffer.isEmpty {
             let pagedResponse = try await loadNextPage()
