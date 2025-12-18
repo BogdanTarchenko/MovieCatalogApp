@@ -9,7 +9,7 @@ import UIKit
 
 class MovieCell: UICollectionViewCell {
     
-    let dataController = DataController.shared
+    private let dataController = DataController.shared
     
     private let imageView = UIImageView()
     private let vignetteView = UIView()

@@ -21,8 +21,8 @@ final class ProfileViewModel {
     private let changeUserDataUseCase: ChangeUserDataUseCase
     private let logoutUseCase: LogoutUseCase
     
-    var userData = UserData()
-    var friendsData: [Friend] = []
+    private(set) var userData = UserData()
+    private(set) var friendsData: [Friend] = []
     
     var onDidLoadUserData: ((UserData) -> Void)?
     var onDidStartLoad: (() -> Void)?

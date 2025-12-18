@@ -17,14 +17,14 @@ final class SignInViewModel {
     var isSignInButtonActive: ((Bool) -> Void)?
     var isLoading: ((Bool) -> Void)?
     
-    var credentials = LoginCredentials()
+    private var credentials = LoginCredentials()
     
-    var isUsernameValid: Bool = false {
+    private(set) var isUsernameValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isPasswordValid: Bool = false {
+    private(set) var isPasswordValid: Bool = false {
         didSet {
             validateFields()
         }

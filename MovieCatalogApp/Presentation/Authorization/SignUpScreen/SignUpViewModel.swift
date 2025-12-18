@@ -17,29 +17,29 @@ final class SignUpViewModel {
     var isSignUpButtonActive: ((Bool) -> Void)?
     var isLoading: ((Bool) -> Void)?
     
-    var credentials = RegistrationCredentials()
+    private var credentials = RegistrationCredentials()
     
-    var isUsernameValid: Bool = false {
+    private(set) var isUsernameValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isEmailValid: Bool = false {
+    private(set) var isEmailValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isNameValid: Bool = false {
+    private(set) var isNameValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isPasswordValid: Bool = false {
+    private(set) var isPasswordValid: Bool = false {
         didSet {
             validateFields()
         }
     }
-    var isRepeatedPasswordValid: Bool = false {
+    private(set) var isRepeatedPasswordValid: Bool = false {
         didSet {
             validateFields()
         }

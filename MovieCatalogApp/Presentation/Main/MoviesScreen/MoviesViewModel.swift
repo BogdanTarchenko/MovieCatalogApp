@@ -21,10 +21,10 @@ final class MoviesViewModel {
     private let getAllMoviesUseCase: GetAllMoviesUseCase
     private let getUserDataUseCase: GetUserDataUseCase
     
-    var storiesMovieData = [StoriesMovieData]()
-    var favoritesMovieData = [FavoritesMovieData]()
-    var allMovieData = [AllMovieData]()
-    var currentUserId: String = SC.empty
+    private(set) var storiesMovieData = [StoriesMovieData]()
+    private(set) var favoritesMovieData = [FavoritesMovieData]()
+    private(set) var allMovieData = [AllMovieData]()
+    private(set) var currentUserId: String = SC.empty
     
     var onDidLoadStoriesMovieData: (([StoriesMovieData]) -> Void)?
     var onDidLoadFavoritesMovieData: (([FavoritesMovieData]) -> Void)?
