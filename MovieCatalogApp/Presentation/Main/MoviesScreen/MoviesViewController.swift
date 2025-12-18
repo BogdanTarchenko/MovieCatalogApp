@@ -18,15 +18,19 @@ final class MoviesViewController: UIViewController {
     private let contentView = UIView()
     
     private let collectionView: UICollectionView
-    private let progressBar = SegmentedProgressBar(numberOfSegments: 5, duration: 5, gradientColors: [
-        UIColor(red: 223/255, green: 40/255, blue: 0/255, alpha: 1).cgColor,
-        UIColor(red: 255/255, green: 102/255, blue: 51/255, alpha: 1).cgColor
-    ])
+    private let progressBar = SegmentedProgressBar(
+        numberOfSegments: Constants.progressBarNumberOfSegments,
+        duration: TimeInterval(Constants.progressBarDuration),
+        gradientColors: [
+            Constants.progressBarGradientColorLeft,
+            Constants.progressBarGradientColorRight
+        ]
+    )
     
     private let randomMovieButton = RandomMovieButton(title: LocalizedString.Movies.randomMovieButtonTitle)
     
     private let favoritesLabelStackView = UIStackView()
-    private let carousel = CarouselView(withFrame: .zero, andInset: 8)
+    private let carousel = CarouselView(withFrame: .zero, andInset: Constants.carouselInset)
     
     private let allMoviesLabel = GradientLabel()
     private let allMoviesCollectionView: UICollectionView
@@ -43,13 +47,13 @@ final class MoviesViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = Constants.collectionViewMinimumLineSpacing
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         let allMovieLayout = UICollectionViewFlowLayout()
         allMovieLayout.scrollDirection = .vertical
-        allMovieLayout.minimumInteritemSpacing = 8
-        allMovieLayout.minimumLineSpacing = 8
+        allMovieLayout.minimumInteritemSpacing = Constants.allMoviesCollectionViewSpacing
+        allMovieLayout.minimumLineSpacing = Constants.allMoviesCollectionViewSpacing
         self.allMoviesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: allMovieLayout)
         
         super.init(nibName: nil, bundle: nil)
@@ -130,7 +134,7 @@ final class MoviesViewController: UIViewController {
         view.addSubview(loaderView)
         loaderView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalTo(100)
+            make.size.equalTo(Constants.loaderSize)
         }
     }
     
@@ -153,17 +157,22 @@ final class MoviesViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: Constants.movieCellIdentifier)
         
         contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(464)
+            make.height.equalTo(Constants.collectionViewHeight)
         }
     }
     
     private func setupProgressBar() {
-        progressBar.frame = CGRect(x: 0, y: 0, width: view.frame.width - 48, height: 4)
+        progressBar.frame = CGRect(
+            x: Constants.progressBarFrameX,
+            y: Constants.progressBarFrameY,
+            width: view.frame.width - Constants.progressBarFrameWidthInset,
+            height: Constants.progressBarFrameHeight
+        )
         progressBar.delegate = self
         progressBar.bottomColor = UIColor(.textInformation)
         progressBar.startAnimation()
@@ -171,8 +180,8 @@ final class MoviesViewController: UIViewController {
         
         contentView.addSubview(progressBar)
         progressBar.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.top.equalToSuperview().offset(60)
+            make.leading.trailing.equalToSuperview().inset(Constants.progressBarHorizontalInset)
+            make.top.equalToSuperview().offset(Constants.progressBarTopOffset)
         }
     }
     
@@ -185,9 +194,9 @@ final class MoviesViewController: UIViewController {
         contentView.addSubview(randomMovieButton)
         
         randomMovieButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.top.equalTo(collectionView.snp.bottom).offset(32)
-            make.height.equalTo(96)
+            make.leading.trailing.equalToSuperview().inset(Constants.randomMovieButtonHorizontalInset)
+            make.top.equalTo(collectionView.snp.bottom).offset(Constants.randomMovieButtonTopOffset)
+            make.height.equalTo(Constants.randomMovieButtonHeight)
         }
     }
     
@@ -204,7 +213,7 @@ final class MoviesViewController: UIViewController {
         let allButton: UIButton = {
             let button = UIButton()
             button.setTitle(LocalizedString.Movies.allButtonTitle, for: .normal)
-            button.titleLabel?.font = UIFont(name: "Manrope-Bold", size: 20)
+            button.titleLabel?.font = UIFont(name: Constants.fontNameBold, size: Constants.allButtonFontSize)
             button.setTitleColor(.textInformation, for: .normal)
             button.backgroundColor = .clear
             button.addTarget(self, action: #selector(allButtonTapped), for: .touchUpInside)
@@ -218,8 +227,8 @@ final class MoviesViewController: UIViewController {
         contentView.addSubview(favoritesLabelStackView)
         
         favoritesLabelStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.top.equalTo(randomMovieButton.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview().inset(Constants.favoritesLabelStackViewHorizontalInset)
+            make.top.equalTo(randomMovieButton.snp.bottom).offset(Constants.favoritesLabelStackViewTopOffset)
         }
     }
     
@@ -227,15 +236,15 @@ final class MoviesViewController: UIViewController {
         carousel.backgroundColor = .clear
         carousel.delegate = self
         carousel.dataSource = self
-        carousel.register(FavoritesMovieCell.self, forCellWithReuseIdentifier: "FavoritesMovieCell")
+        carousel.register(FavoritesMovieCell.self, forCellWithReuseIdentifier: Constants.favoritesMovieCellIdentifier)
         
         carousel.showsHorizontalScrollIndicator = false
         
         contentView.addSubview(carousel)
         carousel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(favoritesLabelStackView.snp.bottom).offset(16)
-            make.height.equalTo(252)
+            make.top.equalTo(favoritesLabelStackView.snp.bottom).offset(Constants.carouselTopOffset)
+            make.height.equalTo(Constants.carouselHeight)
             
         }
     }
@@ -246,8 +255,8 @@ final class MoviesViewController: UIViewController {
         contentView.addSubview(allMoviesLabel)
         
         allMoviesLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.top.equalTo(carousel.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview().inset(Constants.allMoviesLabelHorizontalInset)
+            make.top.equalTo(carousel.snp.bottom).offset(Constants.allMoviesLabelTopOffset)
         }
     }
     
@@ -256,22 +265,22 @@ final class MoviesViewController: UIViewController {
         allMoviesCollectionView.backgroundColor = .clear
         allMoviesCollectionView.delegate = self
         allMoviesCollectionView.dataSource = self
-        allMoviesCollectionView.register(MoviePosterCell.self, forCellWithReuseIdentifier: "MoviePosterCell")
+        allMoviesCollectionView.register(MoviePosterCell.self, forCellWithReuseIdentifier: Constants.moviePosterCellIdentifier)
         
         contentView.addSubview(allMoviesCollectionView)
         
         allMoviesCollectionView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.top.equalTo(allMoviesLabel.snp.bottom).offset(16)
-            make.height.equalTo(0)
-            make.bottom.equalToSuperview().inset(32)
+            make.leading.trailing.equalToSuperview().inset(Constants.allMoviesCollectionViewHorizontalInset)
+            make.top.equalTo(allMoviesLabel.snp.bottom).offset(Constants.allMoviesCollectionViewTopOffset)
+            make.height.equalTo(Constants.allMoviesCollectionViewInitialHeight)
+            make.bottom.equalToSuperview().inset(Constants.allMoviesCollectionViewBottomInset)
         }
     }
     
     // MARK: - Timer
     private func startTimer() {
         guard timer == nil else { return }
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: Constants.timerInterval, repeats: true) { [weak self] _ in
             self?.scrollToNextItem()
         }
     }
@@ -292,7 +301,7 @@ final class MoviesViewController: UIViewController {
         collectionView.scrollToItem(at: IndexPath(row: nextIndex, section: 0), at: .centeredHorizontally, animated: true)
         
         progressBar.delegate?.segmentedProgressBarChangedIndex(index: nextIndex)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.animationDelay) {
             self.isAnimating = false
         }
     }
@@ -307,7 +316,7 @@ final class MoviesViewController: UIViewController {
         collectionView.scrollToItem(at: IndexPath(row: nextIndex, section: 0), at: .centeredHorizontally, animated: true)
         
         progressBar.delegate?.segmentedProgressBarChangedIndex(index: nextIndex)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.animationDelay) {
             self.isAnimating = false
         }
     }
@@ -323,10 +332,10 @@ final class MoviesViewController: UIViewController {
     
     private func calculateCollectionViewHeight() -> CGFloat {
         let numberOfItems = viewModel.allMovieData.count
-        let itemHeight: CGFloat = 166
-        let spacing: CGFloat = 8
+        let itemHeight = Constants.allMoviesItemHeight
+        let spacing = Constants.allMoviesCollectionViewSpacing
         
-        let rows = ceil(CGFloat(numberOfItems) / 3.0)
+        let rows = ceil(CGFloat(numberOfItems) / Constants.itemsPerRow)
         let totalHeight = (itemHeight * rows) + (spacing * (rows - 1))
         return totalHeight
     }
@@ -386,12 +395,12 @@ extension MoviesViewController {
             guard let self = self else { return }
             
             let dimmingView = UIView(frame: self.view.bounds)
-            dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-            dimmingView.tag = 999
+            dimmingView.backgroundColor = UIColor.black.withAlphaComponent(Constants.dimmingViewInitialAlpha)
+            dimmingView.tag = Constants.dimmingViewTag
             self.view.addSubview(dimmingView)
             
-            UIView.animate(withDuration: 0.3) {
-                dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            UIView.animate(withDuration: Constants.animationDuration) {
+                dimmingView.backgroundColor = UIColor.black.withAlphaComponent(Constants.dimmingViewFinalAlpha)
             }
             
             self.loaderView.isHidden = false
@@ -402,9 +411,9 @@ extension MoviesViewController {
         viewModel.onDidFinishLoad = { [weak self] in
             guard let self = self else { return }
             
-            if let dimmingView = self.view.viewWithTag(999) {
-                UIView.animate(withDuration: 0.3, animations: {
-                    dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            if let dimmingView = self.view.viewWithTag(Constants.dimmingViewTag) {
+                UIView.animate(withDuration: Constants.animationDuration, animations: {
+                    dimmingView.backgroundColor = UIColor.black.withAlphaComponent(Constants.dimmingViewInitialAlpha)
                 }) { _ in
                     dimmingView.removeFromSuperview()
                 }
@@ -436,7 +445,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // MARK: - CollectionView
         if collectionView == self.collectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.movieCellIdentifier, for: indexPath) as! MovieCell
             let movie = viewModel.storiesMovieData[indexPath.row]
             
             cell.currentUserId = viewModel.currentUserId
@@ -486,7 +495,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         // MARK: - Carousel
         else if collectionView == self.carousel {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesMovieCell", for: indexPath) as! FavoritesMovieCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.favoritesMovieCellIdentifier, for: indexPath) as! FavoritesMovieCell
             let favoriteMovie = viewModel.favoritesMovieData[indexPath.row]
             cell.configure(with: favoriteMovie)
             
@@ -498,7 +507,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         // MARK: - AllMovies
         else if collectionView == self.allMoviesCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviePosterCell", for: indexPath) as! MoviePosterCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.moviePosterCellIdentifier, for: indexPath) as! MoviePosterCell
             let allMovie = viewModel.allMovieData[indexPath.row]
             cell.configure(with: allMovie)
             
@@ -532,11 +541,17 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }
         else if collectionView == self.carousel {
-            return CGSize(width: collectionView.frame.width * 0.37, height: collectionView.frame.height / 1.07)
+            return CGSize(
+                width: collectionView.frame.width * Constants.carouselWidthMultiplier,
+                height: collectionView.frame.height / Constants.carouselHeightDivider
+            )
         }
         else if collectionView == self.allMoviesCollectionView {
-            let baseHeight: CGFloat = 166
-            return CGSize(width: (allMoviesCollectionView.frame.width - 16) / 3, height: baseHeight)
+            let baseHeight = Constants.allMoviesItemHeight
+            return CGSize(
+                width: (allMoviesCollectionView.frame.width - Constants.allMoviesItemWidthInset) / Constants.itemsPerRow,
+                height: baseHeight
+            )
         }
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
@@ -551,7 +566,7 @@ extension MoviesViewController: UIScrollViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let frameHeight = scrollView.frame.size.height
         
-        if contentOffsetY + frameHeight >= contentHeight - 340 {
+        if contentOffsetY + frameHeight >= contentHeight - Constants.scrollViewThreshold {
             viewModel.onDidScrolledToEnd()
             allMoviesCollectionView.reloadData()
             updateCollectionViewHeight()
@@ -563,4 +578,82 @@ extension MoviesViewController: UIScrollViewDelegate {
 extension MoviesViewController: SegmentedProgressBarDelegate {
     func segmentedProgressBarChangedIndex(index: Int) {}
     func segmentedProgressBarFinished() {}
+}
+
+// MARK: - Constants
+private extension MoviesViewController {
+    enum Constants {
+        // Progress Bar
+        static let progressBarNumberOfSegments: Int = 5
+        static let progressBarDuration: Int = 5
+        static let progressBarGradientColorLeft = UIColor(red: 223/255, green: 40/255, blue: 0/255, alpha: 1).cgColor
+        static let progressBarGradientColorRight = UIColor(red: 255/255, green: 102/255, blue: 51/255, alpha: 1).cgColor
+        static let progressBarFrameX: CGFloat = 0
+        static let progressBarFrameY: CGFloat = 0
+        static let progressBarFrameWidthInset: CGFloat = 48
+        static let progressBarFrameHeight: CGFloat = 4
+        static let progressBarHorizontalInset: CGFloat = 24
+        static let progressBarTopOffset: CGFloat = 60
+        
+        // Loader
+        static let loaderSize: CGFloat = 100
+        
+        // Collection View
+        static let collectionViewHeight: CGFloat = 464
+        static let collectionViewMinimumLineSpacing: CGFloat = 0
+        
+        // Carousel
+        static let carouselInset: CGFloat = 8
+        static let carouselTopOffset: CGFloat = 16
+        static let carouselHeight: CGFloat = 252
+        static let carouselWidthMultiplier: CGFloat = 0.37
+        static let carouselHeightDivider: CGFloat = 1.07
+        
+        // Random Movie Button
+        static let randomMovieButtonHorizontalInset: CGFloat = 24
+        static let randomMovieButtonTopOffset: CGFloat = 32
+        static let randomMovieButtonHeight: CGFloat = 96
+        
+        // Favorites Label Stack View
+        static let favoritesLabelStackViewHorizontalInset: CGFloat = 24
+        static let favoritesLabelStackViewTopOffset: CGFloat = 32
+        
+        // All Movies Label
+        static let allMoviesLabelHorizontalInset: CGFloat = 24
+        static let allMoviesLabelTopOffset: CGFloat = 32
+        
+        // All Movies Collection View
+        static let allMoviesCollectionViewHorizontalInset: CGFloat = 24
+        static let allMoviesCollectionViewTopOffset: CGFloat = 16
+        static let allMoviesCollectionViewInitialHeight: CGFloat = 0
+        static let allMoviesCollectionViewBottomInset: CGFloat = 32
+        static let allMoviesCollectionViewSpacing: CGFloat = 8
+        static let allMoviesItemHeight: CGFloat = 166
+        static let allMoviesItemWidthInset: CGFloat = 16
+        static let itemsPerRow: CGFloat = 3.0
+        
+        // Timer
+        static let timerInterval: TimeInterval = 5.0
+        
+        // Animation
+        static let animationDelay: TimeInterval = 0.5
+        static let animationDuration: TimeInterval = 0.3
+        
+        // Dimming View
+        static let dimmingViewTag: Int = 999
+        static let dimmingViewInitialAlpha: CGFloat = 0.0
+        static let dimmingViewFinalAlpha: CGFloat = 0.5
+        
+        // Scroll View
+        static let scrollViewThreshold: CGFloat = 340
+        
+        // Font
+        static let fontNameBold: String = "Manrope-Bold"
+        static let allButtonFontSize: CGFloat = 20
+        
+        // Cell Identifiers
+        static let movieCellIdentifier: String = "MovieCell"
+        static let favoritesMovieCellIdentifier: String = "FavoritesMovieCell"
+        static let moviePosterCellIdentifier: String = "MoviePosterCell"
+    }
 }
